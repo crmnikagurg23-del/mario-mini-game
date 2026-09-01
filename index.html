@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Super Mario Road - Mobile Perfect</title>
+    <title>Super Mario Road</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Outfit:wght@600;700;800;900&display=swap');
 
@@ -15,35 +15,33 @@
             margin: 0;
             padding: 0;
         }
-        body {
-            background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #090d16 50%, #030712 100%);
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #030712;
             font-family: 'Outfit', -apple-system, sans-serif;
+            color: #f8fafc;
+        }
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            color: #f8fafc;
-            padding: 8px;
-            overflow-x: hidden;
+            padding: 6px;
         }
         .casino-cabinet {
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(99, 102, 241, 0.25);
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            padding: 8px 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
-            max-width: 480px;
-            position: relative;
-        }
-        @media (min-width: 768px) {
-            .casino-cabinet { max-width: 850px; }
+            max-width: 440px;
+            height: 100%;
+            max-height: 100dvh;
+            justify-content: space-between;
         }
 
         .shake {
@@ -51,26 +49,28 @@
         }
         @keyframes shakeScreen {
             10%, 90% { transform: translate3d(-3px, 0, 0); }
-            20%, 80% { transform: translate3d(5px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-            40%, 60% { transform: translate3d(6px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+            40%, 60% { transform: translate3d(5px, 0, 0); }
         }
 
+        /* Top Header */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
+            height: 32px;
+            flex-shrink: 0;
         }
         .brand-title {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 15px;
+            gap: 4px;
+            font-size: 14px;
             font-weight: 900;
             font-family: 'Fredoka', cursive;
             color: #ef4444;
-            text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
             white-space: nowrap;
         }
         .brand-title span { color: #fbbf24; }
@@ -80,98 +80,100 @@
             gap: 4px;
             align-items: center;
         }
-        .btn-toggle, .lang-select {
-            background: rgba(30, 41, 59, 0.8);
-            color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 4px 7px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            outline: none;
-            touch-action: manipulation;
-        }
-        .btn-toggle.active {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: #fff;
-            border-color: #60a5fa;
-        }
-        .lang-select { color: #fbbf24; font-weight: 800; }
-
         .world-badge {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
-            padding: 3px 7px;
+            padding: 3px 6px;
             border-radius: 6px;
             font-weight: 900;
-            font-size: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 9.5px;
             white-space: nowrap;
         }
+        .btn-toggle, .lang-select {
+            background: rgba(30, 41, 59, 0.9);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 10.5px;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-toggle.active {
+            background: #2563eb;
+            color: #fff;
+            border-color: #60a5fa;
+        }
+        .lang-select { color: #fbbf24; font-weight: 800; padding: 0 4px; }
 
+        /* History */
         .history-bar {
             display: flex;
             gap: 4px;
             align-items: center;
-            background: rgba(10, 15, 29, 0.8);
-            padding: 4px 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            min-height: 28px;
+            background: rgba(10, 15, 29, 0.85);
+            padding: 3px 6px;
+            border-radius: 6px;
+            height: 26px;
             overflow-x: auto;
             white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
+            flex-shrink: 0;
         }
         .history-label {
-            font-size: 9px;
+            font-size: 8.5px;
             font-weight: 800;
             color: #64748b;
-            text-transform: uppercase;
         }
         .history-badge {
-            padding: 2px 7px;
-            border-radius: 6px;
-            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 9.5px;
             font-weight: 900;
             flex-shrink: 0;
         }
         .badge-win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
         .badge-loss { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
 
+        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 4px;
+            flex-shrink: 0;
         }
         .stat-card {
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+            background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 5px 6px;
-            border-radius: 8px;
+            padding: 3px 4px;
+            border-radius: 6px;
             display: flex;
             flex-direction: column;
-            gap: 1px;
-            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
-        .stat-card .label { font-size: 7.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
-        .stat-card .value { font-size: 13.5px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .stat-card .label { font-size: 7px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .stat-card .value { font-size: 12.5px; font-weight: 900; font-variant-numeric: tabular-nums; }
         .val-gold { color: #fbbf24; }
         .val-green { color: #22c55e; }
         .val-blue { color: #38bdf8; }
         .val-shield { color: #c084fc; }
 
+        /* Game Screen */
         .screen-container {
             position: relative;
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.15);
             width: 100%;
-            height: 240px;
-            box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
-        }
-        @media (min-width: 600px) {
-            .screen-container { height: 280px; }
+            flex: 1;
+            min-height: 160px;
+            max-height: 280px;
+            background: #000;
         }
         canvas {
             display: block;
@@ -179,45 +181,45 @@
             height: 100%;
         }
 
+        /* Bonus Chests Overlay */
         .bonus-overlay {
             display: none;
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(8, 12, 22, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             z-index: 20;
-            padding: 10px;
+            padding: 8px;
         }
         .bonus-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 900;
             color: #fbbf24;
             text-align: center;
         }
         .chests-container {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
         .chest-card {
             background: #1e293b;
             border: 2px solid #eab308;
-            border-radius: 12px;
-            width: 75px;
-            height: 85px;
+            border-radius: 10px;
+            width: 65px;
+            height: 75px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .chest-icon { font-size: 34px; }
+        .chest-icon { font-size: 30px; }
         .chest-multiplier {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 900;
             display: none;
         }
@@ -225,104 +227,110 @@
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #000;
             font-weight: 900;
-            padding: 8px 18px;
-            border-radius: 8px;
+            padding: 6px 14px;
+            border-radius: 6px;
             border: none;
-            font-size: 13px;
+            font-size: 11.5px;
             cursor: pointer;
         }
 
+        /* Status Banner */
         .status-banner {
-            background: rgba(10, 15, 29, 0.85);
-            padding: 8px 10px;
-            border-radius: 10px;
+            background: rgba(10, 15, 29, 0.9);
+            padding: 4px 6px;
+            border-radius: 8px;
             text-align: center;
             font-weight: 800;
-            font-size: 12.5px;
-            min-height: 40px;
+            font-size: 11.5px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            line-height: 1.3;
+            flex-shrink: 0;
+            line-height: 1.2;
         }
 
+        /* Bottom Control Panel */
         .control-panel {
-            background: linear-gradient(180deg, rgba(20, 28, 48, 0.8) 0%, rgba(10, 15, 29, 0.95) 100%);
+            background: rgba(20, 28, 48, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 10px;
-            border-radius: 14px;
+            padding: 8px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
+            flex-shrink: 0;
         }
         .inputs-row {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
         }
-        .control-field { display: flex; flex-direction: column; gap: 3px; }
-        .control-field label { font-size: 8.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .control-field { display: flex; flex-direction: column; gap: 2px; }
+        .control-field label { font-size: 7.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
         .bet-input-box { display: flex; gap: 2px; width: 100%; }
         input, select {
-            background: rgba(30, 41, 59, 0.9);
+            background: rgba(30, 41, 59, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
-            padding: 7px 6px;
+            padding: 5px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             outline: none;
             text-align: center;
             width: 100%;
+            height: 28px;
         }
 
         .btn-quick {
-            background: rgba(30, 41, 59, 0.9);
+            background: rgba(30, 41, 59, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #94a3b8;
-            padding: 0 6px;
-            border-radius: 6px;
-            font-size: 10px;
+            padding: 0 4px;
+            border-radius: 4px;
+            font-size: 9px;
             font-weight: 800;
             cursor: pointer;
+            height: 28px;
         }
 
+        /* Action Buttons */
         .action-buttons {
             display: flex;
             gap: 6px;
             width: 100%;
         }
         .btn-action {
-            padding: 13px 8px;
-            border-radius: 10px;
-            font-size: 13.5px;
+            padding: 10px 4px;
+            border-radius: 8px;
+            font-size: 12.5px;
             font-weight: 900;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 2px;
             white-space: nowrap;
             flex: 1;
+            min-width: 0;
+            height: 40px;
             touch-action: manipulation;
         }
         .btn-bet { 
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
             color: #fff; 
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
         .btn-next { 
             background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); 
             color: #fff; 
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
         }
         .btn-cashout { 
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); 
             color: #000; 
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
         }
         .btn-warp {
             background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); 
@@ -331,7 +339,7 @@
         }
         @keyframes pulseBtn {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.02); }
         }
         .btn-action:disabled, .btn-quick:disabled {
             background: rgba(30, 41, 59, 0.5) !important;
@@ -341,7 +349,7 @@
             animation: none !important;
         }
 
-        /* Modal */
+        /* Rules Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -351,66 +359,63 @@
             justify-content: center;
             align-items: center;
             z-index: 100;
-            padding: 12px;
+            padding: 10px;
         }
         .modal-content {
             background: #0f172a;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
+            border-radius: 14px;
             width: 100%;
-            max-width: 440px;
-            padding: 16px;
+            max-width: 380px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 6px;
+            padding-bottom: 4px;
         }
-        .modal-header h3 { font-size: 15px; color: #fbbf24; font-weight: 800; }
-        .btn-close { background: transparent; border: none; color: #64748b; font-size: 22px; cursor: pointer; }
-        .modal-body { font-size: 12px; line-height: 1.5; color: #94a3b8; display: flex; flex-direction: column; gap: 8px; }
-        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
+        .modal-header h3 { font-size: 14px; color: #fbbf24; font-weight: 800; }
+        .btn-close { background: transparent; border: none; color: #64748b; font-size: 20px; cursor: pointer; }
+        .modal-body { font-size: 11px; line-height: 1.4; color: #94a3b8; display: flex; flex-direction: column; gap: 6px; }
+        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 4px 8px; border-radius: 4px; color: #f8fafc; }
         .rtp-box strong { color: #38bdf8; }
-        .rule-list { padding-left: 16px; }
-
-        @media (min-width: 768px) {
-            .control-panel { flex-direction: row; align-items: center; gap: 12px; }
-            .inputs-row { display: flex; width: auto; justify-content: flex-start; gap: 12px; }
-            .action-buttons { flex: 1; justify-content: flex-end; }
-        }
+        .rule-list { padding-left: 14px; }
     </style>
 </head>
 <body>
 
 <div class="casino-cabinet" id="cabinet">
+    <!-- Top Bar -->
     <div class="top-bar">
         <div class="brand-title">
             🍄 MARIO <span>ROAD</span>
-            <div class="world-badge" id="world-badge">WORLD 1-1</div>
         </div>
         <div class="top-actions">
+            <div class="world-badge" id="world-badge">W 1-1</div>
             <select class="lang-select" id="lang-select">
-                <option value="ka">🇬🇪 KA</option>
-                <option value="en" selected>🇬🇧 EN</option>
-                <option value="ru">🇷🇺 RU</option>
-                <option value="es">🇪🇸 ES</option>
+                <option value="ka">🇬🇪</option>
+                <option value="en" selected>🇬🇧</option>
+                <option value="ru">🇷🇺</option>
+                <option value="es">🇪🇸</option>
             </select>
-            <button class="btn-toggle" id="turbo-btn">⚡ Turbo</button>
+            <button class="btn-toggle" id="turbo-btn">⚡</button>
             <button class="btn-toggle" id="sound-btn">🔊</button>
             <button class="btn-toggle" id="rules-btn">📖</button>
         </div>
     </div>
 
+    <!-- History -->
     <div class="history-bar" id="history-bar">
         <span class="history-label" id="lbl-history">HIST:</span>
-        <span style="font-size: 9.5px; color: #475569;" id="history-empty">No rounds yet</span>
+        <span style="font-size: 9px; color: #475569;" id="history-empty">No rounds yet</span>
     </div>
 
+    <!-- Stats -->
     <div class="stats-grid">
         <div class="stat-card">
             <span class="label" id="lbl-balance">BALANCE</span>
@@ -430,11 +435,13 @@
         </div>
     </div>
 
+    <!-- Canvas Game Screen -->
     <div class="screen-container">
         <canvas id="gameCanvas"></canvas>
         
+        <!-- Bonus Chests Overlay -->
         <div class="bonus-overlay" id="bonus-overlay">
-            <div class="bonus-title" id="bonus-title">🎁 PICK A CHEST OR CASH OUT!</div>
+            <div class="bonus-title" id="bonus-title">🎁 PICK A CHEST!</div>
             <div class="chests-container" id="chests-container">
                 <div class="chest-card" onclick="openMysteryChest(0)">
                     <span class="chest-icon">📦</span>
@@ -449,27 +456,27 @@
                     <span class="chest-multiplier" id="chest-mult-2"></span>
                 </div>
             </div>
-            <div class="bonus-actions">
-                <button class="btn-chest-cashout" id="btn-bonus-cashout" onclick="cashOutFromBonus()">CASH OUT NOW</button>
-            </div>
+            <button class="btn-chest-cashout" id="btn-bonus-cashout" onclick="cashOutFromBonus()">CASH OUT</button>
         </div>
     </div>
 
-    <div class="status-banner" id="status-msg">Place your bet and start the game</div>
+    <!-- Status Banner -->
+    <div class="status-banner" id="status-msg">Place your bet and start</div>
 
+    <!-- Controls -->
     <div class="control-panel">
         <div class="inputs-row">
             <div class="control-field">
                 <label for="bet-input" id="lbl-bet">BET ($)</label>
                 <div class="bet-input-box">
                     <input type="number" id="bet-input" value="10" min="1" max="1000">
-                    <button class="btn-quick" id="btn-half">1/2</button>
-                    <button class="btn-quick" id="btn-double">2X</button>
+                    <button class="btn-quick" id="btn-half">½</button>
+                    <button class="btn-quick" id="btn-double">2×</button>
                     <button class="btn-quick" id="btn-max">MAX</button>
                 </div>
             </div>
             <div class="control-field">
-                <label for="mines-select" id="lbl-mines">DIFFICULTY</label>
+                <label for="mines-select" id="lbl-mines">RISK</label>
                 <select id="mines-select">
                     <option value="1" id="opt-m1">Easy</option>
                     <option value="2" id="opt-m2" selected>Medium</option>
@@ -487,10 +494,11 @@
     </div>
 </div>
 
+<!-- Modal -->
 <div class="modal-overlay" id="rules-modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3 id="modal-title">Rules & Multipliers</h3>
+            <h3 id="modal-title">Rules</h3>
             <button class="btn-close" id="close-modal">&times;</button>
         </div>
         <div class="modal-body" id="modal-body"></div>
@@ -527,36 +535,36 @@ const translations = {
         mult: "MULT",
         win: "WIN",
         betLabel: "BET ($)",
-        minesLabel: "DIFFICULTY",
-        m1: "Easy (High Win)",
-        m2: "Medium (Balanced)",
-        m3: "Hard (Extreme X)",
+        minesLabel: "RISK",
+        m1: "Easy",
+        m2: "Medium",
+        m3: "Hard",
         startBtn: "START",
-        nextBtn: "NEXT ➡️",
+        nextBtn: "NEXT",
         cashoutBtn: "CASH OUT",
-        readyMsg: "Place your bet and start the game",
+        readyMsg: "Place bet and tap START",
         openingMsg: (w) => `${w}: Jumping to Block 1...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Entered ${w}! Multipliers ready. Press NEXT for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}) or Cash Out!`,
-        loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ Lost ${curr}${amt}`,
-        loseMsgGuaranteed: (amt, curr) => `Poison Mushroom! ☠️ But you keep locked SAVED WIN: +${curr}${amt}! 🛡️`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Next: <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})`,
+        loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ -${curr}${amt}`,
+        loseMsgGuaranteed: (amt, curr) => `Poison! ☠️ Saved: +${curr}${amt}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or risk for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 All 10 Blocks Cleared! Pick a chest or Cash Out!",
-        chestPrompt: (mult) => `🎁 3 CHESTS: 1x [${mult}X], 1x [1X], 1x [☠️ MUSHROOM]`,
-        chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X BONUS! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Safe Pass (1X)! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ Poison Mushroom in chest! Lost ${curr}${amt}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Poison Mushroom! Retained Saved Win: +${curr}${amt}! 🛡️`,
+        flagRunMsg: "🎉 Stage Cleared! Pick a chest!",
+        chestPrompt: (mult) => `🎁 CHESTS: [${mult}X] [1X] [☠️ LOSE]`,
+        chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Safe (1X)! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ Poison Mushroom! -${curr}${amt}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Poison! Kept Saved: +${curr}${amt}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong> or Warp!`,
         cashedOutMsg: (amt, mult, curr) => `Cashed out: +${curr}${amt} (${mult}) 💰`,
         allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆",
-        invalidBet: "Invalid bet or balance!",
-        warpBtn: (nextW, curr, win) => `Enter World ${nextW} 🚀`,
+        invalidBet: "Invalid bet!",
+        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
         modalTitle: "Rules & Multipliers",
         modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
-            "<strong>Real Risk from Block 1:</strong> Mushrooms can appear starting from step 1.",
-            "<strong>Difficulty Modes:</strong> Easy (up to 2,800x), Medium (up to 75,000x), Hard (up to 12,000,000x).",
-            "<strong>Checkpoint Vault:</strong> Clearing World 1 locks your base win. Failing in World 2 still pays this guarantee."
+            "<strong>Real Risk on Step 1:</strong> Loss chance scales with difficulty directly from the first step.",
+            "<strong>Difficulty Modes:</strong> Easy (up to 2.8K x), Medium (up to 75K x), Hard (up to 12M x).",
+            "<strong>Guaranteed Checkpoint:</strong> Clearing World 1 locks your base win. Failing in World 2 still pays this guarantee."
         ]
     },
     ka: {
@@ -569,36 +577,36 @@ const translations = {
         mult: "მამრავლი",
         win: "მოგება",
         betLabel: "ფსონი (₾)",
-        minesLabel: "სირთულე",
+        minesLabel: "რისკი",
         m1: "მარტივი",
         m2: "საშუალო",
         m3: "რთული",
         startBtn: "დაწყება",
-        nextBtn: "შემდეგი ➡️",
-        cashoutBtn: "გატანა (CASH OUT)",
-        readyMsg: "დააყენეთ ფსონი და დაიწყეთ თამაში",
-        openingMsg: (w) => `${w}: მარიო ხსნის პირველ ბლოკს...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}-ში ხართ! 10-ვე მამრავლი მზადაა. დააჭირეთ „შემდეგი“-ს <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}) ან გაიტანეთ!`,
-        loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ წააგეთ ${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `საწამლავი სოკო! ☠️ მაგრამ დაგრჩათ შენახული მოგება: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult})`,
-        flagRunMsg: "🎉 10-ვე ბლოკი გავლილია! აირჩიეთ ყუთი ან გაიტანეთ მოგება!",
-        chestPrompt: (mult) => `🎁 3 ყუთი: 1x [${mult}X], 1x [1X], 1x [☠️ სოკო]`,
-        chestWon: (boost, amt, curr) => `🌟 ბუუმ! +${boost}X ბონუსი! მიმდინარე მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestSafe: (amt, curr) => `👍 უსაფრთხო (1X)! მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ ყუთში აღმოჩნდა საწამლავი სოკო! წააგეთ ${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ სოკო ყუთში! მაგრამ შეინარჩუნეთ დაკეტილი გარანტირებული: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} გავლილია! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong> ან გადადით შემდეგ World-ში!`,
+        nextBtn: "შემდეგი",
+        cashoutBtn: "გატანა",
+        readyMsg: "დააყენეთ ფსონი და დაიწყეთ",
+        openingMsg: (w) => `${w}: პირველი ბლოკი...`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! შემდეგი: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
+        loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ -${amt} ${curr}`,
+        loseMsgGuaranteed: (amt, curr) => `სოკო! ☠️ შეინარჩუნეთ: +${amt} ${curr}! 🛡️`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
+        flagRunMsg: "🎉 ტური გავლილია! აირჩიეთ ყუთი!",
+        chestPrompt: (mult) => `🎁 ყუთები: [${mult}X] [1X] [☠️ წაგება]`,
+        chestWon: (boost, amt, curr) => `🌟 +${boost}X! მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestSafe: (amt, curr) => `👍 უსაფრთხო (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ საწამლავი სოკო! -${amt} ${curr}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ სოკო! დაგრჩათ: +${amt} ${curr}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} მზადაა! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong> ან გადადით!`,
         cashedOutMsg: (amt, mult, curr) => `გატანილია: +${amt} ${curr} (${mult}) 💰`,
-        allClearedMsg: "👑 ლეგენდარული გამარჯვება! მთელი თამაში დაიხურა! 🏆",
+        allClearedMsg: "👑 ლეგენდარული გამარჯვება! 🏆",
         invalidBet: "არასწორი ფსონი!",
-        warpBtn: (nextW, curr, win) => `World ${nextW}-ში გადასვლა 🚀`,
+        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
         modalTitle: "წესები & მამრავლები",
         modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
-            "<strong>რეალური რისკი 1-ლი ბლოკიდან:</strong> სოკო შეიძლება იყოს პირველსავე ნაბიჯზე.",
-            "<strong>სირთულის რეჟიმები:</strong> მარტივი (2,800x-მდე), საშუალო (75,000x-მდე), რთული (12,000,000x-მდე).",
-            "<strong>ჩაკეტილი Checkpoint:</strong> 1-ლი ტურის დახურვისას იკეტება ბაზური მოგება."
+            "<strong>რისკი 1-ლი ბლოკიდან:</strong> წაგება შესაძლებელია პირველსავე ნაბიჯზე.",
+            "<strong>სირთულეები:</strong> მარტივი (2.8K x), საშუალო (75K x), რთული (12M x).",
+            "<strong>ჩაკეტილი ბაზა:</strong> ტურის დახურვისას მოგება რჩება გარანტირებულად."
         ]
     },
     ru: {
@@ -611,35 +619,34 @@ const translations = {
         mult: "MULT",
         win: "WIN",
         betLabel: "СТАВКА (₽)",
-        minesLabel: "СЛОЖНОСТЬ",
+        minesLabel: "РИСК",
         m1: "Легкий",
         m2: "Средний",
         m3: "Сложный",
         startBtn: "СТАРТ",
-        nextBtn: "ДАЛЕЕ ➡️",
+        nextBtn: "ДАЛЕЕ",
         cashoutBtn: "ЗАБРАТЬ",
-        readyMsg: "Сделайте ставку и начните",
+        readyMsg: "Сделайте ставку и нажмите СТАРТ",
         openingMsg: (w) => `${w}: Прыжок на 1-й блок...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Вы в ${w}! Все 10 множителей видны. Нажмите ДАЛЕЕ для <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}) или заберите!`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Далее: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
         loseMsgZero: (amt, curr) => `Ядовитый гриб! ☠️ -${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `Ядовитый гриб! ☠️ Но ваш СОХРАНЕННЫЙ ВЫИГРЫШ у вас: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) или за <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 Все 10 блоков пройдены! Откройте сундук или заберите выигрыш!",
-        chestPrompt: (mult) => `🎁 3 СУНДУКА: 1x [${mult}X], 1x [1X], 1x [☠️ ГРИБ]`,
-        chestWon: (boost, amt, curr) => `🌟 БУМ! +${boost}X БОНУС! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Без множителя (1X)! Сумма: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ В сундуке ядовитый гриб! Потеряно ${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong> или в Новый Мир!`,
+        loseMsgGuaranteed: (amt, curr) => `Гриб! ☠️ Сохранено: +${amt} ${curr}! 🛡️`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) или <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
+        flagRunMsg: "🎉 Уровень пройден! Откройте сундук!",
+        chestPrompt: (mult) => `🎁 СУНДУКИ: [${mult}X] [1X] [☠️ ГРИБ]`,
+        chestWon: (boost, amt, curr) => `🌟 +${boost}X! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Без множителя (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ Ядовитый гриб! -${amt} ${curr}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранено: +${amt} ${curr}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong>!`,
         cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}) 💰`,
         allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
         invalidBet: "Неверная ставка!",
-        warpBtn: (nextW, curr, win) => `Перейти в Мир ${nextW} 🚀`,
-        modalTitle: "Правила & Множители",
+        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
+        modalTitle: "Правила",
         modalRtp: "Теоретический RTP: 97.00% | Преимущество: 3.00%",
         modalRules: [
-            "<strong>Реальный риск с 1-го блока:</strong> Шанс проигрыша активен сразу на первом шаге.",
-            "<strong>Режимы сложности:</strong> Легкий (до 2,800x), Средний (до 75,000x), Сложный (до 12,000,000x)."
+            "<strong>Риск с 1-го блока:</strong> Шанс проигрыша активен с первого шага."
         ]
     },
     es: {
@@ -652,34 +659,34 @@ const translations = {
         mult: "MULT",
         win: "GANANCIA",
         betLabel: "APUESTA (€)",
-        minesLabel: "DIFICULTAD",
+        minesLabel: "RIESGO",
         m1: "Fácil",
         m2: "Medio",
         m3: "Difícil",
         startBtn: "JUGAR",
-        nextBtn: "SIGUIENTE ➡️",
+        nextBtn: "SIGUIENTE",
         cashoutBtn: "RETIRAR",
         readyMsg: "Haz tu apuesta y juega",
-        openingMsg: (w) => `${w}: Mario salta al 1er bloque...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `¡En ${w}! Pulsa SIGUIENTE por <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}) o retira!`,
-        loseMsgZero: (amt, curr) => `¡Champiñón Venenoso! ☠️ -${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `¡Veneno! ☠️ Conservas tu GANANCIA GUARDADA: +${amt} ${curr}! 🛡️`,
+        openingMsg: (w) => `${w}: Mario al 1er bloque...`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Siguiente: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
+        loseMsgZero: (amt, curr) => `¡Veneno! ☠️ -${amt} ${curr}`,
+        loseMsgGuaranteed: (amt, curr) => `¡Veneno! ☠️ Guardado: +${amt} ${curr}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `¿Retirar <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) o <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 ¡10 Bloques Listos! ¡Elige cofre o retira!",
-        chestPrompt: (mult) => `🎁 3 COFRES: 1x [${mult}X], 1x [1X], 1x [☠️ VENENO]`,
-        chestWon: (boost, amt, curr) => `🌟 ¡BOOM! +${boost}X! Ganancia actual: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Pase Seguro (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ ¡Veneno en el cofre! Perdiste ${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ ¡Veneno! Conservas tu base guardada: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ¡${w} Listo! Retira <strong style="color:#fbbf24;">${win} ${curr}</strong> o avanza!`,
+        flagRunMsg: "🎉 ¡Nivel Listo! Elige cofre!",
+        chestPrompt: (mult) => `🎁 COFRES: [${mult}X] [1X] [☠️ VENENO]`,
+        chestWon: (boost, amt, curr) => `🌟 +${boost}X! Ganancia: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Seguro (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ ¡Veneno! -${amt} ${curr}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ ¡Veneno! Guardado: +${amt} ${curr}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ¡${w} Listo! Retira <strong style="color:#fbbf24;">${win} ${curr}</strong>!`,
         cashedOutMsg: (amt, mult, curr) => `Retirado: +${amt} ${curr} (${mult}) 💰`,
         allClearedMsg: "👑 ¡Victoria Legendaria! 🏆",
         invalidBet: "¡Apuesta inválida!",
-        warpBtn: (nextW, curr, win) => `Ir al Mundo ${nextW} 🚀`,
+        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
         modalTitle: "Reglas",
         modalRtp: "RTP Teórico: 97.00% | Ventaja: 3.00%",
         modalRules: [
-            "<strong>Riesgo real en el bloque 1:</strong> El veneno puede salir desde el primer paso."
+            "<strong>Riesgo desde el paso 1.</strong>"
         ]
     }
 };
@@ -831,7 +838,7 @@ let currentWorldBaseMult = 0.0;
 
 const worldThemes = {
     1: { 
-        name: "WORLD 1-1", 
+        name: "W 1-1", 
         bg: ['#0284c7', '#38bdf8', '#7dd3fc', '#047857'], 
         ground: '#15803d', 
         subGround: '#78350f', 
@@ -840,7 +847,7 @@ const worldThemes = {
         chestBonus: 2 
     },
     2: { 
-        name: "WORLD 1-2 (CAVE)", 
+        name: "W 1-2", 
         bg: ['#1e1b4b', '#312e81', '#1e293b', '#0f172a'], 
         ground: '#475569', 
         subGround: '#1e293b', 
@@ -849,7 +856,7 @@ const worldThemes = {
         chestBonus: 3 
     },
     3: { 
-        name: "WORLD 1-3 (CASTLE)", 
+        name: "W 1-3", 
         bg: ['#450a0a', '#7f1d1d', '#991b1b', '#09090b'], 
         ground: '#991b1b', 
         subGround: '#1c1917', 
@@ -878,7 +885,7 @@ let currentBet = 0;
 let isPlaying = false;
 let currentStep = 0;
 
-let groundY = 190;
+let groundY = 175;
 const mario = {
     x: 40,
     y: groundY - 54,
@@ -891,15 +898,15 @@ const mario = {
 };
 
 let blocks = [];
-let flagPole = { x: 0, y: 35, w: 8, h: 155, flagY: 45, isHit: false };
+let flagPole = { x: 0, y: 35, w: 8, h: 140, flagY: 45, isHit: false };
 
 function resizeCanvas() {
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
-    groundY = canvas.height - 40;
+    groundY = canvas.height - 35;
     mario.y = groundY - mario.h;
-    flagPole.h = groundY - 35;
+    flagPole.h = groundY - 30;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -994,7 +1001,7 @@ function initWorld(worldIndex) {
     worldBadge.textContent = worldThemes[currentWorld].name;
     
     const diffKey = parseInt(minesSelect.value || 2);
-    const startX = 140;
+    const startX = 130;
     const spacing = 100;
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
 
@@ -1002,7 +1009,7 @@ function initWorld(worldIndex) {
         const mult = curve[i];
         blocks.push({
             x: startX + i * spacing,
-            y: 65,
+            y: 55,
             w: 52,
             h: 52,
             mult: mult,
@@ -1127,7 +1134,7 @@ function hitBlock() {
             const nextWinAmount = currentBet * nextMult;
 
             cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
-            nextBtn.textContent = `${t.nextBtn} (${t.currency}${nextWinAmount.toFixed(2)})`;
+            nextBtn.textContent = `${t.nextBtn} (${formatMultiplierText(nextMult)})`;
 
             statusMsg.style.color = '#4ade80';
             statusMsg.innerHTML = t.winMsg(currentWinAmount.toFixed(2), formatMultiplierText(currentMult), nextWinAmount.toFixed(2), formatMultiplierText(nextMult), t.currency);
@@ -1318,7 +1325,7 @@ function warpToNextWorld() {
     const nextWinAmount = currentBet * nextMult;
 
     cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
-    nextBtn.textContent = `${t.nextBtn} (${t.currency}${nextWinAmount.toFixed(2)})`;
+    nextBtn.textContent = `${t.nextBtn} (${formatMultiplierText(nextMult)})`;
 
     statusMsg.style.color = '#38bdf8';
     statusMsg.innerHTML = t.worldEnteredMsg(worldThemes[currentWorld].name, nextWinAmount.toFixed(2), formatMultiplierText(nextMult), t.currency);
@@ -1369,7 +1376,7 @@ function updateUI() {
         multDisplay.textContent = '1.00x';
         winDisplay.textContent = `${t.currency}0.00`;
         checkpointDisplay.textContent = `${t.currency}0.00`;
-        worldBadge.textContent = "WORLD 1-1";
+        worldBadge.textContent = "W 1-1";
     }
 }
 
@@ -1415,7 +1422,7 @@ function update() {
         }
     }
 
-    // მობილურისთვის ცენტრალური ფოკუსირება
+    // კამერა აკავებს მარიოს ეკრანის ცენტრში
     const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
     cameraX += (targetCameraX - cameraX) * 0.12;
 
@@ -1453,52 +1460,49 @@ function draw() {
     ctx.save();
     ctx.translate(-cameraX, 0);
 
-    // Environmental Hills & Clouds
+    // Parallax Environmental Details
     if (currentWorld === 1) {
         ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
         ctx.beginPath();
-        ctx.arc(200, 20, 80, 0, Math.PI * 2);
+        ctx.arc(200, 15, 70, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-        for (let x = 60; x < 1800; x += 260) {
+        for (let x = 60; x < 2000; x += 240) {
             ctx.beginPath();
-            ctx.arc(x, 28, 14, 0, Math.PI * 2);
-            ctx.arc(x + 16, 22, 20, 0, Math.PI * 2);
-            ctx.arc(x + 34, 28, 14, 0, Math.PI * 2);
+            ctx.arc(x, 24, 12, 0, Math.PI * 2);
+            ctx.arc(x + 14, 18, 16, 0, Math.PI * 2);
+            ctx.arc(x + 28, 24, 12, 0, Math.PI * 2);
             ctx.fill();
         }
 
         ctx.fillStyle = "#16a34a";
-        for (let h = 40; h < 1800; h += 300) {
+        for (let h = 40; h < 2000; h += 280) {
             ctx.beginPath();
-            ctx.arc(h, groundY, 70, Math.PI, 0);
+            ctx.arc(h, groundY, 65, Math.PI, 0);
             ctx.fill();
         }
     } else if (currentWorld === 2) {
         ctx.fillStyle = "rgba(139, 92, 246, 0.2)";
-        for (let cx = 120; cx < 1800; cx += 220) {
+        for (let cx = 120; cx < 2000; cx += 200) {
             ctx.beginPath();
-            ctx.arc(cx, 40, 50, 0, Math.PI * 2);
+            ctx.arc(cx, 30, 40, 0, Math.PI * 2);
             ctx.fill();
         }
     } else if (currentWorld === 3) {
         ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
-        for (let mx = 90; mx < 1800; mx += 180) {
+        for (let mx = 90; mx < 2000; mx += 160) {
             ctx.beginPath();
-            ctx.arc(mx, 80, 55, 0, Math.PI * 2);
+            ctx.arc(mx, 60, 45, 0, Math.PI * 2);
             ctx.fill();
         }
     }
 
     // Ground Rendering
     ctx.fillStyle = theme.ground;
-    ctx.fillRect(0, groundY, 2000, 8);
-    ctx.fillStyle = "rgba(0,0,0,0.2)";
-    ctx.fillRect(0, groundY + 6, 2000, 2);
-
+    ctx.fillRect(0, groundY, 2200, 6);
     ctx.fillStyle = theme.subGround;
-    ctx.fillRect(0, groundY + 8, 2000, canvas.height - groundY - 8);
+    ctx.fillRect(0, groundY + 6, 2200, canvas.height - groundY - 6);
 
     // 3D Blocks Rendering with Clear Visibility
     blocks.forEach((b) => {
@@ -1507,12 +1511,12 @@ function draw() {
         if (!b.hit) {
             ctx.fillStyle = theme.blockBorder;
             ctx.beginPath();
-            ctx.roundRect(b.x, renderY, b.w, b.h, 10);
+            ctx.roundRect(b.x, renderY, b.w, b.h, 8);
             ctx.fill();
 
             ctx.fillStyle = theme.blockColor;
             ctx.beginPath();
-            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 8);
+            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6);
             ctx.fill();
 
             ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
@@ -1525,45 +1529,45 @@ function draw() {
 
             if (b.mult > 0) {
                 const multText = formatMultiplierText(b.mult);
-                ctx.font = '800 12px "Outfit", sans-serif';
+                ctx.font = '800 11px "Outfit", sans-serif';
                 const textWidth = ctx.measureText(multText).width;
-                const badgeW = Math.max(textWidth + 14, 46);
-                const badgeH = 20;
+                const badgeW = Math.max(textWidth + 12, 44);
+                const badgeH = 18;
                 const badgeX = b.x + (b.w - badgeW) / 2;
-                const badgeY = renderY - 26;
+                const badgeY = renderY - 24;
 
                 ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 6);
+                ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 5);
                 ctx.fill();
                 ctx.stroke();
 
                 ctx.fillStyle = b.mult >= 50 ? '#fbbf24' : '#38bdf8';
                 ctx.textAlign = 'center';
-                ctx.fillText(multText, b.x + b.w / 2, badgeY + 14.5);
+                ctx.fillText(multText, b.x + b.w / 2, badgeY + 13);
             }
         } else {
             ctx.fillStyle = '#334155';
             ctx.beginPath();
-            ctx.roundRect(b.x, renderY, b.w, b.h, 10);
+            ctx.roundRect(b.x, renderY, b.w, b.h, 8);
             ctx.fill();
 
             ctx.fillStyle = '#475569';
             ctx.beginPath();
-            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 8);
+            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6);
             ctx.fill();
 
             if (b.isPoison) {
-                ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 42) / 2, renderY - 44, 42, 42);
+                ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 40) / 2, renderY - 42, 40, 40);
             } else {
-                ctx.drawImage(sprites.coin, b.x + (b.w - 34) / 2, renderY - 40, 34, 34);
+                ctx.drawImage(sprites.coin, b.x + (b.w - 32) / 2, renderY - 38, 32, 32);
                 
                 ctx.fillStyle = '#22c55e';
-                ctx.font = '900 13px "Outfit", sans-serif';
+                ctx.font = '900 12px "Outfit", sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 46);
+                ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 44);
             }
         }
     });
@@ -1573,22 +1577,22 @@ function draw() {
     ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
     ctx.fillStyle = '#fbbf24';
     ctx.beginPath();
-    ctx.arc(flagPole.x + 4, flagPole.y, 8, 0, Math.PI * 2);
+    ctx.arc(flagPole.x + 4, flagPole.y, 7, 0, Math.PI * 2);
     ctx.fill();
 
     // Flag
     ctx.fillStyle = '#22c55e';
     ctx.beginPath();
     ctx.moveTo(flagPole.x + 8, flagPole.flagY);
-    ctx.lineTo(flagPole.x + 38, flagPole.flagY + 14);
-    ctx.lineTo(flagPole.x + 8, flagPole.flagY + 28);
+    ctx.lineTo(flagPole.x + 34, flagPole.flagY + 12);
+    ctx.lineTo(flagPole.x + 8, flagPole.flagY + 24);
     ctx.fill();
 
     // Castle
     ctx.fillStyle = '#334155';
-    ctx.fillRect(flagPole.x + 65, groundY - 80, 80, 80);
+    ctx.fillRect(flagPole.x + 55, groundY - 75, 75, 75);
     ctx.fillStyle = '#0f172a';
-    ctx.fillRect(flagPole.x + 92, groundY - 40, 28, 40);
+    ctx.fillRect(flagPole.x + 80, groundY - 35, 24, 35);
 
     // Particles
     particles.forEach(p => {
@@ -1604,7 +1608,7 @@ function draw() {
     // Mario Shadow
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.beginPath();
-    ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 5, 0, 0, Math.PI * 2);
+    ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 4, 0, 0, Math.PI * 2);
     ctx.fill();
 
     // Mario Character
@@ -1627,7 +1631,7 @@ btnMax.addEventListener('click', () => betInput.value = Math.floor(balance));
 turboBtn.addEventListener('click', () => {
     isTurbo = !isTurbo;
     turboBtn.classList.toggle('active', isTurbo);
-    turboBtn.textContent = `⚡ Turbo ${isTurbo ? 'ON' : 'OFF'}`;
+    turboBtn.textContent = isTurbo ? '⚡ON' : '⚡';
 });
 
 soundBtn.addEventListener('click', () => {
