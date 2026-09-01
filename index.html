@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Super Mario Road</title>
+    <title>Super Mario Road - Mobile Edition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Outfit:wght@600;700;800;900&display=swap');
 
@@ -27,29 +27,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0;
         }
         .casino-cabinet {
             background: #090d16;
             width: 100%;
-            height: 100%;
             height: 100dvh;
-            max-width: 480px;
+            max-width: 440px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 10px 12px;
+            padding: 8px 10px;
             position: relative;
         }
 
-        .shake {
-            animation: shakeScreen 0.4s cubic-bezier(.36,.07,.19,.97) both;
-        }
+        .shake { animation: shakeScreen 0.4s cubic-bezier(.36,.07,.19,.97) both; }
         @keyframes shakeScreen {
-            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
             20%, 80% { transform: translate3d(4px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
-            40%, 60% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
         }
 
         /* Top Bar */
@@ -57,81 +53,65 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 36px;
+            height: 32px;
             flex-shrink: 0;
         }
         .brand-title {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 900;
             font-family: 'Fredoka', cursive;
             color: #ef4444;
         }
         .brand-title span { color: #fbbf24; }
-        
-        .top-actions {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-        }
+        .top-actions { display: flex; gap: 4px; align-items: center; }
         .world-badge {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
-            padding: 4px 8px;
+            padding: 3px 6px;
             border-radius: 6px;
             font-weight: 900;
-            font-size: 10.5px;
+            font-size: 10px;
         }
         .btn-icon, .lang-select {
             background: #1e293b;
             color: #94a3b8;
             border: 1px solid #334155;
-            padding: 4px 8px;
+            padding: 3px 6px;
             border-radius: 6px;
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 700;
             cursor: pointer;
-            outline: none;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 26px;
         }
         .btn-icon.active { background: #2563eb; color: #fff; border-color: #60a5fa; }
         .lang-select { color: #fbbf24; font-weight: 800; padding: 0 4px; }
 
-        /* Integrated Compact Dashboard */
+        /* Dashboard */
         .dashboard-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6px;
             background: #0f172a;
             border: 1px solid #1e293b;
-            padding: 6px 10px;
-            border-radius: 12px;
+            padding: 5px 8px;
+            border-radius: 10px;
             flex-shrink: 0;
         }
-        .dash-item {
-            display: flex;
-            flex-direction: column;
-        }
-        .dash-item .lbl { font-size: 8px; color: #64748b; font-weight: 800; text-transform: uppercase; }
-        .dash-item .val { font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .dash-item { display: flex; flex-direction: column; }
+        .dash-item .lbl { font-size: 7.5px; color: #64748b; font-weight: 800; text-transform: uppercase; }
+        .dash-item .val { font-size: 14px; font-weight: 900; font-variant-numeric: tabular-nums; }
         .val-gold { color: #fbbf24; }
         .val-green { color: #22c55e; }
-        .val-blue { color: #38bdf8; }
 
-        /* Main Game Screen (Canvas) */
+        /* Canvas Game Screen */
         .screen-container {
             position: relative;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             border: 2px solid #1e293b;
             width: 100%;
             flex: 1;
-            margin: 6px 0;
+            margin: 4px 0;
             background: #000;
         }
         canvas {
@@ -140,7 +120,7 @@
             height: 100%;
         }
 
-        /* Bonus Chests Overlay */
+        /* Bonus Overlay */
         .bonus-overlay {
             display: none;
             position: absolute;
@@ -150,58 +130,46 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             z-index: 20;
-            padding: 10px;
+            padding: 8px;
         }
-        .bonus-title {
-            font-size: 15px;
-            font-weight: 900;
-            color: #fbbf24;
-            text-align: center;
-        }
-        .chests-container {
-            display: flex;
-            gap: 14px;
-        }
+        .bonus-title { font-size: 14px; font-weight: 900; color: #fbbf24; text-align: center; }
+        .chests-container { display: flex; gap: 10px; }
         .chest-card {
             background: #1e293b;
             border: 2px solid #eab308;
-            border-radius: 12px;
-            width: 75px;
-            height: 85px;
+            border-radius: 10px;
+            width: 68px;
+            height: 78px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
-        .chest-icon { font-size: 34px; }
-        .chest-multiplier {
-            font-size: 14px;
-            font-weight: 900;
-            display: none;
-        }
+        .chest-icon { font-size: 32px; }
+        .chest-multiplier { font-size: 13px; font-weight: 900; display: none; }
         .btn-chest-cashout {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #000;
             font-weight: 900;
-            padding: 8px 18px;
-            border-radius: 8px;
+            padding: 6px 16px;
+            border-radius: 6px;
             border: none;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
         }
 
-        /* Status Banner */
+        /* Status */
         .status-banner {
             background: #0f172a;
-            padding: 6px 8px;
-            border-radius: 10px;
+            padding: 4px 6px;
+            border-radius: 8px;
             text-align: center;
             font-weight: 800;
-            font-size: 13px;
-            height: 38px;
+            font-size: 11.5px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -214,103 +182,71 @@
         .control-panel {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
         }
         .inputs-row {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 6px;
+            gap: 4px;
             width: 100%;
         }
         .control-field { display: flex; flex-direction: column; gap: 2px; }
-        .control-field label { font-size: 8px; color: #64748b; font-weight: 800; text-transform: uppercase; }
-        .bet-input-box { display: flex; gap: 3px; width: 100%; }
+        .control-field label { font-size: 7.5px; color: #64748b; font-weight: 800; text-transform: uppercase; }
+        .bet-input-box { display: flex; gap: 2px; width: 100%; }
         input, select {
             background: #0f172a;
             border: 1px solid #334155;
             color: #fff;
-            padding: 6px 8px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 5px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 800;
             outline: none;
             text-align: center;
             width: 100%;
-            height: 32px;
+            height: 30px;
         }
-
         .btn-quick {
             background: #1e293b;
             border: 1px solid #334155;
             color: #94a3b8;
-            padding: 0 6px;
-            border-radius: 6px;
-            font-size: 10px;
+            padding: 0 5px;
+            border-radius: 5px;
+            font-size: 9.5px;
             font-weight: 800;
             cursor: pointer;
-            height: 32px;
+            height: 30px;
         }
 
-        /* Master Action Button */
-        .action-container {
-            width: 100%;
-            height: 48px;
-        }
+        /* Action Bar */
+        .action-container { width: 100%; height: 44px; }
         .btn-action {
             width: 100%;
             height: 100%;
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 900;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            letter-spacing: 0.3px;
+            gap: 4px;
             touch-action: manipulation;
         }
-        .btn-bet { 
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
-            color: #fff; 
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-        }
-        .btn-play-group {
-            display: none;
-            gap: 6px;
-            width: 100%;
-            height: 100%;
-        }
-        .btn-next { 
-            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); 
-            color: #fff; 
-            flex: 1.2;
-        }
-        .btn-cashout { 
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); 
-            color: #000; 
-            flex: 1;
-        }
-        .btn-warp {
-            background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); 
-            color: #fff;
-            animation: pulseBtn 1.2s infinite;
-        }
-        @keyframes pulseBtn {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
+        .btn-bet { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: #fff; }
+        .btn-play-group { display: none; gap: 4px; width: 100%; height: 100%; }
+        .btn-next { background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); color: #fff; flex: 1.2; }
+        .btn-cashout { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #000; flex: 1; }
+        .btn-warp { background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); color: #fff; }
         .btn-action:disabled, .btn-quick:disabled {
             background: #1e293b !important;
             color: #475569 !important;
-            box-shadow: none !important;
             cursor: not-allowed;
-            animation: none !important;
         }
 
-        /* Rules Modal */
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -325,37 +261,28 @@
         .modal-content {
             background: #0f172a;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
+            border-radius: 14px;
             width: 100%;
-            max-width: 400px;
-            padding: 16px;
+            max-width: 360px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 6px;
-        }
-        .modal-header h3 { font-size: 15px; color: #fbbf24; font-weight: 800; }
-        .btn-close { background: transparent; border: none; color: #64748b; font-size: 22px; cursor: pointer; }
-        .modal-body { font-size: 12px; line-height: 1.5; color: #94a3b8; display: flex; flex-direction: column; gap: 8px; }
-        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 4px; }
+        .modal-header h3 { font-size: 14px; color: #fbbf24; font-weight: 800; }
+        .btn-close { background: transparent; border: none; color: #64748b; font-size: 20px; cursor: pointer; }
+        .modal-body { font-size: 11px; line-height: 1.4; color: #94a3b8; display: flex; flex-direction: column; gap: 6px; }
+        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 4px 8px; border-radius: 4px; color: #f8fafc; }
         .rtp-box strong { color: #38bdf8; }
-        .rule-list { padding-left: 16px; }
+        .rule-list { padding-left: 14px; }
     </style>
 </head>
 <body>
 
 <div class="casino-cabinet" id="cabinet">
-    <!-- Top Bar -->
     <div class="top-bar">
-        <div class="brand-title">
-            🍄 MARIO <span>ROAD</span>
-        </div>
+        <div class="brand-title">🍄 MARIO <span>ROAD</span></div>
         <div class="top-actions">
             <div class="world-badge" id="world-badge">W 1-1</div>
             <select class="lang-select" id="lang-select">
@@ -370,7 +297,6 @@
         </div>
     </div>
 
-    <!-- Integrated Compact Dashboard -->
     <div class="dashboard-row">
         <div class="dash-item">
             <span class="lbl" id="lbl-balance">BALANCE</span>
@@ -382,11 +308,8 @@
         </div>
     </div>
 
-    <!-- Main Game Screen (Canvas) -->
     <div class="screen-container">
         <canvas id="gameCanvas"></canvas>
-        
-        <!-- Bonus Chests Overlay -->
         <div class="bonus-overlay" id="bonus-overlay">
             <div class="bonus-title" id="bonus-title">🎁 PICK A CHEST!</div>
             <div class="chests-container" id="chests-container">
@@ -407,10 +330,8 @@
         </div>
     </div>
 
-    <!-- Status Banner -->
     <div class="status-banner" id="status-msg">Place bet and tap START</div>
 
-    <!-- Bottom Controls -->
     <div class="control-panel">
         <div class="inputs-row">
             <div class="control-field">
@@ -432,7 +353,6 @@
             </div>
         </div>
 
-        <!-- Master Action Bar -->
         <div class="action-container">
             <button class="btn-action btn-bet" id="bet-btn">START (BET)</button>
             <div class="btn-play-group" id="play-group">
@@ -444,7 +364,6 @@
     </div>
 </div>
 
-<!-- Rules Modal -->
 <div class="modal-overlay" id="rules-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -476,147 +395,49 @@ const casinoMultiplierCurves = {
 
 const translations = {
     en: {
-        currency: "$",
-        balance: "BALANCE",
-        win: "CURRENT WIN",
-        betLabel: "BET ($)",
-        minesLabel: "RISK",
-        m1: "Easy",
-        m2: "Medium",
-        m3: "Hard",
-        startBtn: "START (BET)",
-        nextBtn: "NEXT ➡️",
-        cashoutBtn: "CASH OUT",
-        readyMsg: "Place bet and tap START",
-        openingMsg: (w) => `${w}: Jumping to Block 1...`,
+        currency: "$", balance: "BALANCE", win: "CURRENT WIN", betLabel: "BET ($)", minesLabel: "RISK",
+        m1: "Easy", m2: "Medium", m3: "Hard", startBtn: "START (BET)", nextBtn: "NEXT ➡️", cashoutBtn: "CASH OUT",
+        readyMsg: "Place bet and tap START", openingMsg: (w) => `${w}: Block 1...`,
         worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Next: <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})`,
         loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ -${curr}${amt}`,
         loseMsgGuaranteed: (amt, curr) => `Poison! ☠️ Saved: +${curr}${amt}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or go for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 Stage Cleared! Pick a chest!",
-        chestPrompt: (mult) => `🎁 CHESTS: [${mult}X] [1X] [☠️ LOSE]`,
+        flagRunMsg: "🎉 Stage Cleared! Pick a chest!", chestPrompt: (mult) => `🎁 CHESTS: [${mult}X] [1X] [☠️ LOSE]`,
         chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
         chestSafe: (amt, curr) => `👍 Safe (1X)! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
         chestLostZero: (curr, amt) => `☠️ Poison Mushroom! -${curr}${amt}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Poison! Kept Saved: +${curr}${amt}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong> or Warp!`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Poison! Kept: +${curr}${amt}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong>!`,
         cashedOutMsg: (amt, mult, curr) => `Cashed out: +${curr}${amt} (${mult}) 💰`,
-        allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆",
-        invalidBet: "Invalid bet!",
-        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
-        modalTitle: "Rules & Multipliers",
-        modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
+        allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆", invalidBet: "Invalid bet!", warpBtn: (nextW) => `W${nextW} 🚀`,
+        modalTitle: "Rules & Multipliers", modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
             "<strong>Real Risk on Step 1:</strong> Loss chance scales with difficulty directly from the first step.",
             "<strong>Difficulty Modes:</strong> Easy (up to 2.8K x), Medium (up to 75K x), Hard (up to 12M x).",
-            "<strong>Guaranteed Checkpoint:</strong> Clearing World 1 locks your base win. Failing in World 2 still pays this guarantee."
+            "<strong>Guaranteed Checkpoint:</strong> Clearing World 1 locks your base win."
         ]
     },
     ka: {
-        currency: "₾",
-        balance: "ბალანსი",
-        win: "მიმდინარე მოგება",
-        betLabel: "ფსონი (₾)",
-        minesLabel: "რისკი",
-        m1: "მარტივი",
-        m2: "საშუალო",
-        m3: "რთული",
-        startBtn: "დაწყება",
-        nextBtn: "შემდეგი ➡️",
-        cashoutBtn: "გატანა",
-        readyMsg: "დააყენეთ ფსონი და დაიწყეთ",
-        openingMsg: (w) => `${w}: პირველი ბლოკი...`,
+        currency: "₾", balance: "ბალანსი", win: "მიმდინარე მოგება", betLabel: "ფსონი (₾)", minesLabel: "რისკი",
+        m1: "მარტივი", m2: "საშუალო", m3: "რთული", startBtn: "დაწყება", nextBtn: "შემდეგი ➡️", cashoutBtn: "გატანა",
+        readyMsg: "დააყენეთ ფსონი და დაიწყეთ", openingMsg: (w) => `${w}: პირველი ბლოკი...`,
         worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! შემდეგი: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
         loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ -${amt} ${curr}`,
         loseMsgGuaranteed: (amt, curr) => `სოკო! ☠️ შეინარჩუნეთ: +${amt} ${curr}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 ტური გავლილია! აირჩიეთ ყუთი!",
-        chestPrompt: (mult) => `🎁 ყუთები: [${mult}X] [1X] [☠️ წაგება]`,
+        flagRunMsg: "🎉 ტური გავლილია! აირჩიეთ ყუთი!", chestPrompt: (mult) => `🎁 ყუთები: [${mult}X] [1X] [☠️ წაგება]`,
         chestWon: (boost, amt, curr) => `🌟 +${boost}X! მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
         chestSafe: (amt, curr) => `👍 უსაფრთხო (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
         chestLostZero: (curr, amt) => `☠️ საწამლავი სოკო! -${amt} ${curr}`,
         chestLostGuaranteed: (curr, amt) => `☠️ სოკო! დაგრჩათ: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} მზადაა! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong> ან გადადით!`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} მზადაა! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong>!`,
         cashedOutMsg: (amt, mult, curr) => `გატანილია: +${amt} ${curr} (${mult}) 💰`,
-        allClearedMsg: "👑 ლეგენდარული გამარჯვება! 🏆",
-        invalidBet: "არასწორი ფსონი!",
-        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
-        modalTitle: "წესები & მამრავლები",
-        modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
+        allClearedMsg: "👑 ლეგენდარული გამარჯვება! 🏆", invalidBet: "არასწორი ფსონი!", warpBtn: (nextW) => `W${nextW} 🚀`,
+        modalTitle: "წესები & მამრავლები", modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
             "<strong>რისკი 1-ლი ბლოკიდან:</strong> წაგება შესაძლებელია პირველსავე ნაბიჯზე.",
             "<strong>სირთულეები:</strong> მარტივი (2.8K x), საშუალო (75K x), რთული (12M x).",
             "<strong>ჩაკეტილი ბაზა:</strong> ტურის დახურვისას მოგება რჩება გარანტირებულად."
-        ]
-    },
-    ru: {
-        currency: "₽",
-        balance: "БАЛАНС",
-        win: "ВЫИГРЫШ",
-        betLabel: "СТАВКА (₽)",
-        minesLabel: "РИСК",
-        m1: "Легкий",
-        m2: "Средний",
-        m3: "Сложный",
-        startBtn: "СТАРТ",
-        nextBtn: "ДАЛЕЕ ➡️",
-        cashoutBtn: "ЗАБРАТЬ",
-        readyMsg: "Сделайте ставку и нажмите СТАРТ",
-        openingMsg: (w) => `${w}: Прыжок на 1-й блок...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Далее: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
-        loseMsgZero: (amt, curr) => `Ядовитый гриб! ☠️ -${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `Гриб! ☠️ Сохранено: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) или <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 Уровень пройден! Откройте сундук!",
-        chestPrompt: (mult) => `🎁 СУНДУКИ: [${mult}X] [1X] [☠️ ГРИБ]`,
-        chestWon: (boost, amt, curr) => `🌟 +${boost}X! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Без множителя (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ Ядовитый гриб! -${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранено: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong>!`,
-        cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}) 💰`,
-        allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
-        invalidBet: "Неверная ставка!",
-        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
-        modalTitle: "Правила",
-        modalRtp: "Теоретический RTP: 97.00% | Преимущество: 3.00%",
-        modalRules: [
-            "<strong>Риск с 1-го блока:</strong> Шанс проигрыша активен с первого шага."
-        ]
-    },
-    es: {
-        currency: "€",
-        balance: "SALDO",
-        win: "GANANCIA",
-        betLabel: "APUESTA (€)",
-        minesLabel: "RIESGO",
-        m1: "Fácil",
-        m2: "Medio",
-        m3: "Difícil",
-        startBtn: "JUGAR",
-        nextBtn: "SIGUIENTE ➡️",
-        cashoutBtn: "RETIRAR",
-        readyMsg: "Haz tu apuesta y juega",
-        openingMsg: (w) => `${w}: Mario al 1er bloque...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Siguiente: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
-        loseMsgZero: (amt, curr) => `¡Veneno! ☠️ -${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `¡Veneno! ☠️ Guardado: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `¿Retirar <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) o <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 ¡Nivel Listo! Elige cofre!",
-        chestPrompt: (mult) => `🎁 COFRES: [${mult}X] [1X] [☠️ VENENO]`,
-        chestWon: (boost, amt, curr) => `🌟 +${boost}X! Ganancia: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Seguro (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ ¡Veneno! -${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ ¡Veneno! Guardado: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ¡${w} Listo! Retira <strong style="color:#fbbf24;">${win} ${curr}</strong>!`,
-        cashedOutMsg: (amt, mult, curr) => `Retirado: +${amt} ${curr} (${mult}) 💰`,
-        allClearedMsg: "👑 ¡Victoria Legendaria! 🏆",
-        invalidBet: "¡Apuesta inválida!",
-        warpBtn: (nextW, curr, win) => `W${nextW} 🚀`,
-        modalTitle: "Reglas",
-        modalRtp: "RTP Teórico: 97.00% | Ventaja: 3.00%",
-        modalRules: [
-            "<strong>Riesgo desde el paso 1.</strong>"
         ]
     }
 };
@@ -679,36 +500,23 @@ class RetroAudio {
     }
     flag() {
         if (!this.enabled) return;
-        const notes = [330, 392, 659, 523, 587, 784];
-        notes.forEach((freq, idx) => {
-            setTimeout(() => this.playTone(freq, 'triangle', 0.2, 0.25), idx * 100);
-        });
+        [330, 392, 659, 523, 587, 784].forEach((f, i) => setTimeout(() => this.playTone(f, 'triangle', 0.2, 0.25), i * 90));
     }
     chestOpen() {
         if (!this.enabled) return;
-        const notes = [440, 554, 659, 880];
-        notes.forEach((freq, idx) => {
-            setTimeout(() => this.playTone(freq, 'sine', 0.15, 0.3), idx * 70);
-        });
+        [440, 554, 659, 880].forEach((f, i) => setTimeout(() => this.playTone(f, 'sine', 0.15, 0.3), i * 60));
     }
     win() {
         if (!this.enabled) return;
-        const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
-        notes.forEach((freq, idx) => {
-            setTimeout(() => this.playTone(freq, 'triangle', 0.18, 0.25), idx * 75);
-        });
+        [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((f, i) => setTimeout(() => this.playTone(f, 'triangle', 0.18, 0.25), i * 75));
     }
     lose() {
         if (!this.enabled) return;
-        const notes = [400, 350, 300, 200];
-        notes.forEach((freq, idx) => {
-            setTimeout(() => this.playTone(freq, 'sawtooth', 0.18, 0.2), idx * 90);
-        });
+        [400, 350, 300, 200].forEach((f, i) => setTimeout(() => this.playTone(f, 'sawtooth', 0.18, 0.2), i * 90));
     }
 }
 
 const audio = new RetroAudio();
-
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const cabinet = document.getElementById('cabinet');
@@ -761,44 +569,14 @@ let baseGuaranteedMult = 0.0;
 let currentWorldBaseMult = 0.0;
 
 const worldThemes = {
-    1: { 
-        name: "W 1-1", 
-        bg: ['#0284c7', '#38bdf8', '#7dd3fc', '#047857'], 
-        ground: '#15803d', 
-        subGround: '#78350f', 
-        blockColor: '#f59e0b',
-        blockBorder: '#b45309',
-        chestBonus: 2 
-    },
-    2: { 
-        name: "W 1-2", 
-        bg: ['#1e1b4b', '#312e81', '#1e293b', '#0f172a'], 
-        ground: '#475569', 
-        subGround: '#1e293b', 
-        blockColor: '#8b5cf6',
-        blockBorder: '#6d28d9',
-        chestBonus: 3 
-    },
-    3: { 
-        name: "W 1-3", 
-        bg: ['#450a0a', '#7f1d1d', '#991b1b', '#09090b'], 
-        ground: '#991b1b', 
-        subGround: '#1c1917', 
-        blockColor: '#ef4444',
-        blockBorder: '#991b1b',
-        chestBonus: 5 
-    }
+    1: { name: "W 1-1", bg: ['#0284c7', '#38bdf8', '#7dd3fc', '#047857'], ground: '#15803d', subGround: '#78350f', blockColor: '#f59e0b', blockBorder: '#b45309', chestBonus: 2 },
+    2: { name: "W 1-2", bg: ['#1e1b4b', '#312e81', '#1e293b', '#0f172a'], ground: '#475569', subGround: '#1e293b', blockColor: '#8b5cf6', blockBorder: '#6d28d9', chestBonus: 3 },
+    3: { name: "W 1-3", bg: ['#450a0a', '#7f1d1d', '#991b1b', '#09090b'], ground: '#991b1b', subGround: '#1c1917', blockColor: '#ef4444', blockBorder: '#991b1b', chestBonus: 5 }
 };
 
 let chestContents = [];
 
-const sprites = {
-    mario: new Image(),
-    marioJump: new Image(),
-    poisonMushroom: new Image(),
-    coin: new Image()
-};
-
+const sprites = { mario: new Image(), marioJump: new Image(), poisonMushroom: new Image(), coin: new Image() };
 sprites.mario.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 56'><ellipse cx='20' cy='12' rx='14' ry='10' fill='%23ef4444'/><ellipse cx='28' cy='12' rx='6' ry='3' fill='%23ef4444'/><ellipse cx='20' cy='22' rx='11' ry='9' fill='%23fed7aa'/><circle cx='25' cy='19' r='2.5' fill='%23000'/><ellipse cx='26' cy='25' rx='7' ry='4' fill='%23451a03'/><ellipse cx='20' cy='38' rx='12' ry='12' fill='%232563eb'/><rect x='10' y='32' width='20' height='16' fill='%232563eb'/><circle cx='14' cy='34' r='2' fill='%23fbbf24'/><circle cx='26' cy='34' r='2' fill='%23fbbf24'/><rect x='6' y='30' width='6' height='10' fill='%23ef4444'/><rect x='28' y='30' width='6' height='10' fill='%23ef4444'/><circle cx='7' cy='42' r='4' fill='%23fff'/><circle cx='33' cy='42' r='4' fill='%23fff'/><ellipse cx='13' cy='52' rx='7' ry='4' fill='%2378350f'/><ellipse cx='27' cy='52' rx='7' ry='4' fill='%2378350f'/></svg>";
 sprites.marioJump.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 56'><ellipse cx='20' cy='10' rx='14' ry='10' fill='%23ef4444'/><ellipse cx='28' cy='10' rx='6' ry='3' fill='%23ef4444'/><ellipse cx='20' cy='20' rx='11' ry='9' fill='%23fed7aa'/><circle cx='25' cy='17' r='2.5' fill='%23000'/><ellipse cx='26' cy='23' rx='7' ry='4' fill='%23451a03'/><ellipse cx='20' cy='36' rx='12' ry='11' fill='%232563eb'/><rect x='10' y='30' width='20' height='14' fill='%232563eb'/><circle cx='14' cy='32' r='2' fill='%23fbbf24'/><circle cx='26' cy='32' r='2' fill='%23fbbf24'/><rect x='4' y='20' width='8' height='12' fill='%23ef4444'/><circle cx='6' cy='18' r='4.5' fill='%23fff'/><ellipse cx='10' cy='48' rx='7' ry='5' fill='%2378350f'/><ellipse cx='30' cy='46' rx='7' ry='5' fill='%2378350f'/></svg>";
 sprites.poisonMushroom.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><path d='M5 28 C5 10, 45 10, 45 28 Z' fill='%239333ea'/><circle cx='16' cy='20' r='5' fill='%23e9d5ff'/><circle cx='34' cy='20' r='5' fill='%23e9d5ff'/><circle cx='25' cy='14' r='4' fill='%23e9d5ff'/><rect x='15' y='28' width='20' height='16' rx='4' fill='%23f3e8ff'/><ellipse cx='20' cy='34' rx='2' ry='4' fill='%23000'/><ellipse cx='30' cy='34' rx='2' ry='4' fill='%23000'/></svg>";
@@ -810,17 +588,7 @@ let isPlaying = false;
 let currentStep = 0;
 
 let groundY = 190;
-const mario = {
-    x: 40,
-    y: groundY - 56,
-    w: 40,
-    h: 56,
-    targetX: 40,
-    vy: 0,
-    gravity: 0.95,
-    state: 'idle'
-};
-
+const mario = { x: 40, y: groundY - 54, w: 38, h: 54, targetX: 40, vy: 0, gravity: 0.95, state: 'idle' };
 let blocks = [];
 let flagPole = { x: 0, y: 35, w: 8, h: 155, flagY: 45, isHit: false };
 
@@ -828,9 +596,9 @@ function resizeCanvas() {
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
-    groundY = canvas.height - 40;
+    groundY = canvas.height - 35;
     mario.y = groundY - mario.h;
-    flagPole.h = groundY - 35;
+    flagPole.h = groundY - 30;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -843,34 +611,22 @@ function formatMultiplierText(val) {
 
 function applyLanguage(lang) {
     currentLang = lang;
-    const t = translations[lang];
-
+    const t = translations[lang] || translations.en;
     lblBalance.textContent = t.balance;
     lblWin.textContent = t.win;
     lblBet.textContent = t.betLabel;
     lblMines.textContent = t.minesLabel;
-
     optM1.textContent = t.m1;
     optM2.textContent = t.m2;
     optM3.textContent = t.m3;
-
     betBtn.textContent = t.startBtn;
     if (!isPlaying) {
         nextBtn.textContent = t.nextBtn;
         cashoutBtn.textContent = t.cashoutBtn;
         statusMsg.textContent = t.readyMsg;
     }
-
     modalTitle.textContent = t.modalTitle;
-    modalBody.innerHTML = `
-        <div class="rtp-box">
-            <strong>${t.modalRtp}</strong>
-        </div>
-        <ul class="rule-list">
-            ${t.modalRules.map(r => `<li>${r}</li>`).join('')}
-        </ul>
-    `;
-
+    modalBody.innerHTML = `<div class="rtp-box"><strong>${t.modalRtp}</strong></div><ul class="rule-list">${t.modalRules.map(r => `<li>${r}</li>`).join('')}</ul>`;
     updateUI();
 }
 
@@ -878,29 +634,14 @@ function spawnSparkles(x, y, color = '#fbbf24', count = 20) {
     for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 5 + 2;
-        particles.push({
-            x: x, y: y,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed - 2,
-            size: Math.random() * 4.5 + 2,
-            color: color, alpha: 1,
-            decay: Math.random() * 0.03 + 0.02
-        });
+        particles.push({ x: x, y: y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2, size: Math.random() * 4.5 + 2, color: color, alpha: 1, decay: Math.random() * 0.03 + 0.02 });
     }
 }
 
 function spawnConfetti() {
     const colors = ['#ef4444', '#3b82f6', '#fbbf24', '#22c55e', '#a855f7', '#ec4899'];
-    for (let i = 0; i < 90; i++) {
-        particles.push({
-            x: cameraX + Math.random() * canvas.width,
-            y: -10,
-            vx: (Math.random() - 0.5) * 4,
-            vy: Math.random() * 4 + 2,
-            size: Math.random() * 6 + 3,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            alpha: 1, decay: 0.007
-        });
+    for (let i = 0; i < 80; i++) {
+        particles.push({ x: cameraX + Math.random() * canvas.width, y: -10, vx: (Math.random() - 0.5) * 4, vy: Math.random() * 4 + 2, size: Math.random() * 6 + 3, color: colors[Math.floor(Math.random() * colors.length)], alpha: 1, decay: 0.007 });
     }
 }
 
@@ -908,40 +649,27 @@ function initWorld(worldIndex) {
     blocks = [];
     currentWorld = worldIndex;
     worldBadge.textContent = worldThemes[currentWorld].name;
-    
     const diffKey = parseInt(minesSelect.value || 2);
     const startX = 140;
     const spacing = 110;
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
 
     for (let i = 0; i < BLOCKS_PER_WORLD; i++) {
-        const mult = curve[i];
-        blocks.push({
-            x: startX + i * spacing,
-            y: 55,
-            w: 54,
-            h: 54,
-            mult: mult,
-            hit: false,
-            isPoison: false,
-            bounce: 0
-        });
+        blocks.push({ x: startX + i * spacing, y: 55, w: 54, h: 54, mult: curve[i], hit: false, isPoison: false, bounce: 0 });
     }
-
     flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 60;
     flagPole.flagY = 45;
     flagPole.isHit = false;
 }
 
 function startGame() {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     const bet = parseFloat(betInput.value);
     if (isNaN(bet) || bet <= 0 || bet > balance) {
         statusMsg.style.color = '#ef4444';
         statusMsg.textContent = t.invalidBet;
         return;
     }
-
     balance -= bet;
     currentBet = bet;
     isPlaying = true;
@@ -953,7 +681,6 @@ function startGame() {
     bonusOverlay.style.display = 'none';
 
     initWorld(1);
-
     mario.x = 40;
     mario.y = groundY - mario.h;
     mario.targetX = 40;
@@ -963,10 +690,8 @@ function startGame() {
     updateUI();
     toggleControls(false);
 
-    // Switch to In-Game Action Bar
     betBtn.style.display = 'none';
     playGroup.style.display = 'flex';
-
     statusMsg.style.color = '#38bdf8';
     statusMsg.textContent = t.openingMsg(worldThemes[1].name);
 
@@ -975,7 +700,6 @@ function startGame() {
 
 function takeStep() {
     if (!isPlaying) return;
-
     nextBtn.disabled = true;
     cashoutBtn.disabled = true;
     warpBtn.style.display = 'none';
@@ -988,7 +712,7 @@ function takeStep() {
 }
 
 function hitBlock() {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     const block = blocks[currentStep];
     block.hit = true;
     block.bounce = 15;
@@ -1007,7 +731,6 @@ function hitBlock() {
         audio.lose();
         cabinet.classList.add('shake');
         setTimeout(() => cabinet.classList.remove('shake'), 400);
-
         spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 25);
 
         if (baseGuaranteedMult > 0) {
@@ -1019,30 +742,24 @@ function hitBlock() {
             statusMsg.style.color = '#ef4444';
             statusMsg.textContent = t.loseMsgZero(currentBet.toFixed(2), t.currency);
         }
-        
         endRound();
     } else {
         audio.coin();
         const currentMult = block.mult;
         const currentWinAmount = currentBet * currentMult;
-        
         winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
         spawnSparkles(block.x + block.w / 2, block.y - 10, '#fbbf24', 20);
 
         currentStep++;
-
         if (currentStep >= BLOCKS_PER_WORLD) {
             reachFlag();
         } else {
             const nextMult = blocks[currentStep].mult;
             const nextWinAmount = currentBet * nextMult;
-
             cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
             nextBtn.textContent = `${t.nextBtn} (${formatMultiplierText(nextMult)})`;
-
             statusMsg.style.color = '#4ade80';
             statusMsg.innerHTML = t.winMsg(currentWinAmount.toFixed(2), formatMultiplierText(currentMult), nextWinAmount.toFixed(2), formatMultiplierText(nextMult), t.currency);
-            
             nextBtn.disabled = false;
             cashoutBtn.disabled = false;
         }
@@ -1050,12 +767,11 @@ function hitBlock() {
 }
 
 function reachFlag() {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     statusMsg.style.color = '#fbbf24';
     statusMsg.textContent = t.flagRunMsg;
     nextBtn.disabled = true;
     cashoutBtn.disabled = true;
-
     mario.targetX = flagPole.x - 25;
     mario.state = 'moving_to_flag';
 }
@@ -1064,23 +780,17 @@ function onFlagReached() {
     audio.flag();
     spawnConfetti();
     flagPole.isHit = true;
-    
     currentWorldBaseMult = blocks[BLOCKS_PER_WORLD - 1].mult;
     accumulatedMult = currentWorldBaseMult;
-
-    if (currentWorld === 1) {
-        baseGuaranteedMult = currentWorldBaseMult;
-    }
-
+    if (currentWorld === 1) baseGuaranteedMult = currentWorldBaseMult;
     updateUI();
     showBonusChests();
 }
 
 function showBonusChests() {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     const bonusMultiplier = worldThemes[currentWorld].chestBonus;
     bonusTitle.textContent = t.chestPrompt(bonusMultiplier);
-    
     chestContents = [bonusMultiplier, 1.0, 0];
     for (let i = chestContents.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -1092,53 +802,34 @@ function showBonusChests() {
 
     for (let i = 0; i < 3; i++) {
         const card = document.querySelectorAll('.chest-card')[i];
-        const icon = card.querySelector('.chest-icon');
-        const mult = card.querySelector('.chest-multiplier');
-        icon.style.display = 'block';
-        icon.textContent = '📦';
-        mult.style.display = 'none';
+        card.querySelector('.chest-icon').style.display = 'block';
+        card.querySelector('.chest-multiplier').style.display = 'none';
         card.style.pointerEvents = 'auto';
-        card.style.borderColor = '#eab308';
     }
-
     bonusOverlay.style.display = 'flex';
 }
 
 function openMysteryChest(index) {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     audio.chestOpen();
     const result = chestContents[index];
     const cards = document.querySelectorAll('.chest-card');
 
     cards.forEach((c, idx) => {
         c.style.pointerEvents = 'none';
-        const icon = c.querySelector('.chest-icon');
+        c.querySelector('.chest-icon').style.display = 'none';
         const mult = c.querySelector('.chest-multiplier');
-        icon.style.display = 'none';
         mult.style.display = 'block';
-
         const val = chestContents[idx];
-        if (val === 0) {
-            mult.textContent = '☠️ LOSE';
-            mult.style.color = '#ef4444';
-            c.style.borderColor = '#ef4444';
-        } else if (val > 1.0) {
-            mult.textContent = `🌟 ${val}X`;
-            mult.style.color = '#fbbf24';
-            c.style.borderColor = '#fbbf24';
-        } else {
-            mult.textContent = '1X SAFE';
-            mult.style.color = '#94a3b8';
-            c.style.borderColor = '#475569';
-        }
+        if (val === 0) { mult.textContent = '☠️'; mult.style.color = '#ef4444'; }
+        else if (val > 1.0) { mult.textContent = `🌟${val}X`; mult.style.color = '#fbbf24'; }
+        else { mult.textContent = '1X'; mult.style.color = '#94a3b8'; }
     });
 
     if (result === 0) {
         isPlaying = false;
         audio.lose();
         cabinet.classList.add('shake');
-        setTimeout(() => cabinet.classList.remove('shake'), 400);
-
         setTimeout(() => {
             bonusOverlay.style.display = 'none';
             if (baseGuaranteedMult > 0) {
@@ -1157,24 +848,14 @@ function openMysteryChest(index) {
 
     baseGuaranteedMult = currentWorldBaseMult;
     accumulatedMult = parseFloat((accumulatedMult * result).toFixed(2));
-
     const currentWinAmount = currentBet * accumulatedMult;
     winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
 
-    if (result > 1.0) {
-        audio.win();
-        spawnSparkles(canvas.width / 2, canvas.height / 2, '#fbbf24', 35);
-    }
+    if (result > 1.0) { audio.win(); spawnSparkles(canvas.width / 2, canvas.height / 2, '#fbbf24', 35); }
 
     setTimeout(() => {
         bonusOverlay.style.display = 'none';
-
-        if (result > 1.0) {
-            statusMsg.innerHTML = t.chestWon(result, currentWinAmount.toFixed(2), t.currency);
-        } else {
-            statusMsg.innerHTML = t.chestSafe(currentWinAmount.toFixed(2), t.currency);
-        }
-
+        statusMsg.innerHTML = result > 1.0 ? t.chestWon(result, currentWinAmount.toFixed(2), t.currency) : t.chestSafe(currentWinAmount.toFixed(2), t.currency);
         cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
 
         if (currentWorld < 3) {
@@ -1190,54 +871,35 @@ function openMysteryChest(index) {
     }, 1500);
 }
 
-function cashOutFromBonus() {
-    bonusOverlay.style.display = 'none';
-    cashOut();
-}
+function cashOutFromBonus() { bonusOverlay.style.display = 'none'; cashOut(); }
 
 function warpToNextWorld() {
     if (!isPlaying) return;
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     currentWorld++;
     currentStep = 0;
-    
     initWorld(currentWorld);
 
-    mario.x = 40;
-    mario.y = groundY - mario.h;
-    mario.targetX = 40;
-    mario.state = 'idle';
-    cameraX = 0;
+    mario.x = 40; mario.y = groundY - mario.h; mario.targetX = 40; mario.state = 'idle'; cameraX = 0;
+    warpBtn.style.display = 'none'; nextBtn.style.display = 'flex'; nextBtn.disabled = false; cashoutBtn.disabled = false;
 
-    warpBtn.style.display = 'none';
-    nextBtn.style.display = 'flex';
-    nextBtn.disabled = false;
-    cashoutBtn.disabled = false;
-
-    const currentWinAmount = currentBet * accumulatedMult;
     const nextMult = blocks[0].mult;
     const nextWinAmount = currentBet * nextMult;
-
-    cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
+    cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${(currentBet * accumulatedMult).toFixed(2)})`;
     nextBtn.textContent = `${t.nextBtn} (${formatMultiplierText(nextMult)})`;
-
     statusMsg.style.color = '#38bdf8';
     statusMsg.innerHTML = t.worldEnteredMsg(worldThemes[currentWorld].name, nextWinAmount.toFixed(2), formatMultiplierText(nextMult), t.currency);
 }
 
 function cashOut() {
     if (!isPlaying || currentStep === 0) return;
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     const finalMult = (flagPole.isHit) ? accumulatedMult : blocks[currentStep - 1].mult;
     const winAmount = currentBet * finalMult;
     balance += winAmount;
-
-    audio.win();
-    spawnConfetti();
-
+    audio.win(); spawnConfetti();
     statusMsg.style.color = '#fbbf24';
     statusMsg.textContent = t.cashedOutMsg(winAmount.toFixed(2), formatMultiplierText(finalMult), t.currency);
-
     endRound();
 }
 
@@ -1262,291 +924,123 @@ function toggleControls(enable) {
 }
 
 function updateUI() {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     balanceDisplay.textContent = `${t.currency}${balance.toFixed(2)}`;
-    if (!isPlaying) {
-        winDisplay.textContent = `${t.currency}0.00`;
-        worldBadge.textContent = "W 1-1";
-    }
+    if (!isPlaying) { winDisplay.textContent = `${t.currency}0.00`; worldBadge.textContent = "W 1-1"; }
 }
 
 function update() {
     const speed = isTurbo ? 14 : 7;
-
     if (mario.state === 'moving') {
         const dx = mario.targetX - mario.x;
-        if (Math.abs(dx) > speed) {
-            mario.x += Math.sign(dx) * speed;
-        } else {
-            mario.x = mario.targetX;
-            mario.state = 'jumping';
-            mario.vy = isTurbo ? -15 : -12.5;
-            audio.jump();
-        }
+        if (Math.abs(dx) > speed) { mario.x += Math.sign(dx) * speed; }
+        else { mario.x = mario.targetX; mario.state = 'jumping'; mario.vy = isTurbo ? -15 : -12.5; audio.jump(); }
     } else if (mario.state === 'moving_to_flag') {
         const dx = mario.targetX - mario.x;
-        if (Math.abs(dx) > speed) {
-            mario.x += Math.sign(dx) * speed;
-        } else {
-            mario.x = mario.targetX;
-            mario.state = 'idle';
-            onFlagReached();
-        }
+        if (Math.abs(dx) > speed) { mario.x += Math.sign(dx) * speed; }
+        else { mario.x = mario.targetX; mario.state = 'idle'; onFlagReached(); }
     }
 
     if (mario.state === 'jumping') {
         mario.y += mario.vy;
         mario.vy += mario.gravity * (isTurbo ? 1.6 : 1);
-
         const currentBlock = blocks[currentStep];
         if (mario.vy < 0 && mario.y <= currentBlock.y + currentBlock.h) {
             mario.y = currentBlock.y + currentBlock.h;
             mario.vy = 3;
             hitBlock();
         }
-
-        if (mario.y >= groundY - mario.h) {
-            mario.y = groundY - mario.h;
-            mario.vy = 0;
-            if (mario.state === 'jumping') mario.state = 'idle';
-        }
+        if (mario.y >= groundY - mario.h) { mario.y = groundY - mario.h; mario.vy = 0; if (mario.state === 'jumping') mario.state = 'idle'; }
     }
 
-    // Centered Smooth Follow Camera
     const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
     cameraX += (targetCameraX - cameraX) * 0.12;
 
-    if (flagPole.isHit && flagPole.flagY < groundY - 40) {
-        flagPole.flagY += 3;
-    }
-
-    blocks.forEach(b => {
-        if (b.bounce > 0) b.bounce -= (isTurbo ? 3 : 1.5);
-    });
-
+    if (flagPole.isHit && flagPole.flagY < groundY - 40) flagPole.flagY += 3;
+    blocks.forEach(b => { if (b.bounce > 0) b.bounce -= (isTurbo ? 3 : 1.5); });
     for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.alpha -= p.decay;
+        const p = particles[i]; p.x += p.vx; p.y += p.vy; p.alpha -= p.decay;
         if (p.alpha <= 0) particles.splice(i, 1);
     }
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     const theme = worldThemes[currentWorld];
-
-    // Background Gradient
     const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    bgGrad.addColorStop(0, theme.bg[0]);
-    bgGrad.addColorStop(0.5, theme.bg[1]);
-    bgGrad.addColorStop(0.8, theme.bg[2]);
-    bgGrad.addColorStop(1, theme.bg[3]);
+    bgGrad.addColorStop(0, theme.bg[0]); bgGrad.addColorStop(0.5, theme.bg[1]); bgGrad.addColorStop(0.8, theme.bg[2]); bgGrad.addColorStop(1, theme.bg[3]);
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
     ctx.translate(-cameraX, 0);
 
-    // Environmental Hills & Clouds
     if (currentWorld === 1) {
-        ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
-        ctx.beginPath();
-        ctx.arc(200, 15, 70, 0, Math.PI * 2);
-        ctx.fill();
-
+        ctx.fillStyle = "rgba(251, 191, 36, 0.18)"; ctx.beginPath(); ctx.arc(200, 15, 70, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-        for (let x = 60; x < 2000; x += 240) {
-            ctx.beginPath();
-            ctx.arc(x, 24, 12, 0, Math.PI * 2);
-            ctx.arc(x + 14, 18, 16, 0, Math.PI * 2);
-            ctx.arc(x + 28, 24, 12, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
+        for (let x = 60; x < 2000; x += 240) { ctx.beginPath(); ctx.arc(x, 24, 12, 0, Math.PI * 2); ctx.arc(x + 14, 18, 16, 0, Math.PI * 2); ctx.arc(x + 28, 24, 12, 0, Math.PI * 2); ctx.fill(); }
         ctx.fillStyle = "#16a34a";
-        for (let h = 40; h < 2000; h += 280) {
-            ctx.beginPath();
-            ctx.arc(h, groundY, 65, Math.PI, 0);
-            ctx.fill();
-        }
-    } else if (currentWorld === 2) {
-        ctx.fillStyle = "rgba(139, 92, 246, 0.2)";
-        for (let cx = 120; cx < 2000; cx += 200) {
-            ctx.beginPath();
-            ctx.arc(cx, 30, 40, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    } else if (currentWorld === 3) {
-        ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
-        for (let mx = 90; mx < 2000; mx += 160) {
-            ctx.beginPath();
-            ctx.arc(mx, 60, 45, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        for (let h = 40; h < 2000; h += 280) { ctx.beginPath(); ctx.arc(h, groundY, 65, Math.PI, 0); ctx.fill(); }
     }
 
-    // Ground Rendering
-    ctx.fillStyle = theme.ground;
-    ctx.fillRect(0, groundY, 2200, 6);
-    ctx.fillStyle = theme.subGround;
-    ctx.fillRect(0, groundY + 6, 2200, canvas.height - groundY - 6);
+    ctx.fillStyle = theme.ground; ctx.fillRect(0, groundY, 2200, 6);
+    ctx.fillStyle = theme.subGround; ctx.fillRect(0, groundY + 6, 2200, canvas.height - groundY - 6);
 
-    // 3D Blocks Rendering with Clear Visibility
     blocks.forEach((b) => {
         const renderY = b.y - b.bounce;
-
         if (!b.hit) {
-            ctx.fillStyle = theme.blockBorder;
-            ctx.beginPath();
-            ctx.roundRect(b.x, renderY, b.w, b.h, 8);
-            ctx.fill();
-
-            ctx.fillStyle = theme.blockColor;
-            ctx.beginPath();
-            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6);
-            ctx.fill();
-
-            ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-            ctx.fillRect(b.x + 5, renderY + 5, b.w - 10, 3);
-
-            ctx.fillStyle = "#fff";
-            ctx.font = '900 22px "Fredoka", sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('?', b.x + b.w / 2, renderY + 35);
+            ctx.fillStyle = theme.blockBorder; ctx.beginPath(); ctx.roundRect(b.x, renderY, b.w, b.h, 8); ctx.fill();
+            ctx.fillStyle = theme.blockColor; ctx.beginPath(); ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6); ctx.fill();
+            ctx.fillStyle = "#fff"; ctx.font = '900 22px "Fredoka", sans-serif'; ctx.textAlign = 'center'; ctx.fillText('?', b.x + b.w / 2, renderY + 35);
 
             if (b.mult > 0) {
                 const multText = formatMultiplierText(b.mult);
                 ctx.font = '800 11px "Outfit", sans-serif';
-                const textWidth = ctx.measureText(multText).width;
-                const badgeW = Math.max(textWidth + 12, 44);
-                const badgeH = 18;
+                const badgeW = Math.max(ctx.measureText(multText).width + 12, 44);
                 const badgeX = b.x + (b.w - badgeW) / 2;
-                const badgeY = renderY - 24;
-
-                ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 5);
-                ctx.fill();
-                ctx.stroke();
-
-                ctx.fillStyle = b.mult >= 50 ? '#fbbf24' : '#38bdf8';
-                ctx.textAlign = 'center';
-                ctx.fillText(multText, b.x + b.w / 2, badgeY + 13);
+                ctx.fillStyle = "rgba(15, 23, 42, 0.95)"; ctx.strokeStyle = "rgba(255, 255, 255, 0.3)"; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.roundRect(badgeX, renderY - 24, badgeW, 18, 5); ctx.fill(); ctx.stroke();
+                ctx.fillStyle = b.mult >= 50 ? '#fbbf24' : '#38bdf8'; ctx.fillText(multText, b.x + b.w / 2, renderY - 11);
             }
         } else {
-            ctx.fillStyle = '#334155';
-            ctx.beginPath();
-            ctx.roundRect(b.x, renderY, b.w, b.h, 8);
-            ctx.fill();
-
-            ctx.fillStyle = '#475569';
-            ctx.beginPath();
-            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6);
-            ctx.fill();
-
+            ctx.fillStyle = '#334155'; ctx.beginPath(); ctx.roundRect(b.x, renderY, b.w, b.h, 8); ctx.fill();
+            ctx.fillStyle = '#475569'; ctx.beginPath(); ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6); ctx.fill();
             if (b.isPoison) {
                 ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 40) / 2, renderY - 42, 40, 40);
             } else {
                 ctx.drawImage(sprites.coin, b.x + (b.w - 32) / 2, renderY - 38, 32, 32);
-                
-                ctx.fillStyle = '#22c55e';
-                ctx.font = '900 12px "Outfit", sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 44);
+                ctx.fillStyle = '#22c55e'; ctx.font = '900 12px "Outfit", sans-serif'; ctx.textAlign = 'center'; ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 44);
             }
         }
     });
 
-    // Flagpole
-    ctx.fillStyle = '#cbd5e1';
-    ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
-    ctx.fillStyle = '#fbbf24';
-    ctx.beginPath();
-    ctx.arc(flagPole.x + 4, flagPole.y, 7, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.fillStyle = '#cbd5e1'; ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
+    ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(flagPole.x + 4, flagPole.y, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#22c55e'; ctx.beginPath(); ctx.moveTo(flagPole.x + 8, flagPole.flagY); ctx.lineTo(flagPole.x + 34, flagPole.flagY + 12); ctx.lineTo(flagPole.x + 8, flagPole.flagY + 24); ctx.fill();
+    ctx.fillStyle = '#334155'; ctx.fillRect(flagPole.x + 55, groundY - 75, 75, 75); ctx.fillStyle = '#0f172a'; ctx.fillRect(flagPole.x + 80, groundY - 35, 24, 35);
 
-    // Flag
-    ctx.fillStyle = '#22c55e';
-    ctx.beginPath();
-    ctx.moveTo(flagPole.x + 8, flagPole.flagY);
-    ctx.lineTo(flagPole.x + 34, flagPole.flagY + 12);
-    ctx.lineTo(flagPole.x + 8, flagPole.flagY + 24);
-    ctx.fill();
-
-    // Castle
-    ctx.fillStyle = '#334155';
-    ctx.fillRect(flagPole.x + 55, groundY - 75, 75, 75);
-    ctx.fillStyle = '#0f172a';
-    ctx.fillRect(flagPole.x + 80, groundY - 35, 24, 35);
-
-    // Particles
-    particles.forEach(p => {
-        ctx.save();
-        ctx.globalAlpha = p.alpha;
-        ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-    });
-
-    // Mario Shadow
-    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
-    ctx.beginPath();
-    ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 4, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Mario Character
-    const currentMario = (mario.state === 'jumping') ? sprites.marioJump : sprites.mario;
-    ctx.drawImage(currentMario, mario.x, mario.y, mario.w, mario.h);
-
+    particles.forEach(p => { ctx.save(); ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill(); ctx.restore(); });
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)"; ctx.beginPath(); ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 4, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.drawImage((mario.state === 'jumping') ? sprites.marioJump : sprites.mario, mario.x, mario.y, mario.w, mario.h);
     ctx.restore();
 }
 
-function gameLoop() {
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
-}
+function gameLoop() { update(); draw(); requestAnimationFrame(gameLoop); }
 
 btnHalf.addEventListener('click', () => betInput.value = Math.max(1, Math.floor(parseFloat(betInput.value || 10) / 2)));
 btnDouble.addEventListener('click', () => betInput.value = Math.min(balance, Math.floor(parseFloat(betInput.value || 10) * 2)));
 btnMax.addEventListener('click', () => betInput.value = Math.floor(balance));
-
-turboBtn.addEventListener('click', () => {
-    isTurbo = !isTurbo;
-    turboBtn.classList.toggle('active', isTurbo);
-    turboBtn.textContent = isTurbo ? '⚡ON' : '⚡';
-});
-
-soundBtn.addEventListener('click', () => {
-    audio.enabled = !audio.enabled;
-    soundBtn.classList.toggle('active', audio.enabled);
-    soundBtn.textContent = audio.enabled ? '🔊' : '🔇';
-});
-
+turboBtn.addEventListener('click', () => { isTurbo = !isTurbo; turboBtn.classList.toggle('active', isTurbo); });
+soundBtn.addEventListener('click', () => { audio.enabled = !audio.enabled; soundBtn.classList.toggle('active', audio.enabled); });
 langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
-
 rulesBtn.addEventListener('click', () => rulesModal.style.display = 'flex');
 closeModal.addEventListener('click', () => rulesModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === rulesModal) rulesModal.style.display = 'none'; });
-
 betBtn.addEventListener('click', startGame);
 nextBtn.addEventListener('click', takeStep);
 warpBtn.addEventListener('click', warpToNextWorld);
 cashoutBtn.addEventListener('click', cashOut);
-
-minesSelect.addEventListener('change', () => {
-    initWorld(currentWorld);
-    if (!isPlaying) {
-        statusMsg.textContent = translations[currentLang].readyMsg;
-    }
-});
+minesSelect.addEventListener('change', () => { initWorld(currentWorld); if (!isPlaying) statusMsg.textContent = (translations[currentLang] || translations.en).readyMsg; });
 
 resizeCanvas();
 applyLanguage('en');
