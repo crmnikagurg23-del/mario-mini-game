@@ -27,21 +27,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 6px;
+            padding: 0;
         }
         .casino-cabinet {
-            background: rgba(15, 23, 42, 0.95);
-            border-radius: 18px;
-            padding: 8px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #090d16;
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            width: 100%;
-            max-width: 440px;
-            height: 100%;
-            max-height: 100dvh;
             justify-content: space-between;
+            padding: 10px 12px;
+            position: relative;
         }
 
         .shake {
@@ -54,24 +52,22 @@
             40%, 60% { transform: translate3d(5px, 0, 0); }
         }
 
-        /* Top Header */
+        /* Top Bar */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 4px;
-            height: 32px;
+            height: 36px;
             flex-shrink: 0;
         }
         .brand-title {
             display: flex;
             align-items: center;
-            gap: 4px;
-            font-size: 14px;
+            gap: 6px;
+            font-size: 16px;
             font-weight: 900;
             font-family: 'Fredoka', cursive;
             color: #ef4444;
-            white-space: nowrap;
         }
         .brand-title span { color: #fbbf24; }
         
@@ -83,96 +79,59 @@
         .world-badge {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
-            padding: 3px 6px;
+            padding: 4px 8px;
             border-radius: 6px;
             font-weight: 900;
-            font-size: 9.5px;
-            white-space: nowrap;
-        }
-        .btn-toggle, .lang-select {
-            background: rgba(30, 41, 59, 0.9);
-            color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 3px 6px;
-            border-radius: 6px;
             font-size: 10.5px;
+        }
+        .btn-icon, .lang-select {
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             outline: none;
-            height: 26px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .btn-toggle.active {
-            background: #2563eb;
-            color: #fff;
-            border-color: #60a5fa;
-        }
+        .btn-icon.active { background: #2563eb; color: #fff; border-color: #60a5fa; }
         .lang-select { color: #fbbf24; font-weight: 800; padding: 0 4px; }
 
-        /* History */
-        .history-bar {
-            display: flex;
-            gap: 4px;
-            align-items: center;
-            background: rgba(10, 15, 29, 0.85);
-            padding: 3px 6px;
-            border-radius: 6px;
-            height: 26px;
-            overflow-x: auto;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .history-label {
-            font-size: 8.5px;
-            font-weight: 800;
-            color: #64748b;
-        }
-        .history-badge {
-            padding: 1px 5px;
-            border-radius: 4px;
-            font-size: 9.5px;
-            font-weight: 900;
-            flex-shrink: 0;
-        }
-        .badge-win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
-        .badge-loss { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
-
-        /* Stats */
-        .stats-grid {
+        /* Integrated Compact Dashboard */
+        .dashboard-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 6px 10px;
+            border-radius: 12px;
             flex-shrink: 0;
         }
-        .stat-card {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 3px 4px;
-            border-radius: 6px;
+        .dash-item {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
-        .stat-card .label { font-size: 7px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
-        .stat-card .value { font-size: 12.5px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .dash-item .lbl { font-size: 8px; color: #64748b; font-weight: 800; text-transform: uppercase; }
+        .dash-item .val { font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
         .val-gold { color: #fbbf24; }
         .val-green { color: #22c55e; }
         .val-blue { color: #38bdf8; }
-        .val-shield { color: #c084fc; }
 
-        /* Game Screen */
+        /* Main Game Screen (Canvas) */
         .screen-container {
             position: relative;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid #1e293b;
             width: 100%;
             flex: 1;
-            min-height: 160px;
-            max-height: 280px;
+            margin: 6px 0;
             background: #000;
         }
         canvas {
@@ -191,35 +150,35 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 12px;
             z-index: 20;
-            padding: 8px;
+            padding: 10px;
         }
         .bonus-title {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 900;
             color: #fbbf24;
             text-align: center;
         }
         .chests-container {
             display: flex;
-            gap: 10px;
+            gap: 14px;
         }
         .chest-card {
             background: #1e293b;
             border: 2px solid #eab308;
-            border-radius: 10px;
-            width: 65px;
-            height: 75px;
+            border-radius: 12px;
+            width: 75px;
+            height: 85px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
-        .chest-icon { font-size: 30px; }
+        .chest-icon { font-size: 34px; }
         .chest-multiplier {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 900;
             display: none;
         }
@@ -227,39 +186,35 @@
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #000;
             font-weight: 900;
-            padding: 6px 14px;
-            border-radius: 6px;
+            padding: 8px 18px;
+            border-radius: 8px;
             border: none;
-            font-size: 11.5px;
+            font-size: 13px;
             cursor: pointer;
         }
 
         /* Status Banner */
         .status-banner {
-            background: rgba(10, 15, 29, 0.9);
-            padding: 4px 6px;
-            border-radius: 8px;
+            background: #0f172a;
+            padding: 6px 8px;
+            border-radius: 10px;
             text-align: center;
             font-weight: 800;
-            font-size: 11.5px;
-            height: 32px;
+            font-size: 13px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid #1e293b;
             flex-shrink: 0;
             line-height: 1.2;
         }
 
-        /* Bottom Control Panel */
+        /* Bottom Controls */
         .control-panel {
-            background: rgba(20, 28, 48, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 8px;
-            border-radius: 12px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             flex-shrink: 0;
         }
         .inputs-row {
@@ -269,68 +224,74 @@
             width: 100%;
         }
         .control-field { display: flex; flex-direction: column; gap: 2px; }
-        .control-field label { font-size: 7.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
-        .bet-input-box { display: flex; gap: 2px; width: 100%; }
+        .control-field label { font-size: 8px; color: #64748b; font-weight: 800; text-transform: uppercase; }
+        .bet-input-box { display: flex; gap: 3px; width: 100%; }
         input, select {
-            background: rgba(30, 41, 59, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #0f172a;
+            border: 1px solid #334155;
             color: #fff;
-            padding: 5px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: 800;
             outline: none;
             text-align: center;
             width: 100%;
-            height: 28px;
+            height: 32px;
         }
 
         .btn-quick {
-            background: rgba(30, 41, 59, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #1e293b;
+            border: 1px solid #334155;
             color: #94a3b8;
-            padding: 0 4px;
-            border-radius: 4px;
-            font-size: 9px;
+            padding: 0 6px;
+            border-radius: 6px;
+            font-size: 10px;
             font-weight: 800;
             cursor: pointer;
-            height: 28px;
+            height: 32px;
         }
 
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 6px;
+        /* Master Action Button */
+        .action-container {
             width: 100%;
+            height: 48px;
         }
         .btn-action {
-            padding: 10px 4px;
-            border-radius: 8px;
-            font-size: 12.5px;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 900;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2px;
-            white-space: nowrap;
-            flex: 1;
-            min-width: 0;
-            height: 40px;
+            gap: 6px;
+            letter-spacing: 0.3px;
             touch-action: manipulation;
         }
         .btn-bet { 
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
             color: #fff; 
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        .btn-play-group {
+            display: none;
+            gap: 6px;
+            width: 100%;
+            height: 100%;
         }
         .btn-next { 
             background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); 
             color: #fff; 
+            flex: 1.2;
         }
         .btn-cashout { 
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); 
             color: #000; 
+            flex: 1;
         }
         .btn-warp {
             background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); 
@@ -342,7 +303,7 @@
             50% { transform: scale(1.02); }
         }
         .btn-action:disabled, .btn-quick:disabled {
-            background: rgba(30, 41, 59, 0.5) !important;
+            background: #1e293b !important;
             color: #475569 !important;
             box-shadow: none !important;
             cursor: not-allowed;
@@ -359,32 +320,32 @@
             justify-content: center;
             align-items: center;
             z-index: 100;
-            padding: 10px;
+            padding: 12px;
         }
         .modal-content {
             background: #0f172a;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
+            border-radius: 16px;
             width: 100%;
-            max-width: 380px;
-            padding: 14px;
+            max-width: 400px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 4px;
+            padding-bottom: 6px;
         }
-        .modal-header h3 { font-size: 14px; color: #fbbf24; font-weight: 800; }
-        .btn-close { background: transparent; border: none; color: #64748b; font-size: 20px; cursor: pointer; }
-        .modal-body { font-size: 11px; line-height: 1.4; color: #94a3b8; display: flex; flex-direction: column; gap: 6px; }
-        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 4px 8px; border-radius: 4px; color: #f8fafc; }
+        .modal-header h3 { font-size: 15px; color: #fbbf24; font-weight: 800; }
+        .btn-close { background: transparent; border: none; color: #64748b; font-size: 22px; cursor: pointer; }
+        .modal-body { font-size: 12px; line-height: 1.5; color: #94a3b8; display: flex; flex-direction: column; gap: 8px; }
+        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
         .rtp-box strong { color: #38bdf8; }
-        .rule-list { padding-left: 14px; }
+        .rule-list { padding-left: 16px; }
     </style>
 </head>
 <body>
@@ -403,39 +364,25 @@
                 <option value="ru">🇷🇺</option>
                 <option value="es">🇪🇸</option>
             </select>
-            <button class="btn-toggle" id="turbo-btn">⚡</button>
-            <button class="btn-toggle" id="sound-btn">🔊</button>
-            <button class="btn-toggle" id="rules-btn">📖</button>
+            <button class="btn-icon" id="turbo-btn">⚡</button>
+            <button class="btn-icon" id="sound-btn">🔊</button>
+            <button class="btn-icon" id="rules-btn">📖</button>
         </div>
     </div>
 
-    <!-- History -->
-    <div class="history-bar" id="history-bar">
-        <span class="history-label" id="lbl-history">HIST:</span>
-        <span style="font-size: 9px; color: #475569;" id="history-empty">No rounds yet</span>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <span class="label" id="lbl-balance">BALANCE</span>
-            <span class="value val-gold" id="balance-display">$1000.00</span>
+    <!-- Integrated Compact Dashboard -->
+    <div class="dashboard-row">
+        <div class="dash-item">
+            <span class="lbl" id="lbl-balance">BALANCE</span>
+            <span class="val val-gold" id="balance-display">$1000.00</span>
         </div>
-        <div class="stat-card">
-            <span class="label" id="lbl-checkpoint">SAVED</span>
-            <span class="value val-shield" id="checkpoint-display">$0.00</span>
-        </div>
-        <div class="stat-card">
-            <span class="label" id="lbl-mult">MULT</span>
-            <span class="value val-blue" id="mult-display">1.00x</span>
-        </div>
-        <div class="stat-card">
-            <span class="label" id="lbl-win">WIN</span>
-            <span class="value val-green" id="win-display">$0.00</span>
+        <div class="dash-item" style="text-align: right;">
+            <span class="lbl" id="lbl-win">CURRENT WIN</span>
+            <span class="val val-green" id="win-display">$0.00</span>
         </div>
     </div>
 
-    <!-- Canvas Game Screen -->
+    <!-- Main Game Screen (Canvas) -->
     <div class="screen-container">
         <canvas id="gameCanvas"></canvas>
         
@@ -461,9 +408,9 @@
     </div>
 
     <!-- Status Banner -->
-    <div class="status-banner" id="status-msg">Place your bet and start</div>
+    <div class="status-banner" id="status-msg">Place bet and tap START</div>
 
-    <!-- Controls -->
+    <!-- Bottom Controls -->
     <div class="control-panel">
         <div class="inputs-row">
             <div class="control-field">
@@ -485,16 +432,19 @@
             </div>
         </div>
 
-        <div class="action-buttons">
-            <button class="btn-action btn-bet" id="bet-btn">START</button>
-            <button class="btn-action btn-next" id="next-btn" disabled>NEXT ➡️</button>
-            <button class="btn-action btn-warp" id="warp-btn" style="display:none;">WARP 🚀</button>
-            <button class="btn-action btn-cashout" id="cashout-btn" disabled>CASH OUT</button>
+        <!-- Master Action Bar -->
+        <div class="action-container">
+            <button class="btn-action btn-bet" id="bet-btn">START (BET)</button>
+            <div class="btn-play-group" id="play-group">
+                <button class="btn-action btn-next" id="next-btn">NEXT ➡️</button>
+                <button class="btn-action btn-warp" id="warp-btn" style="display:none;">WARP 🚀</button>
+                <button class="btn-action btn-cashout" id="cashout-btn">CASH OUT</button>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Rules Modal -->
 <div class="modal-overlay" id="rules-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -527,27 +477,22 @@ const casinoMultiplierCurves = {
 const translations = {
     en: {
         currency: "$",
-        rulesBtn: "📖",
-        history: "HIST:",
-        noHistory: "No rounds yet",
         balance: "BALANCE",
-        checkpoint: "SAVED",
-        mult: "MULT",
-        win: "WIN",
+        win: "CURRENT WIN",
         betLabel: "BET ($)",
         minesLabel: "RISK",
         m1: "Easy",
         m2: "Medium",
         m3: "Hard",
-        startBtn: "START",
-        nextBtn: "NEXT",
+        startBtn: "START (BET)",
+        nextBtn: "NEXT ➡️",
         cashoutBtn: "CASH OUT",
         readyMsg: "Place bet and tap START",
         openingMsg: (w) => `${w}: Jumping to Block 1...`,
         worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Next: <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})`,
         loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ -${curr}${amt}`,
         loseMsgGuaranteed: (amt, curr) => `Poison! ☠️ Saved: +${curr}${amt}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or risk for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or go for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
         flagRunMsg: "🎉 Stage Cleared! Pick a chest!",
         chestPrompt: (mult) => `🎁 CHESTS: [${mult}X] [1X] [☠️ LOSE]`,
         chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
@@ -569,20 +514,15 @@ const translations = {
     },
     ka: {
         currency: "₾",
-        rulesBtn: "📖",
-        history: "ისტორია:",
-        noHistory: "რაუნდები არ არის",
         balance: "ბალანსი",
-        checkpoint: "შენახული",
-        mult: "მამრავლი",
-        win: "მოგება",
+        win: "მიმდინარე მოგება",
         betLabel: "ფსონი (₾)",
         minesLabel: "რისკი",
         m1: "მარტივი",
         m2: "საშუალო",
         m3: "რთული",
         startBtn: "დაწყება",
-        nextBtn: "შემდეგი",
+        nextBtn: "შემდეგი ➡️",
         cashoutBtn: "გატანა",
         readyMsg: "დააყენეთ ფსონი და დაიწყეთ",
         openingMsg: (w) => `${w}: პირველი ბლოკი...`,
@@ -611,20 +551,15 @@ const translations = {
     },
     ru: {
         currency: "₽",
-        rulesBtn: "📖",
-        history: "HIST:",
-        noHistory: "No rounds yet",
         balance: "БАЛАНС",
-        checkpoint: "СОХРАНЕНО",
-        mult: "MULT",
-        win: "WIN",
+        win: "ВЫИГРЫШ",
         betLabel: "СТАВКА (₽)",
         minesLabel: "РИСК",
         m1: "Легкий",
         m2: "Средний",
         m3: "Сложный",
         startBtn: "СТАРТ",
-        nextBtn: "ДАЛЕЕ",
+        nextBtn: "ДАЛЕЕ ➡️",
         cashoutBtn: "ЗАБРАТЬ",
         readyMsg: "Сделайте ставку и нажмите СТАРТ",
         openingMsg: (w) => `${w}: Прыжок на 1-й блок...`,
@@ -651,12 +586,7 @@ const translations = {
     },
     es: {
         currency: "€",
-        rulesBtn: "📖",
-        history: "HIST:",
-        noHistory: "Sin rondas",
         balance: "SALDO",
-        checkpoint: "GUARDADO",
-        mult: "MULT",
         win: "GANANCIA",
         betLabel: "APUESTA (€)",
         minesLabel: "RIESGO",
@@ -664,7 +594,7 @@ const translations = {
         m2: "Medio",
         m3: "Difícil",
         startBtn: "JUGAR",
-        nextBtn: "SIGUIENTE",
+        nextBtn: "SIGUIENTE ➡️",
         cashoutBtn: "RETIRAR",
         readyMsg: "Haz tu apuesta y juega",
         openingMsg: (w) => `${w}: Mario al 1er bloque...`,
@@ -784,19 +714,16 @@ const ctx = canvas.getContext('2d');
 const cabinet = document.getElementById('cabinet');
 
 const balanceDisplay = document.getElementById('balance-display');
-const checkpointDisplay = document.getElementById('checkpoint-display');
-const multDisplay = document.getElementById('mult-display');
 const winDisplay = document.getElementById('win-display');
 const worldBadge = document.getElementById('world-badge');
 const betInput = document.getElementById('bet-input');
 const minesSelect = document.getElementById('mines-select');
 const betBtn = document.getElementById('bet-btn');
+const playGroup = document.getElementById('play-group');
 const nextBtn = document.getElementById('next-btn');
 const warpBtn = document.getElementById('warp-btn');
 const cashoutBtn = document.getElementById('cashout-btn');
 const statusMsg = document.getElementById('status-msg');
-const historyBar = document.getElementById('history-bar');
-const historyEmpty = document.getElementById('history-empty');
 
 const bonusOverlay = document.getElementById('bonus-overlay');
 const bonusTitle = document.getElementById('bonus-title');
@@ -815,10 +742,7 @@ const btnHalf = document.getElementById('btn-half');
 const btnDouble = document.getElementById('btn-double');
 const btnMax = document.getElementById('btn-max');
 
-const lblHistory = document.getElementById('lbl-history');
 const lblBalance = document.getElementById('lbl-balance');
-const lblCheckpoint = document.getElementById('lbl-checkpoint');
-const lblMult = document.getElementById('lbl-mult');
 const lblWin = document.getElementById('lbl-win');
 const lblBet = document.getElementById('lbl-bet');
 const lblMines = document.getElementById('lbl-mines');
@@ -885,12 +809,12 @@ let currentBet = 0;
 let isPlaying = false;
 let currentStep = 0;
 
-let groundY = 175;
+let groundY = 190;
 const mario = {
     x: 40,
-    y: groundY - 54,
-    w: 38,
-    h: 54,
+    y: groundY - 56,
+    w: 40,
+    h: 56,
     targetX: 40,
     vy: 0,
     gravity: 0.95,
@@ -898,15 +822,15 @@ const mario = {
 };
 
 let blocks = [];
-let flagPole = { x: 0, y: 35, w: 8, h: 140, flagY: 45, isHit: false };
+let flagPole = { x: 0, y: 35, w: 8, h: 155, flagY: 45, isHit: false };
 
 function resizeCanvas() {
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
-    groundY = canvas.height - 35;
+    groundY = canvas.height - 40;
     mario.y = groundY - mario.h;
-    flagPole.h = groundY - 30;
+    flagPole.h = groundY - 35;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -921,13 +845,7 @@ function applyLanguage(lang) {
     currentLang = lang;
     const t = translations[lang];
 
-    rulesBtn.textContent = t.rulesBtn;
-    lblHistory.textContent = t.history;
-    if (historyEmpty && historyBar.contains(historyEmpty)) historyEmpty.textContent = t.noHistory;
-
     lblBalance.textContent = t.balance;
-    lblCheckpoint.textContent = t.checkpoint;
-    lblMult.textContent = t.mult;
     lblWin.textContent = t.win;
     lblBet.textContent = t.betLabel;
     lblMines.textContent = t.minesLabel;
@@ -986,23 +904,14 @@ function spawnConfetti() {
     }
 }
 
-function addHistory(mult, isWin) {
-    if (historyEmpty && historyEmpty.parentNode) historyEmpty.remove();
-    const badge = document.createElement('span');
-    badge.className = `history-badge ${isWin ? 'badge-win' : 'badge-loss'}`;
-    badge.textContent = `${isWin ? '+' : ''}${formatMultiplierText(mult)}`;
-    historyBar.insertBefore(badge, historyBar.children[1]);
-    if (historyBar.children.length > 8) historyBar.removeChild(historyBar.lastChild);
-}
-
 function initWorld(worldIndex) {
     blocks = [];
     currentWorld = worldIndex;
     worldBadge.textContent = worldThemes[currentWorld].name;
     
     const diffKey = parseInt(minesSelect.value || 2);
-    const startX = 130;
-    const spacing = 100;
+    const startX = 140;
+    const spacing = 110;
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
 
     for (let i = 0; i < BLOCKS_PER_WORLD; i++) {
@@ -1010,8 +919,8 @@ function initWorld(worldIndex) {
         blocks.push({
             x: startX + i * spacing,
             y: 55,
-            w: 52,
-            h: 52,
+            w: 54,
+            h: 54,
             mult: mult,
             hit: false,
             isPoison: false,
@@ -1053,6 +962,10 @@ function startGame() {
 
     updateUI();
     toggleControls(false);
+
+    // Switch to In-Game Action Bar
+    betBtn.style.display = 'none';
+    playGroup.style.display = 'flex';
 
     statusMsg.style.color = '#38bdf8';
     statusMsg.textContent = t.openingMsg(worldThemes[1].name);
@@ -1100,28 +1013,19 @@ function hitBlock() {
         if (baseGuaranteedMult > 0) {
             const savedWin = currentBet * baseGuaranteedMult;
             balance += savedWin;
-            addHistory(baseGuaranteedMult, true);
             statusMsg.style.color = '#c084fc';
             statusMsg.textContent = t.loseMsgGuaranteed(savedWin.toFixed(2), t.currency);
         } else {
-            addHistory(0, false);
             statusMsg.style.color = '#ef4444';
             statusMsg.textContent = t.loseMsgZero(currentBet.toFixed(2), t.currency);
         }
         
-        toggleControls(true);
-        nextBtn.disabled = true;
-        cashoutBtn.disabled = true;
-        warpBtn.style.display = 'none';
-        nextBtn.textContent = t.nextBtn;
-        cashoutBtn.textContent = t.cashoutBtn;
-        updateUI();
+        endRound();
     } else {
         audio.coin();
         const currentMult = block.mult;
         const currentWinAmount = currentBet * currentMult;
         
-        multDisplay.textContent = formatMultiplierText(currentMult);
         winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
         spawnSparkles(block.x + block.w / 2, block.y - 10, '#fbbf24', 20);
 
@@ -1240,21 +1144,13 @@ function openMysteryChest(index) {
             if (baseGuaranteedMult > 0) {
                 const savedWin = currentBet * baseGuaranteedMult;
                 balance += savedWin;
-                addHistory(baseGuaranteedMult, true);
                 statusMsg.style.color = '#c084fc';
                 statusMsg.textContent = t.chestLostGuaranteed(t.currency, savedWin.toFixed(2));
             } else {
-                addHistory(0, false);
                 statusMsg.style.color = '#ef4444';
                 statusMsg.textContent = t.chestLostZero(t.currency, currentBet.toFixed(2));
             }
-            toggleControls(true);
-            nextBtn.disabled = true;
-            cashoutBtn.disabled = true;
-            warpBtn.style.display = 'none';
-            nextBtn.textContent = t.nextBtn;
-            cashoutBtn.textContent = t.cashoutBtn;
-            updateUI();
+            endRound();
         }, 1500);
         return;
     }
@@ -1263,9 +1159,7 @@ function openMysteryChest(index) {
     accumulatedMult = parseFloat((accumulatedMult * result).toFixed(2));
 
     const currentWinAmount = currentBet * accumulatedMult;
-    multDisplay.textContent = formatMultiplierText(accumulatedMult);
     winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
-    checkpointDisplay.textContent = `${t.currency}${(currentBet * baseGuaranteedMult).toFixed(2)}`;
 
     if (result > 1.0) {
         audio.win();
@@ -1337,22 +1231,21 @@ function cashOut() {
     const finalMult = (flagPole.isHit) ? accumulatedMult : blocks[currentStep - 1].mult;
     const winAmount = currentBet * finalMult;
     balance += winAmount;
-    isPlaying = false;
 
     audio.win();
     spawnConfetti();
-    addHistory(finalMult, true);
 
     statusMsg.style.color = '#fbbf24';
     statusMsg.textContent = t.cashedOutMsg(winAmount.toFixed(2), formatMultiplierText(finalMult), t.currency);
 
+    endRound();
+}
+
+function endRound() {
+    isPlaying = false;
     toggleControls(true);
-    nextBtn.disabled = true;
-    cashoutBtn.disabled = true;
-    warpBtn.style.display = 'none';
-    nextBtn.style.display = 'flex';
-    nextBtn.textContent = t.nextBtn;
-    cashoutBtn.textContent = t.cashoutBtn;
+    playGroup.style.display = 'none';
+    betBtn.style.display = 'flex';
     baseGuaranteedMult = 0.0;
     currentWorldBaseMult = 0.0;
     updateUI();
@@ -1371,11 +1264,8 @@ function toggleControls(enable) {
 function updateUI() {
     const t = translations[currentLang];
     balanceDisplay.textContent = `${t.currency}${balance.toFixed(2)}`;
-    checkpointDisplay.textContent = `${t.currency}${(currentBet * baseGuaranteedMult).toFixed(2)}`;
     if (!isPlaying) {
-        multDisplay.textContent = '1.00x';
         winDisplay.textContent = `${t.currency}0.00`;
-        checkpointDisplay.textContent = `${t.currency}0.00`;
         worldBadge.textContent = "W 1-1";
     }
 }
@@ -1422,7 +1312,7 @@ function update() {
         }
     }
 
-    // კამერა აკავებს მარიოს ეკრანის ცენტრში
+    // Centered Smooth Follow Camera
     const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
     cameraX += (targetCameraX - cameraX) * 0.12;
 
@@ -1460,7 +1350,7 @@ function draw() {
     ctx.save();
     ctx.translate(-cameraX, 0);
 
-    // Parallax Environmental Details
+    // Environmental Hills & Clouds
     if (currentWorld === 1) {
         ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
         ctx.beginPath();
@@ -1525,7 +1415,7 @@ function draw() {
             ctx.fillStyle = "#fff";
             ctx.font = '900 22px "Fredoka", sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('?', b.x + b.w / 2, renderY + 34);
+            ctx.fillText('?', b.x + b.w / 2, renderY + 35);
 
             if (b.mult > 0) {
                 const multText = formatMultiplierText(b.mult);
