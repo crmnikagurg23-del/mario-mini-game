@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Super Mario Road - Arcade Deluxe Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Super Mario Road - Mobile Arcade Deluxe</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Outfit:wght@600;700;800;900&display=swap');
 
@@ -22,23 +22,24 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             color: #f8fafc;
-            padding: 12px;
+            padding: 8px;
             overflow-x: hidden;
         }
         .casino-cabinet {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            padding: 18px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 40px rgba(99, 102, 241, 0.2), inset 0 1px 1px rgba(255,255,255,0.1);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(99, 102, 241, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
             width: 100%;
-            max-width: 940px;
+            max-width: 900px;
             position: relative;
         }
         .shake {
@@ -55,171 +56,125 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 6px;
         }
         .brand-title {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 20px;
+            gap: 6px;
+            font-size: 16px;
             font-weight: 900;
             font-family: 'Fredoka', cursive;
             color: #ef4444;
-            text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
-            letter-spacing: 0.5px;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+            white-space: nowrap;
         }
-        .brand-title span { 
-            color: #fbbf24; 
-            text-shadow: 0 0 20px rgba(251, 191, 36, 0.7); 
-        }
+        .brand-title span { color: #fbbf24; }
         
         .top-actions {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             align-items: center;
-            flex-wrap: wrap;
         }
         .btn-toggle, .lang-select {
-            background: rgba(30, 41, 59, 0.7);
+            background: rgba(30, 41, 59, 0.8);
             color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 12px;
-            border-radius: 10px;
-            font-size: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 5px 8px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             outline: none;
             touch-action: manipulation;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(8px);
-        }
-        .btn-toggle:hover, .lang-select:hover {
-            background: rgba(51, 65, 85, 0.9);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
         }
         .btn-toggle.active {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
             border-color: #60a5fa;
-            box-shadow: 0 0 16px rgba(59, 130, 246, 0.6);
         }
         .lang-select { color: #fbbf24; font-weight: 800; }
 
         .world-badge {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
-            padding: 5px 12px;
-            border-radius: 10px;
+            padding: 3px 8px;
+            border-radius: 6px;
             font-weight: 900;
-            font-size: 12px;
-            box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
-            display: inline-flex;
-            align-items: center;
+            font-size: 10px;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .history-bar {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             align-items: center;
-            background: rgba(10, 15, 29, 0.75);
-            padding: 6px 12px;
-            border-radius: 12px;
+            background: rgba(10, 15, 29, 0.8);
+            padding: 4px 8px;
+            border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            min-height: 36px;
+            min-height: 28px;
             overflow-x: auto;
             white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
         .history-label {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 800;
             color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         .history-badge {
-            padding: 3px 10px;
-            border-radius: 8px;
-            font-size: 11.5px;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-size: 10.5px;
             font-weight: 900;
-            animation: popIn 0.3s ease;
             flex-shrink: 0;
         }
-        .badge-win { 
-            background: rgba(34, 197, 94, 0.15); 
-            color: #4ade80; 
-            border: 1px solid rgba(34, 197, 94, 0.4); 
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
-        }
-        .badge-loss { 
-            background: rgba(239, 68, 68, 0.15); 
-            color: #f87171; 
-            border: 1px solid rgba(239, 68, 68, 0.4); 
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        .badge-win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
+        .badge-loss { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+        @media (min-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
         }
         .stat-card {
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 8px 12px;
-            border-radius: 14px;
+            padding: 6px 10px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
+            gap: 1px;
         }
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        }
-        .stat-card .label { 
-            font-size: 9.5px; 
-            color: #94a3b8; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-        }
-        .stat-card .value { 
-            font-size: 17px; 
-            font-weight: 900; 
-            font-variant-numeric: tabular-nums; 
-        }
-        .val-gold { color: #fbbf24; text-shadow: 0 0 15px rgba(251, 191, 36, 0.4); }
-        .val-green { color: #22c55e; text-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
-        .val-blue { color: #38bdf8; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-        .val-shield { color: #c084fc; text-shadow: 0 0 15px rgba(192, 132, 252, 0.4); }
+        .stat-card .label { font-size: 8.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .stat-card .value { font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .val-gold { color: #fbbf24; }
+        .val-green { color: #22c55e; }
+        .val-blue { color: #38bdf8; }
+        .val-shield { color: #c084fc; }
 
         .screen-container {
             position: relative;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.15);
             width: 100%;
-            box-shadow: inset 0 0 35px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+            height: 220px;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+        }
+        @media (min-width: 600px) {
+            .screen-container { height: 280px; }
         }
         canvas {
             display: block;
             width: 100%;
-            height: auto;
-            aspect-ratio: 850 / 290;
+            height: 100%;
         }
 
         .bonus-overlay {
@@ -227,207 +182,147 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(8, 12, 22, 0.95);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 10px;
             z-index: 20;
-            animation: fadeIn 0.3s ease;
+            padding: 10px;
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .bonus-title {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 900;
             color: #fbbf24;
-            text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
             text-align: center;
-            padding: 0 16px;
-            letter-spacing: 0.5px;
         }
         .chests-container {
             display: flex;
-            gap: 20px;
+            gap: 12px;
         }
         .chest-card {
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            background: #1e293b;
             border: 2px solid #eab308;
-            border-radius: 18px;
-            width: 90px;
-            height: 105px;
+            border-radius: 12px;
+            width: 70px;
+            height: 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(234, 179, 8, 0.25);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .chest-card:hover {
-            transform: translateY(-10px) scale(1.08);
-            border-color: #fef08a;
-            box-shadow: 0 15px 35px rgba(234, 179, 8, 0.6);
-        }
-        .chest-icon { font-size: 42px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); }
+        .chest-icon { font-size: 32px; }
         .chest-multiplier {
-            font-size: 17px;
+            font-size: 13.5px;
             font-weight: 900;
             display: none;
-        }
-        .bonus-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 4px;
         }
         .btn-chest-cashout {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #000;
             font-weight: 900;
-            padding: 10px 24px;
-            border-radius: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
             border: none;
-            font-size: 14px;
+            font-size: 12.5px;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
-            transition: all 0.2s;
-        }
-        .btn-chest-cashout:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.7);
         }
 
         .status-banner {
             background: rgba(10, 15, 29, 0.85);
-            padding: 10px;
-            border-radius: 14px;
+            padding: 8px 10px;
+            border-radius: 10px;
             text-align: center;
             font-weight: 800;
-            font-size: 14.5px;
-            min-height: 44px;
+            font-size: 12.5px;
+            min-height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
         }
 
         .control-panel {
             background: linear-gradient(180deg, rgba(20, 28, 48, 0.8) 0%, rgba(10, 15, 29, 0.95) 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px;
-            border-radius: 18px;
+            padding: 10px;
+            border-radius: 14px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            gap: 10px;
         }
         .inputs-row {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-            justify-content: space-between;
-        }
-        .control-field { display: flex; flex-direction: column; gap: 4px; flex: 1; }
-        .control-field label { 
-            font-size: 10px; 
-            color: #94a3b8; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-        }
-        .bet-input-box { display: flex; gap: 4px; width: 100%; }
-        input, select {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #fff;
-            padding: 9px 12px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 800;
-            outline: none;
-            text-align: center;
-            width: 100%;
-            transition: all 0.2s;
-        }
-        input:focus, select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-quick {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #94a3b8;
-            padding: 0 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-        .btn-quick:hover:not(:disabled) { 
-            background: #334155; 
-            color: #fff; 
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .action-buttons {
             display: flex;
             gap: 8px;
             width: 100%;
         }
+        .control-field { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+        .control-field label { font-size: 9px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .bet-input-box { display: flex; gap: 3px; width: 100%; }
+        input, select {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 800;
+            outline: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-quick {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #94a3b8;
+            padding: 0 8px;
+            border-radius: 6px;
+            font-size: 10.5px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            width: 100%;
+        }
         .btn-action {
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 14.5px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13.5px;
             font-weight: 900;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 4px;
             white-space: nowrap;
             flex: 1;
             touch-action: manipulation;
-            transition: all 0.2s ease-in-out;
-            letter-spacing: 0.4px;
         }
         .btn-bet { 
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
             color: #fff; 
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4), inset 0 1px 1px rgba(255,255,255,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .btn-bet:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
         .btn-next { 
             background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); 
             color: #fff; 
-            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4), inset 0 1px 1px rgba(255,255,255,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .btn-next:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.6);
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
         }
         .btn-cashout { 
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); 
             color: #000; 
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5), inset 0 1px 1px rgba(255,255,255,0.4);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .btn-cashout:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.7);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
         }
         .btn-warp {
             background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); 
             color: #fff;
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5), inset 0 1px 1px rgba(255,255,255,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
             animation: pulseBtn 1.2s infinite;
         }
         @keyframes pulseBtn {
@@ -435,13 +330,11 @@
             50% { transform: scale(1.03); }
         }
         .btn-action:disabled, .btn-quick:disabled {
-            background: rgba(30, 41, 59, 0.4) !important;
+            background: rgba(30, 41, 59, 0.5) !important;
             color: #475569 !important;
             box-shadow: none !important;
             cursor: not-allowed;
             animation: none !important;
-            transform: none !important;
-            border-color: transparent !important;
         }
 
         /* Modal */
@@ -458,40 +351,32 @@
         }
         .modal-content {
             background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
             width: 100%;
-            max-width: 540px;
-            padding: 20px;
+            max-width: 480px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+            gap: 10px;
         }
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 6px;
         }
-        .modal-header h3 { font-size: 17px; color: #fbbf24; font-weight: 800; }
-        .btn-close { background: transparent; border: none; color: #64748b; font-size: 24px; cursor: pointer; }
-        .modal-body { font-size: 13px; line-height: 1.6; color: #94a3b8; display: flex; flex-direction: column; gap: 10px; }
-        .rtp-box { 
-            background: rgba(10, 15, 29, 0.8); 
-            border-left: 4px solid #3b82f6; 
-            padding: 10px 14px; 
-            border-radius: 8px; 
-            color: #f8fafc; 
-        }
+        .modal-header h3 { font-size: 15px; color: #fbbf24; font-weight: 800; }
+        .btn-close { background: transparent; border: none; color: #64748b; font-size: 22px; cursor: pointer; }
+        .modal-body { font-size: 12px; line-height: 1.5; color: #94a3b8; display: flex; flex-direction: column; gap: 8px; }
+        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
         .rtp-box strong { color: #38bdf8; }
-        .rule-list { padding-left: 20px; }
-        .rule-list li { margin-bottom: 4px; }
+        .rule-list { padding-left: 16px; }
 
         @media (min-width: 768px) {
-            .control-panel { flex-direction: row; align-items: center; gap: 14px; }
-            .inputs-row { width: auto; justify-content: flex-start; gap: 14px; }
+            .control-panel { flex-direction: row; align-items: center; gap: 12px; }
+            .inputs-row { width: auto; justify-content: flex-start; gap: 12px; }
             .action-buttons { flex: 1; justify-content: flex-end; }
         }
     </style>
@@ -501,7 +386,7 @@
 <div class="casino-cabinet" id="cabinet">
     <div class="top-bar">
         <div class="brand-title">
-            🍄 SUPER MARIO <span>ROAD PRO</span>
+            🍄 MARIO <span>ROAD</span>
             <div class="world-badge" id="world-badge">WORLD 1-1</div>
         </div>
         <div class="top-actions">
@@ -511,15 +396,15 @@
                 <option value="ru">🇷🇺 RU</option>
                 <option value="es">🇪🇸 ES</option>
             </select>
-            <button class="btn-toggle" id="turbo-btn">⚡ Turbo: OFF</button>
-            <button class="btn-toggle" id="sound-btn">🔊 Sound: ON</button>
-            <button class="btn-toggle" id="rules-btn">📖 Rules</button>
+            <button class="btn-toggle" id="turbo-btn">⚡ Turbo</button>
+            <button class="btn-toggle" id="sound-btn">🔊</button>
+            <button class="btn-toggle" id="rules-btn">📖</button>
         </div>
     </div>
 
     <div class="history-bar" id="history-bar">
-        <span class="history-label" id="lbl-history">HISTORY:</span>
-        <span style="font-size: 10px; color: #475569;" id="history-empty">No rounds yet</span>
+        <span class="history-label" id="lbl-history">HIST:</span>
+        <span style="font-size: 9.5px; color: #475569;" id="history-empty">No rounds yet</span>
     </div>
 
     <div class="stats-grid">
@@ -528,7 +413,7 @@
             <span class="value val-gold" id="balance-display">$1000.00</span>
         </div>
         <div class="stat-card">
-            <span class="label" id="lbl-checkpoint">GUARANTEED</span>
+            <span class="label" id="lbl-checkpoint">SAVED</span>
             <span class="value val-shield" id="checkpoint-display">$0.00</span>
         </div>
         <div class="stat-card">
@@ -536,13 +421,13 @@
             <span class="value val-blue" id="mult-display">1.00x</span>
         </div>
         <div class="stat-card">
-            <span class="label" id="lbl-win">CURRENT WIN</span>
+            <span class="label" id="lbl-win">WIN</span>
             <span class="value val-green" id="win-display">$0.00</span>
         </div>
     </div>
 
     <div class="screen-container">
-        <canvas id="gameCanvas" width="850" height="290"></canvas>
+        <canvas id="gameCanvas"></canvas>
         
         <div class="bonus-overlay" id="bonus-overlay">
             <div class="bonus-title" id="bonus-title">🎁 PICK A CHEST OR CASH OUT!</div>
@@ -582,15 +467,15 @@
             <div class="control-field">
                 <label for="mines-select" id="lbl-mines">DIFFICULTY</label>
                 <select id="mines-select">
-                    <option value="1" id="opt-m1">Easy (High Win Rate)</option>
-                    <option value="2" id="opt-m2" selected>Medium (Balanced)</option>
-                    <option value="3" id="opt-m3">Hard (Extreme X)</option>
+                    <option value="1" id="opt-m1">Easy</option>
+                    <option value="2" id="opt-m2" selected>Medium</option>
+                    <option value="3" id="opt-m3">Hard</option>
                 </select>
             </div>
         </div>
 
         <div class="action-buttons">
-            <button class="btn-action btn-bet" id="bet-btn">START (BET)</button>
+            <button class="btn-action btn-bet" id="bet-btn">START</button>
             <button class="btn-action btn-next" id="next-btn" disabled>NEXT ➡️</button>
             <button class="btn-action btn-warp" id="warp-btn" style="display:none;">WARP 🚀</button>
             <button class="btn-action btn-cashout" id="cashout-btn" disabled>CASH OUT</button>
@@ -631,45 +516,43 @@ const translations = {
     en: {
         currency: "$",
         rulesBtn: "📖 Rules",
-        history: "HISTORY:",
+        history: "HIST:",
         noHistory: "No rounds yet",
         balance: "BALANCE",
-        checkpoint: "GUARANTEED",
+        checkpoint: "SAVED",
         mult: "MULT",
         win: "WIN",
         betLabel: "BET ($)",
         minesLabel: "DIFFICULTY",
-        m1: "Easy (High Win Rate)",
+        m1: "Easy (High Win)",
         m2: "Medium (Balanced)",
         m3: "Hard (Extreme X)",
-        startBtn: "START (BET)",
+        startBtn: "START",
         nextBtn: "NEXT ➡️",
         cashoutBtn: "CASH OUT",
         readyMsg: "Place your bet and start the game",
         openingMsg: (w) => `${w}: Jumping to Block 1...`,
         worldEnteredMsg: (w, nextWin, nextMult, curr) => `Entered ${w}! Multipliers ready. Press NEXT for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}x) or Cash Out!`,
-        loseMsgZero: (amt, curr) => `Poison Mushroom on Block 1! ☠️ Lost ${curr}${amt}`,
-        loseMsgGuaranteed: (amt, curr) => `Poison Mushroom! ☠️ But you keep locked base GUARANTEE: +${curr}${amt}! 🛡️`,
+        loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ Lost ${curr}${amt}`,
+        loseMsgGuaranteed: (amt, curr) => `Poison Mushroom! ☠️ But you keep locked SAVED WIN: +${curr}${amt}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}x) or risk for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}x)?`,
         flagRunMsg: "🎉 All 10 Blocks Cleared! Pick a chest or Cash Out!",
         chestPrompt: (mult) => `🎁 3 CHESTS: 1x [${mult}X], 1x [1X], 1x [☠️ MUSHROOM]`,
-        chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X BONUS! Potential win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Safe Pass (1X)! Potential win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
+        chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X BONUS! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Safe Pass (1X)! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
         chestLostZero: (curr, amt) => `☠️ Poison Mushroom in chest! Lost ${curr}${amt}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Poison Mushroom! Retained locked Guaranteed: +${curr}${amt}! 🛡️`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Poison Mushroom! Retained Saved Win: +${curr}${amt}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong> or Warp!`,
         cashedOutMsg: (amt, mult, curr) => `Cashed out: +${curr}${amt} (${mult}x) 💰`,
         allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆",
         invalidBet: "Invalid bet or balance!",
         warpBtn: (nextW, curr, win) => `Enter World ${nextW} 🚀`,
-        modalTitle: "Super Mario Worlds - Rules & Multipliers",
+        modalTitle: "Rules & Multipliers",
         modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
-            "<strong>Easy Mode:</strong> Lower risk of mushrooms, steady multiplier growth up to 2,800x.",
-            "<strong>Medium Mode:</strong> Balanced risk & reward curve up to 75,000x.",
-            "<strong>Hard Mode:</strong> High risk of losing on every step, with extreme multipliers up to 12,000,000x!",
-            "<strong>Real Risk from Block 1:</strong> Loss chance scales with difficulty directly from the first step.",
-            "<strong>Guaranteed Checkpoint:</strong> Clearing World 1 locks your base win. Failing in World 2 still awards this guarantee."
+            "<strong>Real Risk from Block 1:</strong> Mushrooms can appear starting from step 1.",
+            "<strong>Difficulty Modes:</strong> Easy (up to 2,800x), Medium (up to 75,000x), Hard (up to 12,000,000x).",
+            "<strong>Checkpoint Vault:</strong> Clearing World 1 locks your base win. Failing in World 2 still pays this guarantee."
         ]
     },
     ka: {
@@ -678,22 +561,22 @@ const translations = {
         history: "ისტორია:",
         noHistory: "რაუნდები არ არის",
         balance: "ბალანსი",
-        checkpoint: "გარანტირებული",
+        checkpoint: "შენახული",
         mult: "მამრავლი",
         win: "მოგება",
         betLabel: "ფსონი (₾)",
         minesLabel: "სირთულე",
-        m1: "მარტივი (მაღალი შანსი)",
-        m2: "საშუალო (ბალანსირებული)",
-        m3: "რთული (ექსტრემალური X)",
-        startBtn: "დაწყება (BET)",
+        m1: "მარტივი",
+        m2: "საშუალო",
+        m3: "რთული",
+        startBtn: "დაწყება",
         nextBtn: "შემდეგი ➡️",
         cashoutBtn: "გატანა (CASH OUT)",
         readyMsg: "დააყენეთ ფსონი და დაიწყეთ თამაში",
         openingMsg: (w) => `${w}: მარიო ხსნის პირველ ბლოკს...`,
         worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}-ში ხართ! 10-ვე მამრავლი მზადაა. დააჭირეთ „შემდეგი“-ს <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}x) ან გაიტანეთ!`,
-        loseMsgZero: (amt, curr) => `საწამლავი სოკო პირველსავე ბლოკზე! ☠️ წააგეთ ${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `საწამლავი სოკო! ☠️ მაგრამ დაგრჩათ გარანტირებული მოგება: +${amt} ${curr}! 🛡️`,
+        loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ წააგეთ ${amt} ${curr}`,
+        loseMsgGuaranteed: (amt, curr) => `საწამლავი სოკო! ☠️ მაგრამ დაგრჩათ შენახული მოგება: +${amt} ${curr}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}x) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}x)`,
         flagRunMsg: "🎉 10-ვე ბლოკი გავლილია! აირჩიეთ ყუთი ან გაიტანეთ მოგება!",
         chestPrompt: (mult) => `🎁 3 ყუთი: 1x [${mult}X], 1x [1X], 1x [☠️ სოკო]`,
@@ -706,20 +589,18 @@ const translations = {
         allClearedMsg: "👑 ლეგენდარული გამარჯვება! მთელი თამაში დაიხურა! 🏆",
         invalidBet: "არასწორი ფსონი!",
         warpBtn: (nextW, curr, win) => `World ${nextW}-ში გადასვლა 🚀`,
-        modalTitle: "Super Mario Worlds - წესები & მამრავლები",
+        modalTitle: "წესები & მამრავლები",
         modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
-            "<strong>მარტივი რეჟიმი:</strong> სოკოს დაბალი შანსი, სტაბილური ზრდა 2,800x-მდე.",
-            "<strong>საშუალო რეჟიმი:</strong> ბალანსირებული რისკი და მამრავლები 75,000x-მდე.",
-            "<strong>რთული რეჟიმი:</strong> მაღალი წაგების რისკი ყოველ ნაბიჯზე, მაგრამ გიგანტური X 12,000,000x-მდე!",
-            "<strong>რისკი 1-ლი ბლოკიდანვე:</strong> სოკო შეიძლება იყოს პირველსავე ნაბიჯზე არჩეული სირთულის მიხედვით.",
-            "<strong>ჩაკეტილი Checkpoint:</strong> 1-ლი ტურის დახურვისას იკეტება ბაზური მოგება, რაც გარანტირებულად გრჩებათ მე-2 ტურში წაგების შემთხვევაშიც."
+            "<strong>რეალური რისკი 1-ლი ბლოკიდან:</strong> სოკო შეიძლება იყოს პირველსავე ნაბიჯზე.",
+            "<strong>სირთულის რეჟიმები:</strong> მარტივი (2,800x-მდე), საშუალო (75,000x-მდე), რთული (12,000,000x-მდე).",
+            "<strong>ჩაკეტილი Checkpoint:</strong> 1-ლი ტურის დახურვისას იკეტება ბაზური მოგება."
         ]
     },
     ru: {
         currency: "₽",
         rulesBtn: "📖 Rules",
-        history: "HISTORY:",
+        history: "HIST:",
         noHistory: "No rounds yet",
         balance: "БАЛАНС",
         checkpoint: "СОХРАНЕНО",
@@ -727,16 +608,16 @@ const translations = {
         win: "ВЫИГРЫШ",
         betLabel: "СТАВКА (₽)",
         minesLabel: "СЛОЖНОСТЬ",
-        m1: "Легкий (Высокий шанс)",
-        m2: "Средний (Баланс)",
-        m3: "Сложный (Экстрим X)",
-        startBtn: "СТАРТ (BET)",
+        m1: "Легкий",
+        m2: "Средний",
+        m3: "Сложный",
+        startBtn: "СТАРТ",
         nextBtn: "ДАЛЕЕ ➡️",
         cashoutBtn: "ЗАБРАТЬ",
         readyMsg: "Сделайте ставку и начните",
         openingMsg: (w) => `${w}: Прыжок на 1-й блок...`,
         worldEnteredMsg: (w, nextWin, nextMult, curr) => `Вы в ${w}! Все 10 множителей видны. Нажмите ДАЛЕЕ для <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x) или заберите!`,
-        loseMsgZero: (amt, curr) => `Ядовитый гриб на 1-м блоке! ☠️ -${amt} ${curr}`,
+        loseMsgZero: (amt, curr) => `Ядовитый гриб! ☠️ -${amt} ${curr}`,
         loseMsgGuaranteed: (amt, curr) => `Ядовитый гриб! ☠️ Но ваш СОХРАНЕННЫЙ ВЫИГРЫШ у вас: +${amt} ${curr}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}x) или за <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x)?`,
         flagRunMsg: "🎉 Все 10 блоков пройдены! Откройте сундук или заберите выигрыш!",
@@ -744,26 +625,23 @@ const translations = {
         chestWon: (boost, amt, curr) => `🌟 БУМ! +${boost}X БОНУС! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
         chestSafe: (amt, curr) => `👍 Без множителя (1X)! Сумма: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
         chestLostZero: (curr, amt) => `☠️ В сундуке ядовитый гриб! Потеряно ${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Но сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong> или в Новый Мир!`,
         cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}x) 💰`,
         allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
         invalidBet: "Неверная ставка!",
         warpBtn: (nextW, curr, win) => `Перейти в Мир ${nextW} 🚀`,
-        modalTitle: "Super Mario Worlds - Правила",
+        modalTitle: "Правила & Множители",
         modalRtp: "Теоретический RTP: 97.00% | Преимущество: 3.00%",
         modalRules: [
-            "<strong>Легкий режим:</strong> Низкий риск грибов, множители до 2,800x.",
-            "<strong>Средний режим:</strong> Сбалансированный риск и куш до 75,000x.",
-            "<strong>Сложный режим:</strong> Высокий риск на каждом шаге, но множители до 12,000,000x!",
             "<strong>Реальный риск с 1-го блока:</strong> Шанс проигрыша активен сразу на первом шаге.",
-            "<strong>Фиксированный Чекпоинт:</strong> Завершение Мира 1 сохраняет базовый куш даже при проигрыше в Мире 2."
+            "<strong>Режимы сложности:</strong> Легкий (до 2,800x), Средний (до 75,000x), Сложный (до 12,000,000x)."
         ]
     },
     es: {
         currency: "€",
         rulesBtn: "📖 Reglas",
-        history: "HISTORIAL:",
+        history: "HIST:",
         noHistory: "Sin rondas",
         balance: "SALDO",
         checkpoint: "GUARDADO",
@@ -771,15 +649,15 @@ const translations = {
         win: "GANANCIA",
         betLabel: "APUESTA (€)",
         minesLabel: "DIFICULTAD",
-        m1: "Fácil (Alta tasa)",
-        m2: "Medio (Equilibrado)",
-        m3: "Difícil (Extremo X)",
-        startBtn: "JUGAR (BET)",
+        m1: "Fácil",
+        m2: "Medio",
+        m3: "Difícil",
+        startBtn: "JUGAR",
         nextBtn: "SIGUIENTE ➡️",
         cashoutBtn: "RETIRAR",
         readyMsg: "Haz tu apuesta y juega",
         openingMsg: (w) => `${w}: Mario salta al 1er bloque...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `¡En ${w}! Los 10 multiplicadores listos. Pulsa SIGUIENTE por <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x) o retira!`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `¡En ${w}! Pulsa SIGUIENTE por <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x) o retira!`,
         loseMsgZero: (amt, curr) => `¡Champiñón Venenoso! ☠️ -${amt} ${curr}`,
         loseMsgGuaranteed: (amt, curr) => `¡Veneno! ☠️ Conservas tu GANANCIA GUARDADA: +${amt} ${curr}! 🛡️`,
         winMsg: (curWin, curMult, nextWin, nextMult, curr) => `¿Retirar <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}x) o <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x)?`,
@@ -794,14 +672,10 @@ const translations = {
         allClearedMsg: "👑 ¡Victoria Legendaria! 🏆",
         invalidBet: "¡Apuesta inválida!",
         warpBtn: (nextW, curr, win) => `Ir al Mundo ${nextW} 🚀`,
-        modalTitle: "Super Mario Worlds - Reglas",
+        modalTitle: "Reglas",
         modalRtp: "RTP Teórico: 97.00% | Ventaja: 3.00%",
         modalRules: [
-            "<strong>Modo Fácil:</strong> Menor riesgo, multiplicadores hasta 2,800x.",
-            "<strong>Modo Medio:</strong> Riesgo equilibrado con premios hasta 75,000x.",
-            "<strong>Modo Difícil:</strong> Alto riesgo en cada paso, ¡con premios extremos hasta 12,000,000x!",
-            "<strong>Riesgo real en el bloque 1:</strong> El veneno puede salir desde el primer paso.",
-            "<strong>Checkpoint Guardado:</strong> Completar el Mundo 1 asegura la ganancia base."
+            "<strong>Riesgo real en el bloque 1:</strong> El veneno puede salir desde el primer paso."
         ]
     }
 };
@@ -1000,20 +874,30 @@ let currentBet = 0;
 let isPlaying = false;
 let currentStep = 0;
 
-const groundY = 230;
+let groundY = 175;
 const mario = {
-    x: 25,
-    y: groundY - 54,
-    w: 38,
-    h: 54,
-    targetX: 25,
+    x: 40,
+    y: groundY - 50,
+    w: 36,
+    h: 50,
+    targetX: 40,
     vy: 0,
     gravity: 0.95,
     state: 'idle'
 };
 
 let blocks = [];
-let flagPole = { x: 0, y: 70, w: 10, h: 160, flagY: 80, isHit: false };
+let flagPole = { x: 0, y: 35, w: 8, h: 140, flagY: 45, isHit: false };
+
+function resizeCanvas() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    groundY = canvas.height - 45;
+    mario.y = groundY - mario.h;
+    flagPole.h = groundY - 35;
+}
+window.addEventListener('resize', resizeCanvas);
 
 function formatMultiplierText(val) {
     if (val >= 1000000) return (val / 1000000).toFixed(val % 1000000 === 0 ? 0 : 1) + 'M';
@@ -1069,7 +953,7 @@ function spawnSparkles(x, y, color = '#fbbf24', count = 20) {
             x: x, y: y,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed - 2,
-            size: Math.random() * 4.5 + 2,
+            size: Math.random() * 4 + 2,
             color: color, alpha: 1,
             decay: Math.random() * 0.03 + 0.02
         });
@@ -1084,7 +968,7 @@ function spawnConfetti() {
             y: -10,
             vx: (Math.random() - 0.5) * 4,
             vy: Math.random() * 4 + 2,
-            size: Math.random() * 6 + 3,
+            size: Math.random() * 5 + 3,
             color: colors[Math.floor(Math.random() * colors.length)],
             alpha: 1, decay: 0.007
         });
@@ -1106,17 +990,17 @@ function initWorld(worldIndex) {
     worldBadge.textContent = worldThemes[currentWorld].name;
     
     const diffKey = parseInt(minesSelect.value || 2);
-    const startX = 100;
-    const spacing = 78;
+    const startX = 130;
+    const spacing = 88;
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
 
     for (let i = 0; i < BLOCKS_PER_WORLD; i++) {
         const mult = curve[i];
         blocks.push({
             x: startX + i * spacing,
-            y: 85,
-            w: 46,
-            h: 46,
+            y: 70,
+            w: 48,
+            h: 48,
             mult: mult,
             hit: false,
             isPoison: false,
@@ -1124,8 +1008,8 @@ function initWorld(worldIndex) {
         });
     }
 
-    flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 40;
-    flagPole.flagY = 80;
+    flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 50;
+    flagPole.flagY = 45;
     flagPole.isHit = false;
 }
 
@@ -1150,9 +1034,9 @@ function startGame() {
 
     initWorld(1);
 
-    mario.x = 25;
+    mario.x = 40;
     mario.y = groundY - mario.h;
-    mario.targetX = 25;
+    mario.targetX = 40;
     mario.vy = 0;
     cameraX = 0;
 
@@ -1200,7 +1084,7 @@ function hitBlock() {
         cabinet.classList.add('shake');
         setTimeout(() => cabinet.classList.remove('shake'), 400);
 
-        spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 24);
+        spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 25);
 
         if (baseGuaranteedMult > 0) {
             const savedWin = currentBet * baseGuaranteedMult;
@@ -1414,9 +1298,9 @@ function warpToNextWorld() {
     
     initWorld(currentWorld);
 
-    mario.x = 25;
+    mario.x = 40;
     mario.y = groundY - mario.h;
-    mario.targetX = 25;
+    mario.targetX = 40;
     mario.state = 'idle';
     cameraX = 0;
 
@@ -1527,8 +1411,9 @@ function update() {
         }
     }
 
-    const targetCameraX = Math.max(0, mario.x - 180);
-    cameraX += (targetCameraX - cameraX) * 0.1;
+    // მობილურისთვის ცენტრალური კამერა
+    const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
+    cameraX += (targetCameraX - cameraX) * 0.12;
 
     if (flagPole.isHit && flagPole.flagY < groundY - 40) {
         flagPole.flagY += 3;
@@ -1566,52 +1451,38 @@ function draw() {
 
     // Parallax Environmental Details
     if (currentWorld === 1) {
-        ctx.fillStyle = "rgba(251, 191, 36, 0.15)";
+        ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
         ctx.beginPath();
-        ctx.arc(200, 30, 90, 0, Math.PI * 2);
+        ctx.arc(200, 20, 80, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-        for (let x = 80; x < 1300; x += 280) {
+        for (let x = 60; x < 1500; x += 260) {
             ctx.beginPath();
-            ctx.arc(x, 42, 16, 0, Math.PI * 2);
-            ctx.arc(x + 20, 34, 24, 0, Math.PI * 2);
-            ctx.arc(x + 42, 42, 16, 0, Math.PI * 2);
+            ctx.arc(x, 32, 14, 0, Math.PI * 2);
+            ctx.arc(x + 16, 26, 20, 0, Math.PI * 2);
+            ctx.arc(x + 34, 32, 14, 0, Math.PI * 2);
             ctx.fill();
         }
 
         ctx.fillStyle = "#16a34a";
-        for (let h = 40; h < 1300; h += 320) {
+        for (let h = 40; h < 1500; h += 300) {
             ctx.beginPath();
-            ctx.arc(h, 230, 75, Math.PI, 0);
-            ctx.fill();
-        }
-    } else if (currentWorld === 2) {
-        ctx.fillStyle = "rgba(139, 92, 246, 0.2)";
-        for (let cx = 120; cx < 1200; cx += 220) {
-            ctx.beginPath();
-            ctx.arc(cx, 60, 45, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    } else if (currentWorld === 3) {
-        ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
-        for (let mx = 90; mx < 1200; mx += 180) {
-            ctx.beginPath();
-            ctx.arc(mx, 120, 50, 0, Math.PI * 2);
+            ctx.arc(h, groundY, 65, Math.PI, 0);
             ctx.fill();
         }
     }
 
     // Ground Rendering
     ctx.fillStyle = theme.ground;
-    ctx.fillRect(0, groundY, 1400, 8);
+    ctx.fillRect(0, groundY, 1600, 8);
     ctx.fillStyle = "rgba(0,0,0,0.2)";
-    ctx.fillRect(0, groundY + 6, 1400, 2);
+    ctx.fillRect(0, groundY + 6, 1600, 2);
 
     ctx.fillStyle = theme.subGround;
-    ctx.fillRect(0, groundY + 8, 1400, canvas.height - groundY - 8);
+    ctx.fillRect(0, groundY + 8, 1600, canvas.height - groundY - 8);
 
-    // 3D Blocks Rendering with Floating Badges
+    // 3D Blocks Rendering
     blocks.forEach((b) => {
         const renderY = b.y - b.bounce;
 
@@ -1626,25 +1497,25 @@ function draw() {
             ctx.roundRect(b.x + 2, renderY + 2, b.w - 4, b.h - 4, 6);
             ctx.fill();
 
-            ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
+            ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
             ctx.fillRect(b.x + 4, renderY + 4, b.w - 8, 3);
 
             ctx.fillStyle = "#fff";
             ctx.font = '900 20px "Fredoka", sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('?', b.x + b.w / 2, renderY + 30);
+            ctx.fillText('?', b.x + b.w / 2, renderY + 31);
 
             if (b.mult > 0) {
                 const multText = formatMultiplierText(b.mult);
-                ctx.font = '800 10.5px "Outfit", sans-serif';
+                ctx.font = '800 11px "Outfit", sans-serif';
                 const textWidth = ctx.measureText(multText).width;
                 const badgeW = textWidth + 12;
                 const badgeH = 18;
                 const badgeX = b.x + (b.w - badgeW) / 2;
                 const badgeY = renderY - 24;
 
-                ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+                ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 6);
@@ -1684,22 +1555,22 @@ function draw() {
     ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
     ctx.fillStyle = '#fbbf24';
     ctx.beginPath();
-    ctx.arc(flagPole.x + 5, flagPole.y, 9, 0, Math.PI * 2);
+    ctx.arc(flagPole.x + 4, flagPole.y, 8, 0, Math.PI * 2);
     ctx.fill();
 
     // Flag
     ctx.fillStyle = '#22c55e';
     ctx.beginPath();
-    ctx.moveTo(flagPole.x + 10, flagPole.flagY);
-    ctx.lineTo(flagPole.x + 40, flagPole.flagY + 14);
-    ctx.lineTo(flagPole.x + 10, flagPole.flagY + 28);
+    ctx.moveTo(flagPole.x + 8, flagPole.flagY);
+    ctx.lineTo(flagPole.x + 38, flagPole.flagY + 14);
+    ctx.lineTo(flagPole.x + 8, flagPole.flagY + 28);
     ctx.fill();
 
     // Castle
     ctx.fillStyle = '#334155';
-    ctx.fillRect(flagPole.x + 65, groundY - 85, 85, 85);
+    ctx.fillRect(flagPole.x + 65, groundY - 80, 80, 80);
     ctx.fillStyle = '#0f172a';
-    ctx.fillRect(flagPole.x + 92, groundY - 45, 32, 45);
+    ctx.fillRect(flagPole.x + 92, groundY - 40, 28, 40);
 
     // Particles
     particles.forEach(p => {
@@ -1718,7 +1589,7 @@ function draw() {
     ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 5, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // Mario Vector Character
+    // Mario Character
     const currentMario = (mario.state === 'jumping') ? sprites.marioJump : sprites.mario;
     ctx.drawImage(currentMario, mario.x, mario.y, mario.w, mario.h);
 
@@ -1738,13 +1609,13 @@ btnMax.addEventListener('click', () => betInput.value = Math.floor(balance));
 turboBtn.addEventListener('click', () => {
     isTurbo = !isTurbo;
     turboBtn.classList.toggle('active', isTurbo);
-    turboBtn.textContent = `⚡ Turbo: ${isTurbo ? 'ON' : 'OFF'}`;
+    turboBtn.textContent = `⚡ Turbo ${isTurbo ? 'ON' : 'OFF'}`;
 });
 
 soundBtn.addEventListener('click', () => {
     audio.enabled = !audio.enabled;
     soundBtn.classList.toggle('active', audio.enabled);
-    soundBtn.textContent = `🔊 Sound: ${audio.enabled ? 'ON' : 'OFF'}`;
+    soundBtn.textContent = audio.enabled ? '🔊' : '🔇';
 });
 
 langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
@@ -1765,6 +1636,7 @@ minesSelect.addEventListener('change', () => {
     }
 });
 
+resizeCanvas();
 applyLanguage('en');
 initWorld(1);
 gameLoop();
