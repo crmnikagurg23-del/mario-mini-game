@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Super Mario Road</title>
+    <title>Super Mario Road - Mobile Perfect</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Outfit:wght@600;700;800;900&display=swap');
 
@@ -15,108 +15,163 @@
             margin: 0;
             padding: 0;
         }
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #030712;
-            font-family: 'Outfit', -apple-system, sans-serif;
-            color: #f8fafc;
-        }
         body {
+            background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #090d16 50%, #030712 100%);
+            font-family: 'Outfit', -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 6px;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            color: #f8fafc;
+            padding: 8px;
+            overflow-x: hidden;
         }
         .casino-cabinet {
-            background: #090d16;
-            width: 100%;
-            height: 100%;
-            max-height: 100dvh;
-            max-width: 440px;
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(99, 102, 241, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 8px 10px;
-            border-radius: 16px;
-            border: 1px solid #1e293b;
+            gap: 8px;
+            width: 100%;
+            max-width: 480px;
             position: relative;
         }
-
-        .shake { animation: shakeScreen 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shakeScreen {
-            10%, 90% { transform: translate3d(-2px, 0, 0); }
-            20%, 80% { transform: translate3d(4px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
+        @media (min-width: 768px) {
+            .casino-cabinet { max-width: 850px; }
         }
 
-        /* Top Bar */
+        .shake {
+            animation: shakeScreen 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shakeScreen {
+            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            20%, 80% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 32px;
-            flex-shrink: 0;
+            gap: 6px;
         }
         .brand-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             font-size: 15px;
             font-weight: 900;
             font-family: 'Fredoka', cursive;
             color: #ef4444;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+            white-space: nowrap;
         }
         .brand-title span { color: #fbbf24; }
-        .top-actions { display: flex; gap: 4px; align-items: center; }
+        
+        .top-actions {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .btn-toggle, .lang-select {
+            background: rgba(30, 41, 59, 0.8);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px 7px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+            touch-action: manipulation;
+        }
+        .btn-toggle.active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #fff;
+            border-color: #60a5fa;
+        }
+        .lang-select { color: #fbbf24; font-weight: 800; }
+
         .world-badge {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
-            padding: 3px 6px;
+            padding: 3px 7px;
             border-radius: 6px;
             font-weight: 900;
             font-size: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
         }
-        .btn-icon, .lang-select {
-            background: #1e293b;
-            color: #94a3b8;
-            border: 1px solid #334155;
-            padding: 3px 6px;
-            border-radius: 6px;
-            font-size: 10.5px;
-            font-weight: 700;
-            cursor: pointer;
-            height: 26px;
-        }
-        .btn-icon.active { background: #2563eb; color: #fff; border-color: #60a5fa; }
-        .lang-select { color: #fbbf24; font-weight: 800; padding: 0 4px; }
 
-        /* Dashboard */
-        .dashboard-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            background: #0f172a;
-            border: 1px solid #1e293b;
-            padding: 6px 10px;
-            border-radius: 10px;
+        .history-bar {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            background: rgba(10, 15, 29, 0.8);
+            padding: 4px 8px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            min-height: 28px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .history-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+        .history-badge {
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 900;
             flex-shrink: 0;
         }
-        .dash-item { display: flex; flex-direction: column; }
-        .dash-item .lbl { font-size: 7.5px; color: #64748b; font-weight: 800; text-transform: uppercase; }
-        .dash-item .val { font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .badge-win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
+        .badge-loss { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+        .stat-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5px 6px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            text-align: center;
+        }
+        .stat-card .label { font-size: 7.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .stat-card .value { font-size: 13.5px; font-weight: 900; font-variant-numeric: tabular-nums; }
         .val-gold { color: #fbbf24; }
         .val-green { color: #22c55e; }
+        .val-blue { color: #38bdf8; }
+        .val-shield { color: #c084fc; }
 
-        /* Canvas Screen */
         .screen-container {
             position: relative;
             border-radius: 14px;
             overflow: hidden;
-            border: 2px solid #1e293b;
+            border: 2px solid rgba(255, 255, 255, 0.15);
             width: 100%;
-            height: 220px;
-            flex-shrink: 0;
-            background: #000;
+            height: 240px;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+        }
+        @media (min-width: 600px) {
+            .screen-container { height: 280px; }
         }
         canvas {
             display: block;
@@ -124,112 +179,125 @@
             height: 100%;
         }
 
-        /* Bonus Overlay */
         .bonus-overlay {
             display: none;
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(8, 12, 22, 0.95);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             z-index: 20;
-            padding: 8px;
+            padding: 10px;
         }
-        .bonus-title { font-size: 14px; font-weight: 900; color: #fbbf24; text-align: center; }
-        .chests-container { display: flex; gap: 10px; }
+        .bonus-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #fbbf24;
+            text-align: center;
+        }
+        .chests-container {
+            display: flex;
+            gap: 12px;
+        }
         .chest-card {
             background: #1e293b;
             border: 2px solid #eab308;
-            border-radius: 10px;
-            width: 68px;
-            height: 78px;
+            border-radius: 12px;
+            width: 75px;
+            height: 85px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .chest-icon { font-size: 32px; }
-        .chest-multiplier { font-size: 13px; font-weight: 900; display: none; }
+        .chest-icon { font-size: 34px; }
+        .chest-multiplier {
+            font-size: 14px;
+            font-weight: 900;
+            display: none;
+        }
         .btn-chest-cashout {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #000;
             font-weight: 900;
-            padding: 6px 16px;
-            border-radius: 6px;
+            padding: 8px 18px;
+            border-radius: 8px;
             border: none;
-            font-size: 12px;
+            font-size: 13px;
             cursor: pointer;
         }
 
-        /* Status Banner */
         .status-banner {
-            background: #0f172a;
-            padding: 4px 6px;
-            border-radius: 8px;
+            background: rgba(10, 15, 29, 0.85);
+            padding: 8px 10px;
+            border-radius: 10px;
             text-align: center;
             font-weight: 800;
-            font-size: 12px;
-            height: 34px;
+            font-size: 12.5px;
+            min-height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #1e293b;
-            flex-shrink: 0;
-            line-height: 1.2;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            line-height: 1.3;
         }
 
-        /* Controls */
         .control-panel {
+            background: linear-gradient(180deg, rgba(20, 28, 48, 0.8) 0%, rgba(10, 15, 29, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px;
+            border-radius: 14px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            flex-shrink: 0;
+            gap: 8px;
         }
         .inputs-row {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 4px;
+            gap: 8px;
             width: 100%;
         }
-        .control-field { display: flex; flex-direction: column; gap: 2px; }
-        .control-field label { font-size: 7.5px; color: #64748b; font-weight: 800; text-transform: uppercase; }
+        .control-field { display: flex; flex-direction: column; gap: 3px; }
+        .control-field label { font-size: 8.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
         .bet-input-box { display: flex; gap: 2px; width: 100%; }
         input, select {
-            background: #0f172a;
-            border: 1px solid #334155;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
-            padding: 5px;
+            padding: 7px 6px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 800;
             outline: none;
             text-align: center;
             width: 100%;
-            height: 30px;
-        }
-        .btn-quick {
-            background: #1e293b;
-            border: 1px solid #334155;
-            color: #94a3b8;
-            padding: 0 5px;
-            border-radius: 5px;
-            font-size: 9.5px;
-            font-weight: 800;
-            cursor: pointer;
-            height: 30px;
         }
 
-        /* Action Bar */
-        .action-container { width: 100%; height: 44px; }
-        .btn-action {
+        .btn-quick {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #94a3b8;
+            padding: 0 6px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
             width: 100%;
-            height: 100%;
+        }
+        .btn-action {
+            padding: 13px 8px;
             border-radius: 10px;
-            font-size: 15px;
+            font-size: 13.5px;
             font-weight: 900;
             border: none;
             cursor: pointer;
@@ -237,20 +305,43 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
+            white-space: nowrap;
+            flex: 1;
             touch-action: manipulation;
         }
-        .btn-bet { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: #fff; }
-        .btn-play-group { display: none; gap: 4px; width: 100%; height: 100%; }
-        .btn-next { background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); color: #fff; flex: 1.2; }
-        .btn-cashout { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #000; flex: 1; }
-        .btn-warp { background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); color: #fff; flex: 1.2; }
+        .btn-bet { 
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
+            color: #fff; 
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        .btn-next { 
+            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); 
+            color: #fff; 
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        }
+        .btn-cashout { 
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); 
+            color: #000; 
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+        }
+        .btn-warp {
+            background: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%); 
+            color: #fff;
+            animation: pulseBtn 1.2s infinite;
+        }
+        @keyframes pulseBtn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
         .btn-action:disabled, .btn-quick:disabled {
-            background: #1e293b !important;
+            background: rgba(30, 41, 59, 0.5) !important;
             color: #475569 !important;
+            box-shadow: none !important;
             cursor: not-allowed;
+            animation: none !important;
         }
 
-        /* Rules Modal */
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -265,58 +356,85 @@
         .modal-content {
             background: #0f172a;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
+            border-radius: 16px;
             width: 100%;
-            max-width: 360px;
-            padding: 14px;
+            max-width: 440px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 4px; }
-        .modal-header h3 { font-size: 14px; color: #fbbf24; font-weight: 800; }
-        .btn-close { background: transparent; border: none; color: #64748b; font-size: 20px; cursor: pointer; }
-        .modal-body { font-size: 11px; line-height: 1.4; color: #94a3b8; display: flex; flex-direction: column; gap: 6px; }
-        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 4px 8px; border-radius: 4px; color: #f8fafc; }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 6px;
+        }
+        .modal-header h3 { font-size: 15px; color: #fbbf24; font-weight: 800; }
+        .btn-close { background: transparent; border: none; color: #64748b; font-size: 22px; cursor: pointer; }
+        .modal-body { font-size: 12px; line-height: 1.5; color: #94a3b8; display: flex; flex-direction: column; gap: 8px; }
+        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
         .rtp-box strong { color: #38bdf8; }
-        .rule-list { padding-left: 14px; }
+        .rule-list { padding-left: 16px; }
+
+        @media (min-width: 768px) {
+            .control-panel { flex-direction: row; align-items: center; gap: 12px; }
+            .inputs-row { display: flex; width: auto; justify-content: flex-start; gap: 12px; }
+            .action-buttons { flex: 1; justify-content: flex-end; }
+        }
     </style>
 </head>
 <body>
 
 <div class="casino-cabinet" id="cabinet">
     <div class="top-bar">
-        <div class="brand-title">🍄 MARIO <span>ROAD</span></div>
+        <div class="brand-title">
+            🍄 MARIO <span>ROAD</span>
+            <div class="world-badge" id="world-badge">WORLD 1-1</div>
+        </div>
         <div class="top-actions">
-            <div class="world-badge" id="world-badge">W 1-1</div>
             <select class="lang-select" id="lang-select">
-                <option value="ka">🇬🇪</option>
-                <option value="en" selected>🇬🇧</option>
-                <option value="ru">🇷🇺</option>
-                <option value="es">🇪🇸</option>
+                <option value="ka">🇬🇪 KA</option>
+                <option value="en" selected>🇬🇧 EN</option>
+                <option value="ru">🇷🇺 RU</option>
+                <option value="es">🇪🇸 ES</option>
             </select>
-            <button class="btn-icon" id="turbo-btn">⚡</button>
-            <button class="btn-icon" id="sound-btn">🔊</button>
-            <button class="btn-icon" id="rules-btn">📖</button>
+            <button class="btn-toggle" id="turbo-btn">⚡ Turbo</button>
+            <button class="btn-toggle" id="sound-btn">🔊</button>
+            <button class="btn-toggle" id="rules-btn">📖</button>
         </div>
     </div>
 
-    <div class="dashboard-row">
-        <div class="dash-item">
-            <span class="lbl" id="lbl-balance">BALANCE</span>
-            <span class="val val-gold" id="balance-display">$1000.00</span>
+    <div class="history-bar" id="history-bar">
+        <span class="history-label" id="lbl-history">HIST:</span>
+        <span style="font-size: 9.5px; color: #475569;" id="history-empty">No rounds yet</span>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="label" id="lbl-balance">BALANCE</span>
+            <span class="value val-gold" id="balance-display">$1000.00</span>
         </div>
-        <div class="dash-item" style="text-align: right;">
-            <span class="lbl" id="lbl-win">CURRENT WIN</span>
-            <span class="val val-green" id="win-display">$0.00</span>
+        <div class="stat-card">
+            <span class="label" id="lbl-checkpoint">SAVED</span>
+            <span class="value val-shield" id="checkpoint-display">$0.00</span>
+        </div>
+        <div class="stat-card">
+            <span class="label" id="lbl-mult">MULT</span>
+            <span class="value val-blue" id="mult-display">1.00x</span>
+        </div>
+        <div class="stat-card">
+            <span class="label" id="lbl-win">WIN</span>
+            <span class="value val-green" id="win-display">$0.00</span>
         </div>
     </div>
 
     <div class="screen-container">
-        <canvas id="gameCanvas" width="380" height="220"></canvas>
+        <canvas id="gameCanvas"></canvas>
         
         <div class="bonus-overlay" id="bonus-overlay">
-            <div class="bonus-title" id="bonus-title">🎁 PICK A CHEST!</div>
+            <div class="bonus-title" id="bonus-title">🎁 PICK A CHEST OR CASH OUT!</div>
             <div class="chests-container" id="chests-container">
                 <div class="chest-card" onclick="openMysteryChest(0)">
                     <span class="chest-icon">📦</span>
@@ -331,11 +449,13 @@
                     <span class="chest-multiplier" id="chest-mult-2"></span>
                 </div>
             </div>
-            <button class="btn-chest-cashout" id="btn-bonus-cashout" onclick="cashOutFromBonus()">CASH OUT</button>
+            <div class="bonus-actions">
+                <button class="btn-chest-cashout" id="btn-bonus-cashout" onclick="cashOutFromBonus()">CASH OUT NOW</button>
+            </div>
         </div>
     </div>
 
-    <div class="status-banner" id="status-msg">Place bet and tap START</div>
+    <div class="status-banner" id="status-msg">Place your bet and start the game</div>
 
     <div class="control-panel">
         <div class="inputs-row">
@@ -343,13 +463,13 @@
                 <label for="bet-input" id="lbl-bet">BET ($)</label>
                 <div class="bet-input-box">
                     <input type="number" id="bet-input" value="10" min="1" max="1000">
-                    <button class="btn-quick" id="btn-half">½</button>
-                    <button class="btn-quick" id="btn-double">2×</button>
+                    <button class="btn-quick" id="btn-half">1/2</button>
+                    <button class="btn-quick" id="btn-double">2X</button>
                     <button class="btn-quick" id="btn-max">MAX</button>
                 </div>
             </div>
             <div class="control-field">
-                <label for="mines-select" id="lbl-mines">RISK</label>
+                <label for="mines-select" id="lbl-mines">DIFFICULTY</label>
                 <select id="mines-select">
                     <option value="1" id="opt-m1">Easy</option>
                     <option value="2" id="opt-m2" selected>Medium</option>
@@ -358,13 +478,11 @@
             </div>
         </div>
 
-        <div class="action-container">
-            <button class="btn-action btn-bet" id="bet-btn">START (BET)</button>
-            <div class="btn-play-group" id="play-group">
-                <button class="btn-action btn-next" id="next-btn">NEXT ➡️</button>
-                <button class="btn-action btn-warp" id="warp-btn" style="display:none;">WARP 🚀</button>
-                <button class="btn-action btn-cashout" id="cashout-btn">CASH OUT</button>
-            </div>
+        <div class="action-buttons">
+            <button class="btn-action btn-bet" id="bet-btn">START</button>
+            <button class="btn-action btn-next" id="next-btn" disabled>NEXT ➡️</button>
+            <button class="btn-action btn-warp" id="warp-btn" style="display:none;">WARP 🚀</button>
+            <button class="btn-action btn-cashout" id="cashout-btn" disabled>CASH OUT</button>
         </div>
     </div>
 </div>
@@ -372,7 +490,7 @@
 <div class="modal-overlay" id="rules-modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3 id="modal-title">Rules</h3>
+            <h3 id="modal-title">Rules & Multipliers</h3>
             <button class="btn-close" id="close-modal">&times;</button>
         </div>
         <div class="modal-body" id="modal-body"></div>
@@ -380,23 +498,6 @@
 </div>
 
 <script>
-// Universal Rounded Rect for all mobile browsers (iOS & Android)
-function drawRoundedRect(ctx, x, y, width, height, radius, fill, stroke) {
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-    ctx.closePath();
-    if (fill) ctx.fill();
-    if (stroke) ctx.stroke();
-}
-
 const casinoMultiplierCurves = {
     1: {
         1: [1.06, 1.15, 1.28, 1.45, 1.68, 1.98, 2.40, 3.00, 3.80, 5.00],
@@ -417,49 +518,168 @@ const casinoMultiplierCurves = {
 
 const translations = {
     en: {
-        currency: "$", balance: "BALANCE", win: "CURRENT WIN", betLabel: "BET ($)", minesLabel: "RISK",
-        m1: "Easy", m2: "Medium", m3: "Hard", startBtn: "START (BET)", nextBtn: "NEXT ➡️", cashoutBtn: "CASH OUT",
-        readyMsg: "Place bet and tap START", openingMsg: (w) => `${w}: Block 1...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! Next: <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})`,
-        loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ -${curr}${amt}`,
-        loseMsgGuaranteed: (amt, curr) => `Poison! ☠️ Saved: +${curr}${amt}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or go for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 Stage Cleared! Pick a chest!", chestPrompt: (mult) => `🎁 CHESTS: [${mult}X] [1X] [☠️ LOSE]`,
-        chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
-        chestSafe: (amt, curr) => `👍 Safe (1X)! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ Poison Mushroom! -${curr}${amt}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Poison! Kept: +${curr}${amt}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong>!`,
+        currency: "$",
+        rulesBtn: "📖",
+        history: "HIST:",
+        noHistory: "No rounds yet",
+        balance: "BALANCE",
+        checkpoint: "SAVED",
+        mult: "MULT",
+        win: "WIN",
+        betLabel: "BET ($)",
+        minesLabel: "DIFFICULTY",
+        m1: "Easy (High Win)",
+        m2: "Medium (Balanced)",
+        m3: "Hard (Extreme X)",
+        startBtn: "START",
+        nextBtn: "NEXT ➡️",
+        cashoutBtn: "CASH OUT",
+        readyMsg: "Place your bet and start the game",
+        openingMsg: (w) => `${w}: Jumping to Block 1...`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Entered ${w}! Multipliers ready. Press NEXT for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}) or Cash Out!`,
+        loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ Lost ${curr}${amt}`,
+        loseMsgGuaranteed: (amt, curr) => `Poison Mushroom! ☠️ But you keep locked SAVED WIN: +${curr}${amt}! 🛡️`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or risk for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
+        flagRunMsg: "🎉 All 10 Blocks Cleared! Pick a chest or Cash Out!",
+        chestPrompt: (mult) => `🎁 3 CHESTS: 1x [${mult}X], 1x [1X], 1x [☠️ MUSHROOM]`,
+        chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X BONUS! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Safe Pass (1X)! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ Poison Mushroom in chest! Lost ${curr}${amt}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Poison Mushroom! Retained Saved Win: +${curr}${amt}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong> or Warp!`,
         cashedOutMsg: (amt, mult, curr) => `Cashed out: +${curr}${amt} (${mult}) 💰`,
-        allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆", invalidBet: "Invalid bet!", warpBtn: (nextW) => `W${nextW} 🚀`,
-        modalTitle: "Rules & Multipliers", modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
+        allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆",
+        invalidBet: "Invalid bet or balance!",
+        warpBtn: (nextW, curr, win) => `Enter World ${nextW} 🚀`,
+        modalTitle: "Rules & Multipliers",
+        modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
-            "<strong>Real Risk on Step 1:</strong> Loss chance scales with difficulty directly from the first step.",
-            "<strong>Difficulty Modes:</strong> Easy (up to 2.8K x), Medium (up to 75K x), Hard (up to 12M x).",
-            "<strong>Guaranteed Checkpoint:</strong> Clearing World 1 locks your base win."
+            "<strong>Real Risk from Block 1:</strong> Mushrooms can appear starting from step 1.",
+            "<strong>Difficulty Modes:</strong> Easy (up to 2,800x), Medium (up to 75,000x), Hard (up to 12,000,000x).",
+            "<strong>Checkpoint Vault:</strong> Clearing World 1 locks your base win. Failing in World 2 still pays this guarantee."
         ]
     },
     ka: {
-        currency: "₾", balance: "ბალანსი", win: "მიმდინარე მოგება", betLabel: "ფსონი (₾)", minesLabel: "რისკი",
-        m1: "მარტივი", m2: "საშუალო", m3: "რთული", startBtn: "დაწყება", nextBtn: "შემდეგი ➡️", cashoutBtn: "გატანა",
-        readyMsg: "დააყენეთ ფსონი და დაიწყეთ", openingMsg: (w) => `${w}: პირველი ბლოკი...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}! შემდეგი: <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})`,
-        loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ -${amt} ${curr}`,
-        loseMsgGuaranteed: (amt, curr) => `სოკო! ☠️ შეინარჩუნეთ: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
-        flagRunMsg: "🎉 ტური გავლილია! აირჩიეთ ყუთი!", chestPrompt: (mult) => `🎁 ყუთები: [${mult}X] [1X] [☠️ წაგება]`,
-        chestWon: (boost, amt, curr) => `🌟 +${boost}X! მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestSafe: (amt, curr) => `👍 უსაფრთხო (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
-        chestLostZero: (curr, amt) => `☠️ საწამლავი სოკო! -${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ სოკო! დაგრჩათ: +${amt} ${curr}! 🛡️`,
-        worldClearMsg: (w, win, curr) => `🏰 ${w} მზადაა! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong>!`,
+        currency: "₾",
+        rulesBtn: "📖",
+        history: "ისტორია:",
+        noHistory: "რაუნდები არ არის",
+        balance: "ბალანსი",
+        checkpoint: "შენახული",
+        mult: "მამრავლი",
+        win: "მოგება",
+        betLabel: "ფსონი (₾)",
+        minesLabel: "სირთულე",
+        m1: "მარტივი",
+        m2: "საშუალო",
+        m3: "რთული",
+        startBtn: "დაწყება",
+        nextBtn: "შემდეგი ➡️",
+        cashoutBtn: "გატანა (CASH OUT)",
+        readyMsg: "დააყენეთ ფსონი და დაიწყეთ თამაში",
+        openingMsg: (w) => `${w}: მარიო ხსნის პირველ ბლოკს...`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}-ში ხართ! 10-ვე მამრავლი მზადაა. დააჭირეთ „შემდეგი“-ს <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}) ან გაიტანეთ!`,
+        loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ წააგეთ ${amt} ${curr}`,
+        loseMsgGuaranteed: (amt, curr) => `საწამლავი სოკო! ☠️ მაგრამ დაგრჩათ შენახული მოგება: +${amt} ${curr}! 🛡️`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult})`,
+        flagRunMsg: "🎉 10-ვე ბლოკი გავლილია! აირჩიეთ ყუთი ან გაიტანეთ მოგება!",
+        chestPrompt: (mult) => `🎁 3 ყუთი: 1x [${mult}X], 1x [1X], 1x [☠️ სოკო]`,
+        chestWon: (boost, amt, curr) => `🌟 ბუუმ! +${boost}X ბონუსი! მიმდინარე მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestSafe: (amt, curr) => `👍 უსაფრთხო (1X)! მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ ყუთში აღმოჩნდა საწამლავი სოკო! წააგეთ ${amt} ${curr}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ სოკო ყუთში! მაგრამ შეინარჩუნეთ დაკეტილი გარანტირებული: +${amt} ${curr}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} გავლილია! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong> ან გადადით შემდეგ World-ში!`,
         cashedOutMsg: (amt, mult, curr) => `გატანილია: +${amt} ${curr} (${mult}) 💰`,
-        allClearedMsg: "👑 ლეგენდარული გამარჯვება! 🏆", invalidBet: "არასწორი ფსონი!", warpBtn: (nextW) => `W${nextW} 🚀`,
-        modalTitle: "წესები & მამრავლები", modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
+        allClearedMsg: "👑 ლეგენდარული გამარჯვება! მთელი თამაში დაიხურა! 🏆",
+        invalidBet: "არასწორი ფსონი!",
+        warpBtn: (nextW, curr, win) => `World ${nextW}-ში გადასვლა 🚀`,
+        modalTitle: "წესები & მამრავლები",
+        modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
-            "<strong>რისკი 1-ლი ბლოკიდან:</strong> წაგება შესაძლებელია პირველსავე ნაბიჯზე.",
-            "<strong>სირთულეები:</strong> მარტივი (2.8K x), საშუალო (75K x), რთული (12M x).",
-            "<strong>ჩაკეტილი ბაზა:</strong> ტურის დახურვისას მოგება რჩება გარანტირებულად."
+            "<strong>რეალური რისკი 1-ლი ბლოკიდან:</strong> სოკო შეიძლება იყოს პირველსავე ნაბიჯზე.",
+            "<strong>სირთულის რეჟიმები:</strong> მარტივი (2,800x-მდე), საშუალო (75,000x-მდე), რთული (12,000,000x-მდე).",
+            "<strong>ჩაკეტილი Checkpoint:</strong> 1-ლი ტურის დახურვისას იკეტება ბაზური მოგება."
+        ]
+    },
+    ru: {
+        currency: "₽",
+        rulesBtn: "📖",
+        history: "HIST:",
+        noHistory: "No rounds yet",
+        balance: "БАЛАНС",
+        checkpoint: "СОХРАНЕНО",
+        mult: "MULT",
+        win: "WIN",
+        betLabel: "СТАВКА (₽)",
+        minesLabel: "СЛОЖНОСТЬ",
+        m1: "Легкий",
+        m2: "Средний",
+        m3: "Сложный",
+        startBtn: "СТАРТ",
+        nextBtn: "ДАЛЕЕ ➡️",
+        cashoutBtn: "ЗАБРАТЬ",
+        readyMsg: "Сделайте ставку и начните",
+        openingMsg: (w) => `${w}: Прыжок на 1-й блок...`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Вы в ${w}! Все 10 множителей видны. Нажмите ДАЛЕЕ для <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}) или заберите!`,
+        loseMsgZero: (amt, curr) => `Ядовитый гриб! ☠️ -${amt} ${curr}`,
+        loseMsgGuaranteed: (amt, curr) => `Ядовитый гриб! ☠️ Но ваш СОХРАНЕННЫЙ ВЫИГРЫШ у вас: +${amt} ${curr}! 🛡️`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) или за <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
+        flagRunMsg: "🎉 Все 10 блоков пройдены! Откройте сундук или заберите выигрыш!",
+        chestPrompt: (mult) => `🎁 3 СУНДУКА: 1x [${mult}X], 1x [1X], 1x [☠️ ГРИБ]`,
+        chestWon: (boost, amt, curr) => `🌟 БУМ! +${boost}X БОНУС! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Без множителя (1X)! Сумма: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ В сундуке ядовитый гриб! Потеряно ${amt} ${curr}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong> или в Новый Мир!`,
+        cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}) 💰`,
+        allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
+        invalidBet: "Неверная ставка!",
+        warpBtn: (nextW, curr, win) => `Перейти в Мир ${nextW} 🚀`,
+        modalTitle: "Правила & Множители",
+        modalRtp: "Теоретический RTP: 97.00% | Преимущество: 3.00%",
+        modalRules: [
+            "<strong>Реальный риск с 1-го блока:</strong> Шанс проигрыша активен сразу на первом шаге.",
+            "<strong>Режимы сложности:</strong> Легкий (до 2,800x), Средний (до 75,000x), Сложный (до 12,000,000x)."
+        ]
+    },
+    es: {
+        currency: "€",
+        rulesBtn: "📖",
+        history: "HIST:",
+        noHistory: "Sin rondas",
+        balance: "SALDO",
+        checkpoint: "GUARDADO",
+        mult: "MULT",
+        win: "GANANCIA",
+        betLabel: "APUESTA (€)",
+        minesLabel: "DIFICULTAD",
+        m1: "Fácil",
+        m2: "Medio",
+        m3: "Difícil",
+        startBtn: "JUGAR",
+        nextBtn: "SIGUIENTE ➡️",
+        cashoutBtn: "RETIRAR",
+        readyMsg: "Haz tu apuesta y juega",
+        openingMsg: (w) => `${w}: Mario salta al 1er bloque...`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `¡En ${w}! Pulsa SIGUIENTE por <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}) o retira!`,
+        loseMsgZero: (amt, curr) => `¡Champiñón Venenoso! ☠️ -${amt} ${curr}`,
+        loseMsgGuaranteed: (amt, curr) => `¡Veneno! ☠️ Conservas tu GANANCIA GUARDADA: +${amt} ${curr}! 🛡️`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `¿Retirar <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) o <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
+        flagRunMsg: "🎉 ¡10 Bloques Listos! ¡Elige cofre o retira!",
+        chestPrompt: (mult) => `🎁 3 COFRES: 1x [${mult}X], 1x [1X], 1x [☠️ VENENO]`,
+        chestWon: (boost, amt, curr) => `🌟 ¡BOOM! +${boost}X! Ganancia actual: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestSafe: (amt, curr) => `👍 Pase Seguro (1X): <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
+        chestLostZero: (curr, amt) => `☠️ ¡Veneno en el cofre! Perdiste ${amt} ${curr}`,
+        chestLostGuaranteed: (curr, amt) => `☠️ ¡Veneno! Conservas tu base guardada: +${amt} ${curr}! 🛡️`,
+        worldClearMsg: (w, win, curr) => `🏰 ¡${w} Listo! Retira <strong style="color:#fbbf24;">${win} ${curr}</strong> o avanza!`,
+        cashedOutMsg: (amt, mult, curr) => `Retirado: +${amt} ${curr} (${mult}) 💰`,
+        allClearedMsg: "👑 ¡Victoria Legendaria! 🏆",
+        invalidBet: "¡Apuesta inválida!",
+        warpBtn: (nextW, curr, win) => `Ir al Mundo ${nextW} 🚀`,
+        modalTitle: "Reglas",
+        modalRtp: "RTP Teórico: 97.00% | Ventaja: 3.00%",
+        modalRules: [
+            "<strong>Riesgo real en el bloque 1:</strong> El veneno puede salir desde el primer paso."
         ]
     }
 };
@@ -468,20 +688,11 @@ let currentLang = 'en';
 
 class RetroAudio {
     constructor() { this.ctx = null; this.enabled = true; }
-    init() {
-        if (!this.ctx) {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (AudioCtx) this.ctx = new AudioCtx();
-        }
-        if (this.ctx && this.ctx.state === 'suspended') {
-            this.ctx.resume();
-        }
-    }
+    init() { if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)(); }
     playTone(freq, type, duration, startVol = 0.2, endVol = 0) {
         if (!this.enabled) return;
         this.init();
         try {
-            if (!this.ctx) return;
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
             osc.type = type;
@@ -498,7 +709,6 @@ class RetroAudio {
         if (!this.enabled) return;
         this.init();
         try {
-            if (!this.ctx) return;
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
             osc.type = 'square';
@@ -516,7 +726,6 @@ class RetroAudio {
         if (!this.enabled) return;
         this.init();
         try {
-            if (!this.ctx) return;
             const now = this.ctx.currentTime;
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
@@ -533,38 +742,54 @@ class RetroAudio {
     }
     flag() {
         if (!this.enabled) return;
-        [330, 392, 659, 523, 587, 784].forEach((f, i) => setTimeout(() => this.playTone(f, 'triangle', 0.2, 0.25), i * 90));
+        const notes = [330, 392, 659, 523, 587, 784];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => this.playTone(freq, 'triangle', 0.2, 0.25), idx * 100);
+        });
     }
     chestOpen() {
         if (!this.enabled) return;
-        [440, 554, 659, 880].forEach((f, i) => setTimeout(() => this.playTone(f, 'sine', 0.15, 0.3), i * 60));
+        const notes = [440, 554, 659, 880];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => this.playTone(freq, 'sine', 0.15, 0.3), idx * 70);
+        });
     }
     win() {
         if (!this.enabled) return;
-        [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((f, i) => setTimeout(() => this.playTone(f, 'triangle', 0.18, 0.25), i * 75));
+        const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => this.playTone(freq, 'triangle', 0.18, 0.25), idx * 75);
+        });
     }
     lose() {
         if (!this.enabled) return;
-        [400, 350, 300, 200].forEach((f, i) => setTimeout(() => this.playTone(f, 'sawtooth', 0.18, 0.2), i * 90));
+        const notes = [400, 350, 300, 200];
+        notes.forEach((freq, idx) => {
+            setTimeout(() => this.playTone(freq, 'sawtooth', 0.18, 0.2), idx * 90);
+        });
     }
 }
 
 const audio = new RetroAudio();
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const cabinet = document.getElementById('cabinet');
 
 const balanceDisplay = document.getElementById('balance-display');
+const checkpointDisplay = document.getElementById('checkpoint-display');
+const multDisplay = document.getElementById('mult-display');
 const winDisplay = document.getElementById('win-display');
 const worldBadge = document.getElementById('world-badge');
 const betInput = document.getElementById('bet-input');
 const minesSelect = document.getElementById('mines-select');
 const betBtn = document.getElementById('bet-btn');
-const playGroup = document.getElementById('play-group');
 const nextBtn = document.getElementById('next-btn');
 const warpBtn = document.getElementById('warp-btn');
 const cashoutBtn = document.getElementById('cashout-btn');
 const statusMsg = document.getElementById('status-msg');
+const historyBar = document.getElementById('history-bar');
+const historyEmpty = document.getElementById('history-empty');
 
 const bonusOverlay = document.getElementById('bonus-overlay');
 const bonusTitle = document.getElementById('bonus-title');
@@ -583,7 +808,10 @@ const btnHalf = document.getElementById('btn-half');
 const btnDouble = document.getElementById('btn-double');
 const btnMax = document.getElementById('btn-max');
 
+const lblHistory = document.getElementById('lbl-history');
 const lblBalance = document.getElementById('lbl-balance');
+const lblCheckpoint = document.getElementById('lbl-checkpoint');
+const lblMult = document.getElementById('lbl-mult');
 const lblWin = document.getElementById('lbl-win');
 const lblBet = document.getElementById('lbl-bet');
 const lblMines = document.getElementById('lbl-mines');
@@ -602,14 +830,44 @@ let baseGuaranteedMult = 0.0;
 let currentWorldBaseMult = 0.0;
 
 const worldThemes = {
-    1: { name: "W 1-1", bg: ['#0284c7', '#38bdf8', '#7dd3fc', '#047857'], ground: '#15803d', subGround: '#78350f', blockColor: '#f59e0b', blockBorder: '#b45309', chestBonus: 2 },
-    2: { name: "W 1-2", bg: ['#1e1b4b', '#312e81', '#1e293b', '#0f172a'], ground: '#475569', subGround: '#1e293b', blockColor: '#8b5cf6', blockBorder: '#6d28d9', chestBonus: 3 },
-    3: { name: "W 1-3", bg: ['#450a0a', '#7f1d1d', '#991b1b', '#09090b'], ground: '#991b1b', subGround: '#1c1917', blockColor: '#ef4444', blockBorder: '#991b1b', chestBonus: 5 }
+    1: { 
+        name: "WORLD 1-1", 
+        bg: ['#0284c7', '#38bdf8', '#7dd3fc', '#047857'], 
+        ground: '#15803d', 
+        subGround: '#78350f', 
+        blockColor: '#f59e0b',
+        blockBorder: '#b45309',
+        chestBonus: 2 
+    },
+    2: { 
+        name: "WORLD 1-2 (CAVE)", 
+        bg: ['#1e1b4b', '#312e81', '#1e293b', '#0f172a'], 
+        ground: '#475569', 
+        subGround: '#1e293b', 
+        blockColor: '#8b5cf6',
+        blockBorder: '#6d28d9',
+        chestBonus: 3 
+    },
+    3: { 
+        name: "WORLD 1-3 (CASTLE)", 
+        bg: ['#450a0a', '#7f1d1d', '#991b1b', '#09090b'], 
+        ground: '#991b1b', 
+        subGround: '#1c1917', 
+        blockColor: '#ef4444',
+        blockBorder: '#991b1b',
+        chestBonus: 5 
+    }
 };
 
 let chestContents = [];
 
-const sprites = { mario: new Image(), marioJump: new Image(), poisonMushroom: new Image(), coin: new Image() };
+const sprites = {
+    mario: new Image(),
+    marioJump: new Image(),
+    poisonMushroom: new Image(),
+    coin: new Image()
+};
+
 sprites.mario.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 56'><ellipse cx='20' cy='12' rx='14' ry='10' fill='%23ef4444'/><ellipse cx='28' cy='12' rx='6' ry='3' fill='%23ef4444'/><ellipse cx='20' cy='22' rx='11' ry='9' fill='%23fed7aa'/><circle cx='25' cy='19' r='2.5' fill='%23000'/><ellipse cx='26' cy='25' rx='7' ry='4' fill='%23451a03'/><ellipse cx='20' cy='38' rx='12' ry='12' fill='%232563eb'/><rect x='10' y='32' width='20' height='16' fill='%232563eb'/><circle cx='14' cy='34' r='2' fill='%23fbbf24'/><circle cx='26' cy='34' r='2' fill='%23fbbf24'/><rect x='6' y='30' width='6' height='10' fill='%23ef4444'/><rect x='28' y='30' width='6' height='10' fill='%23ef4444'/><circle cx='7' cy='42' r='4' fill='%23fff'/><circle cx='33' cy='42' r='4' fill='%23fff'/><ellipse cx='13' cy='52' rx='7' ry='4' fill='%2378350f'/><ellipse cx='27' cy='52' rx='7' ry='4' fill='%2378350f'/></svg>";
 sprites.marioJump.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 56'><ellipse cx='20' cy='10' rx='14' ry='10' fill='%23ef4444'/><ellipse cx='28' cy='10' rx='6' ry='3' fill='%23ef4444'/><ellipse cx='20' cy='20' rx='11' ry='9' fill='%23fed7aa'/><circle cx='25' cy='17' r='2.5' fill='%23000'/><ellipse cx='26' cy='23' rx='7' ry='4' fill='%23451a03'/><ellipse cx='20' cy='36' rx='12' ry='11' fill='%232563eb'/><rect x='10' y='30' width='20' height='14' fill='%232563eb'/><circle cx='14' cy='32' r='2' fill='%23fbbf24'/><circle cx='26' cy='32' r='2' fill='%23fbbf24'/><rect x='4' y='20' width='8' height='12' fill='%23ef4444'/><circle cx='6' cy='18' r='4.5' fill='%23fff'/><ellipse cx='10' cy='48' rx='7' ry='5' fill='%2378350f'/><ellipse cx='30' cy='46' rx='7' ry='5' fill='%2378350f'/></svg>";
 sprites.poisonMushroom.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><path d='M5 28 C5 10, 45 10, 45 28 Z' fill='%239333ea'/><circle cx='16' cy='20' r='5' fill='%23e9d5ff'/><circle cx='34' cy='20' r='5' fill='%23e9d5ff'/><circle cx='25' cy='14' r='4' fill='%23e9d5ff'/><rect x='15' y='28' width='20' height='16' rx='4' fill='%23f3e8ff'/><ellipse cx='20' cy='34' rx='2' ry='4' fill='%23000'/><ellipse cx='30' cy='34' rx='2' ry='4' fill='%23000'/></svg>";
@@ -620,10 +878,30 @@ let currentBet = 0;
 let isPlaying = false;
 let currentStep = 0;
 
-let groundY = 175;
-const mario = { x: 30, y: groundY - 48, w: 34, h: 48, targetX: 30, vy: 0, gravity: 0.95, state: 'idle' };
+let groundY = 190;
+const mario = {
+    x: 40,
+    y: groundY - 54,
+    w: 38,
+    h: 54,
+    targetX: 40,
+    vy: 0,
+    gravity: 0.95,
+    state: 'idle'
+};
+
 let blocks = [];
-let flagPole = { x: 0, y: 30, w: 8, h: 145, flagY: 40, isHit: false };
+let flagPole = { x: 0, y: 35, w: 8, h: 155, flagY: 45, isHit: false };
+
+function resizeCanvas() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    groundY = canvas.height - 40;
+    mario.y = groundY - mario.h;
+    flagPole.h = groundY - 35;
+}
+window.addEventListener('resize', resizeCanvas);
 
 function formatMultiplierText(val) {
     if (val >= 1000000) return (val / 1000000).toFixed(val % 1000000 === 0 ? 0 : 1) + 'M';
@@ -634,22 +912,40 @@ function formatMultiplierText(val) {
 
 function applyLanguage(lang) {
     currentLang = lang;
-    const t = translations[lang] || translations.en;
+    const t = translations[lang];
+
+    rulesBtn.textContent = t.rulesBtn;
+    lblHistory.textContent = t.history;
+    if (historyEmpty && historyBar.contains(historyEmpty)) historyEmpty.textContent = t.noHistory;
+
     lblBalance.textContent = t.balance;
+    lblCheckpoint.textContent = t.checkpoint;
+    lblMult.textContent = t.mult;
     lblWin.textContent = t.win;
     lblBet.textContent = t.betLabel;
     lblMines.textContent = t.minesLabel;
+
     optM1.textContent = t.m1;
     optM2.textContent = t.m2;
     optM3.textContent = t.m3;
+
     betBtn.textContent = t.startBtn;
     if (!isPlaying) {
         nextBtn.textContent = t.nextBtn;
         cashoutBtn.textContent = t.cashoutBtn;
         statusMsg.textContent = t.readyMsg;
     }
+
     modalTitle.textContent = t.modalTitle;
-    modalBody.innerHTML = `<div class="rtp-box"><strong>${t.modalRtp}</strong></div><ul class="rule-list">${t.modalRules.map(r => `<li>${r}</li>`).join('')}</ul>`;
+    modalBody.innerHTML = `
+        <div class="rtp-box">
+            <strong>${t.modalRtp}</strong>
+        </div>
+        <ul class="rule-list">
+            ${t.modalRules.map(r => `<li>${r}</li>`).join('')}
+        </ul>
+    `;
+
     updateUI();
 }
 
@@ -657,43 +953,79 @@ function spawnSparkles(x, y, color = '#fbbf24', count = 20) {
     for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 5 + 2;
-        particles.push({ x: x, y: y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2, size: Math.random() * 4 + 2, color: color, alpha: 1, decay: Math.random() * 0.03 + 0.02 });
+        particles.push({
+            x: x, y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2,
+            size: Math.random() * 4.5 + 2,
+            color: color, alpha: 1,
+            decay: Math.random() * 0.03 + 0.02
+        });
     }
 }
 
 function spawnConfetti() {
     const colors = ['#ef4444', '#3b82f6', '#fbbf24', '#22c55e', '#a855f7', '#ec4899'];
-    for (let i = 0; i < 70; i++) {
-        particles.push({ x: cameraX + Math.random() * canvas.width, y: -10, vx: (Math.random() - 0.5) * 4, vy: Math.random() * 4 + 2, size: Math.random() * 5 + 2, color: colors[Math.floor(Math.random() * colors.length)], alpha: 1, decay: 0.007 });
+    for (let i = 0; i < 90; i++) {
+        particles.push({
+            x: cameraX + Math.random() * canvas.width,
+            y: -10,
+            vx: (Math.random() - 0.5) * 4,
+            vy: Math.random() * 4 + 2,
+            size: Math.random() * 6 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: 1, decay: 0.007
+        });
     }
+}
+
+function addHistory(mult, isWin) {
+    if (historyEmpty && historyEmpty.parentNode) historyEmpty.remove();
+    const badge = document.createElement('span');
+    badge.className = `history-badge ${isWin ? 'badge-win' : 'badge-loss'}`;
+    badge.textContent = `${isWin ? '+' : ''}${formatMultiplierText(mult)}`;
+    historyBar.insertBefore(badge, historyBar.children[1]);
+    if (historyBar.children.length > 8) historyBar.removeChild(historyBar.lastChild);
 }
 
 function initWorld(worldIndex) {
     blocks = [];
     currentWorld = worldIndex;
     worldBadge.textContent = worldThemes[currentWorld].name;
+    
     const diffKey = parseInt(minesSelect.value || 2);
-    const startX = 120;
-    const spacing = 95;
+    const startX = 140;
+    const spacing = 100;
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
 
     for (let i = 0; i < BLOCKS_PER_WORLD; i++) {
-        blocks.push({ x: startX + i * spacing, y: 55, w: 48, h: 48, mult: curve[i], hit: false, isPoison: false, bounce: 0 });
+        const mult = curve[i];
+        blocks.push({
+            x: startX + i * spacing,
+            y: 65,
+            w: 52,
+            h: 52,
+            mult: mult,
+            hit: false,
+            isPoison: false,
+            bounce: 0
+        });
     }
-    flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 50;
-    flagPole.flagY = 40;
+
+    flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 60;
+    flagPole.flagY = 45;
     flagPole.isHit = false;
 }
 
 function startGame() {
-    audio.init();
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     const bet = parseFloat(betInput.value);
     if (isNaN(bet) || bet <= 0 || bet > balance) {
         statusMsg.style.color = '#ef4444';
         statusMsg.textContent = t.invalidBet;
         return;
     }
+
     balance -= bet;
     currentBet = bet;
     isPlaying = true;
@@ -705,17 +1037,16 @@ function startGame() {
     bonusOverlay.style.display = 'none';
 
     initWorld(1);
-    mario.x = 30;
+
+    mario.x = 40;
     mario.y = groundY - mario.h;
-    mario.targetX = 30;
+    mario.targetX = 40;
     mario.vy = 0;
     cameraX = 0;
 
     updateUI();
     toggleControls(false);
 
-    betBtn.style.display = 'none';
-    playGroup.style.display = 'flex';
     statusMsg.style.color = '#38bdf8';
     statusMsg.textContent = t.openingMsg(worldThemes[1].name);
 
@@ -724,6 +1055,7 @@ function startGame() {
 
 function takeStep() {
     if (!isPlaying) return;
+
     nextBtn.disabled = true;
     cashoutBtn.disabled = true;
     warpBtn.style.display = 'none';
@@ -736,10 +1068,10 @@ function takeStep() {
 }
 
 function hitBlock() {
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     const block = blocks[currentStep];
     block.hit = true;
-    block.bounce = 14;
+    block.bounce = 15;
 
     const diffKey = parseInt(minesSelect.value || 2);
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
@@ -755,35 +1087,51 @@ function hitBlock() {
         audio.lose();
         cabinet.classList.add('shake');
         setTimeout(() => cabinet.classList.remove('shake'), 400);
-        spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 20);
+
+        spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 25);
 
         if (baseGuaranteedMult > 0) {
             const savedWin = currentBet * baseGuaranteedMult;
             balance += savedWin;
+            addHistory(baseGuaranteedMult, true);
             statusMsg.style.color = '#c084fc';
             statusMsg.textContent = t.loseMsgGuaranteed(savedWin.toFixed(2), t.currency);
         } else {
+            addHistory(0, false);
             statusMsg.style.color = '#ef4444';
             statusMsg.textContent = t.loseMsgZero(currentBet.toFixed(2), t.currency);
         }
-        endRound();
+        
+        toggleControls(true);
+        nextBtn.disabled = true;
+        cashoutBtn.disabled = true;
+        warpBtn.style.display = 'none';
+        nextBtn.textContent = t.nextBtn;
+        cashoutBtn.textContent = t.cashoutBtn;
+        updateUI();
     } else {
         audio.coin();
         const currentMult = block.mult;
         const currentWinAmount = currentBet * currentMult;
+        
+        multDisplay.textContent = formatMultiplierText(currentMult);
         winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
-        spawnSparkles(block.x + block.w / 2, block.y - 10, '#fbbf24', 18);
+        spawnSparkles(block.x + block.w / 2, block.y - 10, '#fbbf24', 20);
 
         currentStep++;
+
         if (currentStep >= BLOCKS_PER_WORLD) {
             reachFlag();
         } else {
             const nextMult = blocks[currentStep].mult;
             const nextWinAmount = currentBet * nextMult;
+
             cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
-            nextBtn.textContent = `${t.nextBtn} (${formatMultiplierText(nextMult)})`;
+            nextBtn.textContent = `${t.nextBtn} (${t.currency}${nextWinAmount.toFixed(2)})`;
+
             statusMsg.style.color = '#4ade80';
             statusMsg.innerHTML = t.winMsg(currentWinAmount.toFixed(2), formatMultiplierText(currentMult), nextWinAmount.toFixed(2), formatMultiplierText(nextMult), t.currency);
+            
             nextBtn.disabled = false;
             cashoutBtn.disabled = false;
         }
@@ -791,11 +1139,12 @@ function hitBlock() {
 }
 
 function reachFlag() {
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     statusMsg.style.color = '#fbbf24';
     statusMsg.textContent = t.flagRunMsg;
     nextBtn.disabled = true;
     cashoutBtn.disabled = true;
+
     mario.targetX = flagPole.x - 25;
     mario.state = 'moving_to_flag';
 }
@@ -804,17 +1153,23 @@ function onFlagReached() {
     audio.flag();
     spawnConfetti();
     flagPole.isHit = true;
+    
     currentWorldBaseMult = blocks[BLOCKS_PER_WORLD - 1].mult;
     accumulatedMult = currentWorldBaseMult;
-    if (currentWorld === 1) baseGuaranteedMult = currentWorldBaseMult;
+
+    if (currentWorld === 1) {
+        baseGuaranteedMult = currentWorldBaseMult;
+    }
+
     updateUI();
     showBonusChests();
 }
 
 function showBonusChests() {
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     const bonusMultiplier = worldThemes[currentWorld].chestBonus;
     bonusTitle.textContent = t.chestPrompt(bonusMultiplier);
+    
     chestContents = [bonusMultiplier, 1.0, 0];
     for (let i = chestContents.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -826,60 +1181,99 @@ function showBonusChests() {
 
     for (let i = 0; i < 3; i++) {
         const card = document.querySelectorAll('.chest-card')[i];
-        card.querySelector('.chest-icon').style.display = 'block';
-        card.querySelector('.chest-multiplier').style.display = 'none';
+        const icon = card.querySelector('.chest-icon');
+        const mult = card.querySelector('.chest-multiplier');
+        icon.style.display = 'block';
+        icon.textContent = '📦';
+        mult.style.display = 'none';
         card.style.pointerEvents = 'auto';
+        card.style.borderColor = '#eab308';
     }
+
     bonusOverlay.style.display = 'flex';
 }
 
 function openMysteryChest(index) {
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     audio.chestOpen();
     const result = chestContents[index];
     const cards = document.querySelectorAll('.chest-card');
 
     cards.forEach((c, idx) => {
         c.style.pointerEvents = 'none';
-        c.querySelector('.chest-icon').style.display = 'none';
+        const icon = c.querySelector('.chest-icon');
         const mult = c.querySelector('.chest-multiplier');
+        icon.style.display = 'none';
         mult.style.display = 'block';
+
         const val = chestContents[idx];
-        if (val === 0) { mult.textContent = '☠️'; mult.style.color = '#ef4444'; }
-        else if (val > 1.0) { mult.textContent = `🌟${val}X`; mult.style.color = '#fbbf24'; }
-        else { mult.textContent = '1X'; mult.style.color = '#94a3b8'; }
+        if (val === 0) {
+            mult.textContent = '☠️ LOSE';
+            mult.style.color = '#ef4444';
+            c.style.borderColor = '#ef4444';
+        } else if (val > 1.0) {
+            mult.textContent = `🌟 ${val}X`;
+            mult.style.color = '#fbbf24';
+            c.style.borderColor = '#fbbf24';
+        } else {
+            mult.textContent = '1X SAFE';
+            mult.style.color = '#94a3b8';
+            c.style.borderColor = '#475569';
+        }
     });
 
     if (result === 0) {
         isPlaying = false;
         audio.lose();
         cabinet.classList.add('shake');
+        setTimeout(() => cabinet.classList.remove('shake'), 400);
+
         setTimeout(() => {
             bonusOverlay.style.display = 'none';
             if (baseGuaranteedMult > 0) {
                 const savedWin = currentBet * baseGuaranteedMult;
                 balance += savedWin;
+                addHistory(baseGuaranteedMult, true);
                 statusMsg.style.color = '#c084fc';
                 statusMsg.textContent = t.chestLostGuaranteed(t.currency, savedWin.toFixed(2));
             } else {
+                addHistory(0, false);
                 statusMsg.style.color = '#ef4444';
                 statusMsg.textContent = t.chestLostZero(t.currency, currentBet.toFixed(2));
             }
-            endRound();
+            toggleControls(true);
+            nextBtn.disabled = true;
+            cashoutBtn.disabled = true;
+            warpBtn.style.display = 'none';
+            nextBtn.textContent = t.nextBtn;
+            cashoutBtn.textContent = t.cashoutBtn;
+            updateUI();
         }, 1500);
         return;
     }
 
     baseGuaranteedMult = currentWorldBaseMult;
     accumulatedMult = parseFloat((accumulatedMult * result).toFixed(2));
-    const currentWinAmount = currentBet * accumulatedMult;
-    winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
 
-    if (result > 1.0) { audio.win(); spawnSparkles(canvas.width / 2, canvas.height / 2, '#fbbf24', 30); }
+    const currentWinAmount = currentBet * accumulatedMult;
+    multDisplay.textContent = formatMultiplierText(accumulatedMult);
+    winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
+    checkpointDisplay.textContent = `${t.currency}${(currentBet * baseGuaranteedMult).toFixed(2)}`;
+
+    if (result > 1.0) {
+        audio.win();
+        spawnSparkles(canvas.width / 2, canvas.height / 2, '#fbbf24', 35);
+    }
 
     setTimeout(() => {
         bonusOverlay.style.display = 'none';
-        statusMsg.innerHTML = result > 1.0 ? t.chestWon(result, currentWinAmount.toFixed(2), t.currency) : t.chestSafe(currentWinAmount.toFixed(2), t.currency);
+
+        if (result > 1.0) {
+            statusMsg.innerHTML = t.chestWon(result, currentWinAmount.toFixed(2), t.currency);
+        } else {
+            statusMsg.innerHTML = t.chestSafe(currentWinAmount.toFixed(2), t.currency);
+        }
+
         cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
 
         if (currentWorld < 3) {
@@ -895,43 +1289,63 @@ function openMysteryChest(index) {
     }, 1500);
 }
 
-function cashOutFromBonus() { bonusOverlay.style.display = 'none'; cashOut(); }
+function cashOutFromBonus() {
+    bonusOverlay.style.display = 'none';
+    cashOut();
+}
 
 function warpToNextWorld() {
     if (!isPlaying) return;
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     currentWorld++;
     currentStep = 0;
+    
     initWorld(currentWorld);
 
-    mario.x = 30; mario.y = groundY - mario.h; mario.targetX = 30; mario.state = 'idle'; cameraX = 0;
-    warpBtn.style.display = 'none'; nextBtn.style.display = 'flex'; nextBtn.disabled = false; cashoutBtn.disabled = false;
+    mario.x = 40;
+    mario.y = groundY - mario.h;
+    mario.targetX = 40;
+    mario.state = 'idle';
+    cameraX = 0;
 
+    warpBtn.style.display = 'none';
+    nextBtn.style.display = 'flex';
+    nextBtn.disabled = false;
+    cashoutBtn.disabled = false;
+
+    const currentWinAmount = currentBet * accumulatedMult;
     const nextMult = blocks[0].mult;
     const nextWinAmount = currentBet * nextMult;
-    cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${(currentBet * accumulatedMult).toFixed(2)})`;
-    nextBtn.textContent = `${t.nextBtn} (${formatMultiplierText(nextMult)})`;
+
+    cashoutBtn.textContent = `${t.cashoutBtn} (${t.currency}${currentWinAmount.toFixed(2)})`;
+    nextBtn.textContent = `${t.nextBtn} (${t.currency}${nextWinAmount.toFixed(2)})`;
+
     statusMsg.style.color = '#38bdf8';
     statusMsg.innerHTML = t.worldEnteredMsg(worldThemes[currentWorld].name, nextWinAmount.toFixed(2), formatMultiplierText(nextMult), t.currency);
 }
 
 function cashOut() {
     if (!isPlaying || currentStep === 0) return;
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     const finalMult = (flagPole.isHit) ? accumulatedMult : blocks[currentStep - 1].mult;
     const winAmount = currentBet * finalMult;
     balance += winAmount;
-    audio.win(); spawnConfetti();
+    isPlaying = false;
+
+    audio.win();
+    spawnConfetti();
+    addHistory(finalMult, true);
+
     statusMsg.style.color = '#fbbf24';
     statusMsg.textContent = t.cashedOutMsg(winAmount.toFixed(2), formatMultiplierText(finalMult), t.currency);
-    endRound();
-}
 
-function endRound() {
-    isPlaying = false;
     toggleControls(true);
-    playGroup.style.display = 'none';
-    betBtn.style.display = 'flex';
+    nextBtn.disabled = true;
+    cashoutBtn.disabled = true;
+    warpBtn.style.display = 'none';
+    nextBtn.style.display = 'flex';
+    nextBtn.textContent = t.nextBtn;
+    cashoutBtn.textContent = t.cashoutBtn;
     baseGuaranteedMult = 0.0;
     currentWorldBaseMult = 0.0;
     updateUI();
@@ -948,128 +1362,299 @@ function toggleControls(enable) {
 }
 
 function updateUI() {
-    const t = translations[currentLang] || translations.en;
+    const t = translations[currentLang];
     balanceDisplay.textContent = `${t.currency}${balance.toFixed(2)}`;
-    if (!isPlaying) { winDisplay.textContent = `${t.currency}0.00`; worldBadge.textContent = "W 1-1"; }
+    checkpointDisplay.textContent = `${t.currency}${(currentBet * baseGuaranteedMult).toFixed(2)}`;
+    if (!isPlaying) {
+        multDisplay.textContent = '1.00x';
+        winDisplay.textContent = `${t.currency}0.00`;
+        checkpointDisplay.textContent = `${t.currency}0.00`;
+        worldBadge.textContent = "WORLD 1-1";
+    }
 }
 
 function update() {
     const speed = isTurbo ? 14 : 7;
+
     if (mario.state === 'moving') {
         const dx = mario.targetX - mario.x;
-        if (Math.abs(dx) > speed) { mario.x += Math.sign(dx) * speed; }
-        else { mario.x = mario.targetX; mario.state = 'jumping'; mario.vy = isTurbo ? -15 : -12.5; audio.jump(); }
+        if (Math.abs(dx) > speed) {
+            mario.x += Math.sign(dx) * speed;
+        } else {
+            mario.x = mario.targetX;
+            mario.state = 'jumping';
+            mario.vy = isTurbo ? -15 : -12.5;
+            audio.jump();
+        }
     } else if (mario.state === 'moving_to_flag') {
         const dx = mario.targetX - mario.x;
-        if (Math.abs(dx) > speed) { mario.x += Math.sign(dx) * speed; }
-        else { mario.x = mario.targetX; mario.state = 'idle'; onFlagReached(); }
+        if (Math.abs(dx) > speed) {
+            mario.x += Math.sign(dx) * speed;
+        } else {
+            mario.x = mario.targetX;
+            mario.state = 'idle';
+            onFlagReached();
+        }
     }
 
     if (mario.state === 'jumping') {
         mario.y += mario.vy;
         mario.vy += mario.gravity * (isTurbo ? 1.6 : 1);
+
         const currentBlock = blocks[currentStep];
         if (mario.vy < 0 && mario.y <= currentBlock.y + currentBlock.h) {
             mario.y = currentBlock.y + currentBlock.h;
             mario.vy = 3;
             hitBlock();
         }
-        if (mario.y >= groundY - mario.h) { mario.y = groundY - mario.h; mario.vy = 0; if (mario.state === 'jumping') mario.state = 'idle'; }
+
+        if (mario.y >= groundY - mario.h) {
+            mario.y = groundY - mario.h;
+            mario.vy = 0;
+            if (mario.state === 'jumping') mario.state = 'idle';
+        }
     }
 
-    const targetCameraX = Math.max(0, mario.x - 130);
+    // მობილურისთვის ცენტრალური ფოკუსირება
+    const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
     cameraX += (targetCameraX - cameraX) * 0.12;
 
-    if (flagPole.isHit && flagPole.flagY < groundY - 40) flagPole.flagY += 3;
-    blocks.forEach(b => { if (b.bounce > 0) b.bounce -= (isTurbo ? 3 : 1.5); });
+    if (flagPole.isHit && flagPole.flagY < groundY - 40) {
+        flagPole.flagY += 3;
+    }
+
+    blocks.forEach(b => {
+        if (b.bounce > 0) b.bounce -= (isTurbo ? 3 : 1.5);
+    });
+
     for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i]; p.x += p.vx; p.y += p.vy; p.alpha -= p.decay;
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= p.decay;
         if (p.alpha <= 0) particles.splice(i, 1);
     }
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     const theme = worldThemes[currentWorld];
+
+    // Background Gradient
     const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    bgGrad.addColorStop(0, theme.bg[0]); bgGrad.addColorStop(0.5, theme.bg[1]); bgGrad.addColorStop(0.8, theme.bg[2]); bgGrad.addColorStop(1, theme.bg[3]);
+    bgGrad.addColorStop(0, theme.bg[0]);
+    bgGrad.addColorStop(0.5, theme.bg[1]);
+    bgGrad.addColorStop(0.8, theme.bg[2]);
+    bgGrad.addColorStop(1, theme.bg[3]);
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
     ctx.translate(-cameraX, 0);
 
+    // Environmental Hills & Clouds
     if (currentWorld === 1) {
-        ctx.fillStyle = "rgba(251, 191, 36, 0.18)"; ctx.beginPath(); ctx.arc(200, 15, 70, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
+        ctx.beginPath();
+        ctx.arc(200, 20, 80, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-        for (let x = 60; x < 2000; x += 240) { ctx.beginPath(); ctx.arc(x, 24, 12, 0, Math.PI * 2); ctx.arc(x + 14, 18, 16, 0, Math.PI * 2); ctx.arc(x + 28, 24, 12, 0, Math.PI * 2); ctx.fill(); }
+        for (let x = 60; x < 1800; x += 260) {
+            ctx.beginPath();
+            ctx.arc(x, 28, 14, 0, Math.PI * 2);
+            ctx.arc(x + 16, 22, 20, 0, Math.PI * 2);
+            ctx.arc(x + 34, 28, 14, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
         ctx.fillStyle = "#16a34a";
-        for (let h = 40; h < 2000; h += 280) { ctx.beginPath(); ctx.arc(h, groundY, 65, Math.PI, 0); ctx.fill(); }
+        for (let h = 40; h < 1800; h += 300) {
+            ctx.beginPath();
+            ctx.arc(h, groundY, 70, Math.PI, 0);
+            ctx.fill();
+        }
+    } else if (currentWorld === 2) {
+        ctx.fillStyle = "rgba(139, 92, 246, 0.2)";
+        for (let cx = 120; cx < 1800; cx += 220) {
+            ctx.beginPath();
+            ctx.arc(cx, 40, 50, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    } else if (currentWorld === 3) {
+        ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
+        for (let mx = 90; mx < 1800; mx += 180) {
+            ctx.beginPath();
+            ctx.arc(mx, 80, 55, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
 
-    ctx.fillStyle = theme.ground; ctx.fillRect(0, groundY, 2200, 6);
-    ctx.fillStyle = theme.subGround; ctx.fillRect(0, groundY + 6, 2200, canvas.height - groundY - 6);
+    // Ground Rendering
+    ctx.fillStyle = theme.ground;
+    ctx.fillRect(0, groundY, 2000, 8);
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, groundY + 6, 2000, 2);
 
+    ctx.fillStyle = theme.subGround;
+    ctx.fillRect(0, groundY + 8, 2000, canvas.height - groundY - 8);
+
+    // 3D Blocks Rendering with Clear Visibility
     blocks.forEach((b) => {
         const renderY = b.y - b.bounce;
+
         if (!b.hit) {
             ctx.fillStyle = theme.blockBorder;
-            drawRoundedRect(ctx, b.x, renderY, b.w, b.h, 8, true, false);
+            ctx.beginPath();
+            ctx.roundRect(b.x, renderY, b.w, b.h, 10);
+            ctx.fill();
+
             ctx.fillStyle = theme.blockColor;
-            drawRoundedRect(ctx, b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6, true, false);
-            ctx.fillStyle = "#fff"; ctx.font = '900 22px "Fredoka", sans-serif'; ctx.textAlign = 'center'; ctx.fillText('?', b.x + b.w / 2, renderY + 33);
+            ctx.beginPath();
+            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 8);
+            ctx.fill();
+
+            ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+            ctx.fillRect(b.x + 5, renderY + 5, b.w - 10, 3);
+
+            ctx.fillStyle = "#fff";
+            ctx.font = '900 22px "Fredoka", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('?', b.x + b.w / 2, renderY + 34);
 
             if (b.mult > 0) {
                 const multText = formatMultiplierText(b.mult);
-                ctx.font = '800 11px "Outfit", sans-serif';
-                const badgeW = Math.max(ctx.measureText(multText).width + 12, 42);
+                ctx.font = '800 12px "Outfit", sans-serif';
+                const textWidth = ctx.measureText(multText).width;
+                const badgeW = Math.max(textWidth + 14, 46);
+                const badgeH = 20;
                 const badgeX = b.x + (b.w - badgeW) / 2;
-                ctx.fillStyle = "rgba(15, 23, 42, 0.95)"; ctx.strokeStyle = "rgba(255, 255, 255, 0.3)"; ctx.lineWidth = 1;
-                drawRoundedRect(ctx, badgeX, renderY - 24, badgeW, 18, 5, true, true);
-                ctx.fillStyle = b.mult >= 50 ? '#fbbf24' : '#38bdf8'; ctx.fillText(multText, b.x + b.w / 2, renderY - 11);
+                const badgeY = renderY - 26;
+
+                ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 6);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = b.mult >= 50 ? '#fbbf24' : '#38bdf8';
+                ctx.textAlign = 'center';
+                ctx.fillText(multText, b.x + b.w / 2, badgeY + 14.5);
             }
         } else {
             ctx.fillStyle = '#334155';
-            drawRoundedRect(ctx, b.x, renderY, b.w, b.h, 8, true, false);
+            ctx.beginPath();
+            ctx.roundRect(b.x, renderY, b.w, b.h, 10);
+            ctx.fill();
+
             ctx.fillStyle = '#475569';
-            drawRoundedRect(ctx, b.x + 3, renderY + 3, b.w - 6, b.h - 6, 6, true, false);
+            ctx.beginPath();
+            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 8);
+            ctx.fill();
+
             if (b.isPoison) {
-                ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 36) / 2, renderY - 38, 36, 36);
+                ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 42) / 2, renderY - 44, 42, 42);
             } else {
-                ctx.drawImage(sprites.coin, b.x + (b.w - 30) / 2, renderY - 34, 30, 30);
-                ctx.fillStyle = '#22c55e'; ctx.font = '900 12px "Outfit", sans-serif'; ctx.textAlign = 'center'; ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 40);
+                ctx.drawImage(sprites.coin, b.x + (b.w - 34) / 2, renderY - 40, 34, 34);
+                
+                ctx.fillStyle = '#22c55e';
+                ctx.font = '900 13px "Outfit", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 46);
             }
         }
     });
 
-    ctx.fillStyle = '#cbd5e1'; ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
-    ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(flagPole.x + 4, flagPole.y, 7, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#22c55e'; ctx.beginPath(); ctx.moveTo(flagPole.x + 8, flagPole.flagY); ctx.lineTo(flagPole.x + 34, flagPole.flagY + 12); ctx.lineTo(flagPole.x + 8, flagPole.flagY + 24); ctx.fill();
-    ctx.fillStyle = '#334155'; ctx.fillRect(flagPole.x + 55, groundY - 75, 75, 75); ctx.fillStyle = '#0f172a'; ctx.fillRect(flagPole.x + 80, groundY - 35, 24, 35);
+    // Flagpole
+    ctx.fillStyle = '#cbd5e1';
+    ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.arc(flagPole.x + 4, flagPole.y, 8, 0, Math.PI * 2);
+    ctx.fill();
 
-    particles.forEach(p => { ctx.save(); ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill(); ctx.restore(); });
-    ctx.fillStyle = "rgba(0, 0, 0, 0.25)"; ctx.beginPath(); ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 4, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.drawImage((mario.state === 'jumping') ? sprites.marioJump : sprites.mario, mario.x, mario.y, mario.w, mario.h);
+    // Flag
+    ctx.fillStyle = '#22c55e';
+    ctx.beginPath();
+    ctx.moveTo(flagPole.x + 8, flagPole.flagY);
+    ctx.lineTo(flagPole.x + 38, flagPole.flagY + 14);
+    ctx.lineTo(flagPole.x + 8, flagPole.flagY + 28);
+    ctx.fill();
+
+    // Castle
+    ctx.fillStyle = '#334155';
+    ctx.fillRect(flagPole.x + 65, groundY - 80, 80, 80);
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(flagPole.x + 92, groundY - 40, 28, 40);
+
+    // Particles
+    particles.forEach(p => {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    });
+
+    // Mario Shadow
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    ctx.beginPath();
+    ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Mario Character
+    const currentMario = (mario.state === 'jumping') ? sprites.marioJump : sprites.mario;
+    ctx.drawImage(currentMario, mario.x, mario.y, mario.w, mario.h);
+
     ctx.restore();
 }
 
-function gameLoop() { update(); draw(); requestAnimationFrame(gameLoop); }
+function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+}
 
 btnHalf.addEventListener('click', () => betInput.value = Math.max(1, Math.floor(parseFloat(betInput.value || 10) / 2)));
 btnDouble.addEventListener('click', () => betInput.value = Math.min(balance, Math.floor(parseFloat(betInput.value || 10) * 2)));
 btnMax.addEventListener('click', () => betInput.value = Math.floor(balance));
-turboBtn.addEventListener('click', () => { isTurbo = !isTurbo; turboBtn.classList.toggle('active', isTurbo); });
-soundBtn.addEventListener('click', () => { audio.enabled = !audio.enabled; soundBtn.classList.toggle('active', audio.enabled); });
+
+turboBtn.addEventListener('click', () => {
+    isTurbo = !isTurbo;
+    turboBtn.classList.toggle('active', isTurbo);
+    turboBtn.textContent = `⚡ Turbo ${isTurbo ? 'ON' : 'OFF'}`;
+});
+
+soundBtn.addEventListener('click', () => {
+    audio.enabled = !audio.enabled;
+    soundBtn.classList.toggle('active', audio.enabled);
+    soundBtn.textContent = audio.enabled ? '🔊' : '🔇';
+});
+
 langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+
 rulesBtn.addEventListener('click', () => rulesModal.style.display = 'flex');
 closeModal.addEventListener('click', () => rulesModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === rulesModal) rulesModal.style.display = 'none'; });
+
 betBtn.addEventListener('click', startGame);
 nextBtn.addEventListener('click', takeStep);
 warpBtn.addEventListener('click', warpToNextWorld);
 cashoutBtn.addEventListener('click', cashOut);
-minesSelect.addEventListener('change', () => { initWorld(currentWorld); if (!isPlaying) statusMsg.textContent = (translations[currentLang] || translations.en).readyMsg; });
 
+minesSelect.addEventListener('change', () => {
+    initWorld(currentWorld);
+    if (!isPlaying) {
+        statusMsg.textContent = translations[currentLang].readyMsg;
+    }
+});
+
+resizeCanvas();
 applyLanguage('en');
 initWorld(1);
 gameLoop();
