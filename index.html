@@ -551,7 +551,7 @@ const translations = {
         modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
             "<strong>Real Risk from Block 1:</strong> Mushrooms can appear starting from step 1.",
-            "<strong>Chests Risk:</strong> Picking a Poison Mushroom in the bonus chest loses all winnings. Only 1X or Bonus X keeps you in the game.",
+            "<strong>Chests Risk:</strong> Picking a Poison Mushroom in the bonus chest loses all winnings. Only 1X or Bonus X saves and locks your win.",
             "<strong>Difficulty Modes:</strong> Easy (up to 2,800x), Medium (up to 75,000x), Hard (up to 12,000,000x)."
         ]
     },
@@ -593,7 +593,7 @@ const translations = {
         modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
         modalRules: [
             "<strong>რეალური რისკი 1-ლი ბლოკიდან:</strong> სოკო შეიძლება იყოს პირველსავე ნაბიჯზე.",
-            "<strong>ყუთის რისკი:</strong> ბონუს ყუთში საწამლავი სოკოს ამოსვლისას კარგავთ მთელ მოგებას! მხოლოდ 1X ან ბონუს X გინარჩუნებთ თანხას.",
+            "<strong>ყუთის რისკი:</strong> ბონუს ყუთში საწამლავი სოკოს ამოსვლისას კარგავთ მთელ მოგებას! მხოლოდ 1X ან ბონუს X გინარჩუნებთ და გიკეტავთ თანხას.",
             "<strong>სირთულის რეჟიმები:</strong> მარტივი (2,800x-მდე), საშუალო (75,000x-მდე), რთული (12,000,000x-მდე)."
         ]
     },
@@ -625,7 +625,7 @@ const translations = {
         chestWon: (boost, amt, curr) => `🌟 БУМ! +${boost}X БОНУС! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
         chestSafe: (amt, curr) => `👍 Без множителя (1X)! Сумма: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
         chestLostZero: (curr, amt) => `☠️ В сундуке ядовитый гриб! Потеряно всё: ${amt} ${curr}`,
-        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
+        chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Но сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong> или в Новый Мир!`,
         cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}x) 💰`,
         allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
@@ -635,7 +635,7 @@ const translations = {
         modalRtp: "Теоретический RTP: 97.00% | Преимущество: 3.00%",
         modalRules: [
             "<strong>Реальный риск с 1-го блока:</strong> Шанс проигрыша активен сразу на первом шаге.",
-            "<strong>Риск сундуков:</strong> Ядовитый гриб в сундуке сжигает весь куш! Только 1X или бонусный X спасает.",
+            "<strong>Риск сундуков:</strong> Ядовитый гриб в сундуке сжигает весь куш! Только 1X или бонусный X сохраняет ваш выигрыш.",
             "<strong>Режимы сложности:</strong> Легкий (до 2,800x), Средний (до 75,000x), Сложный (до 12,000,000x)."
         ]
     },
@@ -677,7 +677,7 @@ const translations = {
         modalRtp: "RTP Teórico: 97.00% | Ventaja: 3.00%",
         modalRules: [
             "<strong>Riesgo real en el bloque 1:</strong> El veneno puede salir desde el primer paso.",
-            "<strong>Riesgo en cofres:</strong> El veneno en el cofre quema todas las ganancias acumuladas. Solo 1X o Bonus X te mantiene en juego."
+            "<strong>Riesgo en cofres:</strong> El veneno en el cofre quema todas las ganancias acumuladas. Solo 1X o Bonus X asegura tu base."
         ]
     }
 };
@@ -1088,9 +1088,18 @@ function hitBlock() {
 
         spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 25);
 
-        addHistory(0, false);
-        statusMsg.style.color = '#ef4444';
-        statusMsg.textContent = t.loseMsgZero(currentBet.toFixed(2), t.currency);
+        // თუ გადარჩენილი ჰქონდა ყუთი, შენახული მოგება უნარჩუნდება
+        if (baseGuaranteedMult > 0) {
+            const savedWin = currentBet * baseGuaranteedMult;
+            balance += savedWin;
+            addHistory(baseGuaranteedMult, true);
+            statusMsg.style.color = '#c084fc';
+            statusMsg.textContent = t.loseMsgGuaranteed(savedWin.toFixed(2), t.currency);
+        } else {
+            addHistory(0, false);
+            statusMsg.style.color = '#ef4444';
+            statusMsg.textContent = t.loseMsgZero(currentBet.toFixed(2), t.currency);
+        }
         
         toggleControls(true);
         nextBtn.disabled = true;
@@ -1218,13 +1227,14 @@ function openMysteryChest(index) {
 
         const totalLostAmt = (currentBet * accumulatedMult).toFixed(2);
         accumulatedMult = 0;
+        baseGuaranteedMult = 0; // ძველი გარანტიაც იწვება
         addHistory(0, false);
 
         setTimeout(() => {
             bonusOverlay.style.display = 'none';
             statusMsg.style.color = '#ef4444';
             statusMsg.textContent = t.chestLostZero(t.currency, totalLostAmt);
-
+            
             toggleControls(true);
             nextBtn.disabled = true;
             cashoutBtn.disabled = true;
@@ -1236,12 +1246,17 @@ function openMysteryChest(index) {
         return;
     }
 
-    // გადარჩენა მხოლოდ 1X ან ბონუს X-ის შემთხვევაში
+    // 1X ან ბონუს X-ის ამოსვლისას:
+    // 1) უნარჩუნდება და ებლოკება ის მოგება, რაც წინა ტურებში დააგროვა (სანამ X-ს აიღებდა)
+    baseGuaranteedMult = currentWorldBaseMult;
+
+    // 2) მიმდინარე მოგება მრავლდება ყუთის მამრავლზე
     accumulatedMult = parseFloat((accumulatedMult * result).toFixed(2));
 
     const currentWinAmount = currentBet * accumulatedMult;
     multDisplay.textContent = formatMultiplierText(accumulatedMult);
     winDisplay.textContent = `${t.currency}${currentWinAmount.toFixed(2)}`;
+    checkpointDisplay.textContent = `${t.currency}${(currentBet * baseGuaranteedMult).toFixed(2)}`;
 
     if (result > 1.0) {
         audio.win();
@@ -1329,6 +1344,7 @@ function cashOut() {
     nextBtn.style.display = 'flex';
     nextBtn.textContent = t.nextBtn;
     cashoutBtn.textContent = t.cashoutBtn;
+    baseGuaranteedMult = 0.0;
     currentWorldBaseMult = 0.0;
     updateUI();
 }
@@ -1346,10 +1362,11 @@ function toggleControls(enable) {
 function updateUI() {
     const t = translations[currentLang];
     balanceDisplay.textContent = `${t.currency}${balance.toFixed(2)}`;
-    checkpointDisplay.textContent = `${t.currency}0.00`;
+    checkpointDisplay.textContent = `${t.currency}${(currentBet * baseGuaranteedMult).toFixed(2)}`;
     if (!isPlaying) {
         multDisplay.textContent = '1.00x';
         winDisplay.textContent = `${t.currency}0.00`;
+        checkpointDisplay.textContent = `${t.currency}0.00`;
         worldBadge.textContent = "WORLD 1-1";
     }
 }
