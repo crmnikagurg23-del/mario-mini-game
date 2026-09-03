@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Super Mario Road - Mobile Perfect</title>
+    <title>Super Mario Road - Mobile Arcade Deluxe</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Outfit:wght@600;700;800;900&display=swap');
 
@@ -39,13 +39,9 @@
             flex-direction: column;
             gap: 8px;
             width: 100%;
-            max-width: 480px;
+            max-width: 900px;
             position: relative;
         }
-        @media (min-width: 768px) {
-            .casino-cabinet { max-width: 850px; }
-        }
-
         .shake {
             animation: shakeScreen 0.4s cubic-bezier(.36,.07,.19,.97) both;
         }
@@ -66,7 +62,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 900;
             font-family: 'Fredoka', cursive;
             color: #ef4444;
@@ -84,8 +80,8 @@
             background: rgba(30, 41, 59, 0.8);
             color: #94a3b8;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 4px 7px;
-            border-radius: 6px;
+            padding: 5px 8px;
+            border-radius: 8px;
             font-size: 11px;
             font-weight: 700;
             cursor: pointer;
@@ -102,7 +98,7 @@
         .world-badge {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: #fff;
-            padding: 3px 7px;
+            padding: 3px 8px;
             border-radius: 6px;
             font-weight: 900;
             font-size: 10px;
@@ -132,7 +128,7 @@
         .history-badge {
             padding: 2px 7px;
             border-radius: 6px;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 900;
             flex-shrink: 0;
         }
@@ -141,21 +137,23 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+        @media (min-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
         }
         .stat-card {
             background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 5px 6px;
-            border-radius: 8px;
+            padding: 6px 10px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             gap: 1px;
-            text-align: center;
         }
-        .stat-card .label { font-size: 7.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
-        .stat-card .value { font-size: 13.5px; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .stat-card .label { font-size: 8.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .stat-card .value { font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
         .val-gold { color: #fbbf24; }
         .val-green { color: #22c55e; }
         .val-blue { color: #38bdf8; }
@@ -167,7 +165,7 @@
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.15);
             width: 100%;
-            height: 240px;
+            height: 220px;
             box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
         }
         @media (min-width: 600px) {
@@ -188,7 +186,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             z-index: 20;
             padding: 10px;
         }
@@ -206,8 +204,8 @@
             background: #1e293b;
             border: 2px solid #eab308;
             border-radius: 12px;
-            width: 75px;
-            height: 85px;
+            width: 70px;
+            height: 80px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -215,9 +213,9 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .chest-icon { font-size: 34px; }
+        .chest-icon { font-size: 32px; }
         .chest-multiplier {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 900;
             display: none;
         }
@@ -225,10 +223,10 @@
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #000;
             font-weight: 900;
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 8px;
             border: none;
-            font-size: 13px;
+            font-size: 12.5px;
             cursor: pointer;
         }
 
@@ -239,12 +237,11 @@
             text-align: center;
             font-weight: 800;
             font-size: 12.5px;
-            min-height: 40px;
+            min-height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            line-height: 1.3;
         }
 
         .control-panel {
@@ -254,24 +251,23 @@
             border-radius: 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
         .inputs-row {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            display: flex;
             gap: 8px;
             width: 100%;
         }
-        .control-field { display: flex; flex-direction: column; gap: 3px; }
-        .control-field label { font-size: 8.5px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
-        .bet-input-box { display: flex; gap: 2px; width: 100%; }
+        .control-field { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+        .control-field label { font-size: 9px; color: #94a3b8; font-weight: 800; text-transform: uppercase; }
+        .bet-input-box { display: flex; gap: 3px; width: 100%; }
         input, select {
             background: rgba(30, 41, 59, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
-            padding: 7px 6px;
-            border-radius: 6px;
-            font-size: 13px;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 13.5px;
             font-weight: 800;
             outline: none;
             text-align: center;
@@ -282,9 +278,9 @@
             background: rgba(30, 41, 59, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #94a3b8;
-            padding: 0 6px;
+            padding: 0 8px;
             border-radius: 6px;
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 800;
             cursor: pointer;
         }
@@ -295,7 +291,7 @@
             width: 100%;
         }
         .btn-action {
-            padding: 13px 8px;
+            padding: 12px;
             border-radius: 10px;
             font-size: 13.5px;
             font-weight: 900;
@@ -358,7 +354,7 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 16px;
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
             padding: 16px;
             display: flex;
             flex-direction: column;
@@ -380,7 +376,7 @@
 
         @media (min-width: 768px) {
             .control-panel { flex-direction: row; align-items: center; gap: 12px; }
-            .inputs-row { display: flex; width: auto; justify-content: flex-start; gap: 12px; }
+            .inputs-row { width: auto; justify-content: flex-start; gap: 12px; }
             .action-buttons { flex: 1; justify-content: flex-end; }
         }
     </style>
@@ -519,7 +515,7 @@ const casinoMultiplierCurves = {
 const translations = {
     en: {
         currency: "$",
-        rulesBtn: "📖",
+        rulesBtn: "📖 Rules",
         history: "HIST:",
         noHistory: "No rounds yet",
         balance: "BALANCE",
@@ -536,10 +532,10 @@ const translations = {
         cashoutBtn: "CASH OUT",
         readyMsg: "Place your bet and start the game",
         openingMsg: (w) => `${w}: Jumping to Block 1...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Entered ${w}! Multipliers ready. Press NEXT for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}) or Cash Out!`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Entered ${w}! Multipliers ready. Press NEXT for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}x) or Cash Out!`,
         loseMsgZero: (amt, curr) => `Poison Mushroom! ☠️ Lost ${curr}${amt}`,
         loseMsgGuaranteed: (amt, curr) => `Poison Mushroom! ☠️ But you keep locked SAVED WIN: +${curr}${amt}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}) or risk for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult})?`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Take <strong style="color:#fbbf24;">${curr}${curWin}</strong> (${curMult}x) or risk for <strong style="color:#38bdf8;">${curr}${nextWin}</strong> (${nextMult}x)?`,
         flagRunMsg: "🎉 All 10 Blocks Cleared! Pick a chest or Cash Out!",
         chestPrompt: (mult) => `🎁 3 CHESTS: 1x [${mult}X], 1x [1X], 1x [☠️ MUSHROOM]`,
         chestWon: (boost, amt, curr) => `🌟 BOOM! +${boost}X BONUS! Win: <strong style="color:#fbbf24;">${curr}${amt}</strong>!`,
@@ -547,7 +543,7 @@ const translations = {
         chestLostZero: (curr, amt) => `☠️ Poison Mushroom in chest! Lost ${curr}${amt}`,
         chestLostGuaranteed: (curr, amt) => `☠️ Poison Mushroom! Retained Saved Win: +${curr}${amt}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} Cleared! Take <strong style="color:#fbbf24;">${curr}${win}</strong> or Warp!`,
-        cashedOutMsg: (amt, mult, curr) => `Cashed out: +${curr}${amt} (${mult}) 💰`,
+        cashedOutMsg: (amt, mult, curr) => `Cashed out: +${curr}${amt} (${mult}x) 💰`,
         allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆",
         invalidBet: "Invalid bet or balance!",
         warpBtn: (nextW, curr, win) => `Enter World ${nextW} 🚀`,
@@ -561,7 +557,7 @@ const translations = {
     },
     ka: {
         currency: "₾",
-        rulesBtn: "📖",
+        rulesBtn: "📖 წესები",
         history: "ისტორია:",
         noHistory: "რაუნდები არ არის",
         balance: "ბალანსი",
@@ -578,10 +574,10 @@ const translations = {
         cashoutBtn: "გატანა (CASH OUT)",
         readyMsg: "დააყენეთ ფსონი და დაიწყეთ თამაში",
         openingMsg: (w) => `${w}: მარიო ხსნის პირველ ბლოკს...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}-ში ხართ! 10-ვე მამრავლი მზადაა. დააჭირეთ „შემდეგი“-ს <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}) ან გაიტანეთ!`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `${w}-ში ხართ! 10-ვე მამრავლი მზადაა. დააჭირეთ „შემდეგი“-ს <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}x) ან გაიტანეთ!`,
         loseMsgZero: (amt, curr) => `საწამლავი სოკო! ☠️ წააგეთ ${amt} ${curr}`,
         loseMsgGuaranteed: (amt, curr) => `საწამლავი სოკო! ☠️ მაგრამ დაგრჩათ შენახული მოგება: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult})`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `გაიტანეთ <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}x) ან გარისკეთ <strong style="color:#38bdf8;">${nextWin} ${curr}</strong>-ისთვის (${nextMult}x)`,
         flagRunMsg: "🎉 10-ვე ბლოკი გავლილია! აირჩიეთ ყუთი ან გაიტანეთ მოგება!",
         chestPrompt: (mult) => `🎁 3 ყუთი: 1x [${mult}X], 1x [1X], 1x [☠️ სოკო]`,
         chestWon: (boost, amt, curr) => `🌟 ბუუმ! +${boost}X ბონუსი! მიმდინარე მოგება: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
@@ -589,7 +585,7 @@ const translations = {
         chestLostZero: (curr, amt) => `☠️ ყუთში აღმოჩნდა საწამლავი სოკო! წააგეთ ${amt} ${curr}`,
         chestLostGuaranteed: (curr, amt) => `☠️ სოკო ყუთში! მაგრამ შეინარჩუნეთ დაკეტილი გარანტირებული: +${amt} ${curr}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} გავლილია! გაიტანეთ <strong style="color:#fbbf24;">${win} ${curr}</strong> ან გადადით შემდეგ World-ში!`,
-        cashedOutMsg: (amt, mult, curr) => `გატანილია: +${amt} ${curr} (${mult}) 💰`,
+        cashedOutMsg: (amt, mult, curr) => `გატანილია: +${amt} ${curr} (${mult}x) 💰`,
         allClearedMsg: "👑 ლეგენდარული გამარჯვება! მთელი თამაში დაიხურა! 🏆",
         invalidBet: "არასწორი ფსონი!",
         warpBtn: (nextW, curr, win) => `World ${nextW}-ში გადასვლა 🚀`,
@@ -603,13 +599,13 @@ const translations = {
     },
     ru: {
         currency: "₽",
-        rulesBtn: "📖",
+        rulesBtn: "📖 Rules",
         history: "HIST:",
         noHistory: "No rounds yet",
         balance: "БАЛАНС",
         checkpoint: "СОХРАНЕНО",
-        mult: "MULT",
-        win: "WIN",
+        mult: "МНОЖИТЕЛЬ",
+        win: "ВЫИГРЫШ",
         betLabel: "СТАВКА (₽)",
         minesLabel: "СЛОЖНОСТЬ",
         m1: "Легкий",
@@ -620,10 +616,10 @@ const translations = {
         cashoutBtn: "ЗАБРАТЬ",
         readyMsg: "Сделайте ставку и начните",
         openingMsg: (w) => `${w}: Прыжок на 1-й блок...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Вы в ${w}! Все 10 множителей видны. Нажмите ДАЛЕЕ для <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}) или заберите!`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `Вы в ${w}! Все 10 множителей видны. Нажмите ДАЛЕЕ для <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x) или заберите!`,
         loseMsgZero: (amt, curr) => `Ядовитый гриб! ☠️ -${amt} ${curr}`,
         loseMsgGuaranteed: (amt, curr) => `Ядовитый гриб! ☠️ Но ваш СОХРАНЕННЫЙ ВЫИГРЫШ у вас: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) или за <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `Забрать <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}x) или за <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x)?`,
         flagRunMsg: "🎉 Все 10 блоков пройдены! Откройте сундук или заберите выигрыш!",
         chestPrompt: (mult) => `🎁 3 СУНДУКА: 1x [${mult}X], 1x [1X], 1x [☠️ ГРИБ]`,
         chestWon: (boost, amt, curr) => `🌟 БУМ! +${boost}X БОНУС! Выигрыш: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
@@ -631,7 +627,7 @@ const translations = {
         chestLostZero: (curr, amt) => `☠️ В сундуке ядовитый гриб! Потеряно ${amt} ${curr}`,
         chestLostGuaranteed: (curr, amt) => `☠️ Гриб! Сохранен прошлый гарантированный куш: +${amt} ${curr}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ${w} Пройден! Заберите <strong style="color:#fbbf24;">${win} ${curr}</strong> или в Новый Мир!`,
-        cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}) 💰`,
+        cashedOutMsg: (amt, mult, curr) => `Забрано: +${amt} ${curr} (${mult}x) 💰`,
         allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
         invalidBet: "Неверная ставка!",
         warpBtn: (nextW, curr, win) => `Перейти в Мир ${nextW} 🚀`,
@@ -644,7 +640,7 @@ const translations = {
     },
     es: {
         currency: "€",
-        rulesBtn: "📖",
+        rulesBtn: "📖 Reglas",
         history: "HIST:",
         noHistory: "Sin rondas",
         balance: "SALDO",
@@ -661,10 +657,10 @@ const translations = {
         cashoutBtn: "RETIRAR",
         readyMsg: "Haz tu apuesta y juega",
         openingMsg: (w) => `${w}: Mario salta al 1er bloque...`,
-        worldEnteredMsg: (w, nextWin, nextMult, curr) => `¡En ${w}! Pulsa SIGUIENTE por <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}) o retira!`,
+        worldEnteredMsg: (w, nextWin, nextMult, curr) => `¡En ${w}! Pulsa SIGUIENTE por <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x) o retira!`,
         loseMsgZero: (amt, curr) => `¡Champiñón Venenoso! ☠️ -${amt} ${curr}`,
         loseMsgGuaranteed: (amt, curr) => `¡Veneno! ☠️ Conservas tu GANANCIA GUARDADA: +${amt} ${curr}! 🛡️`,
-        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `¿Retirar <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}) o <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult})?`,
+        winMsg: (curWin, curMult, nextWin, nextMult, curr) => `¿Retirar <strong style="color:#fbbf24;">${curWin} ${curr}</strong> (${curMult}x) o <strong style="color:#38bdf8;">${nextWin} ${curr}</strong> (${nextMult}x)?`,
         flagRunMsg: "🎉 ¡10 Bloques Listos! ¡Elige cofre o retira!",
         chestPrompt: (mult) => `🎁 3 COFRES: 1x [${mult}X], 1x [1X], 1x [☠️ VENENO]`,
         chestWon: (boost, amt, curr) => `🌟 ¡BOOM! +${boost}X! Ganancia actual: <strong style="color:#fbbf24;">${amt} ${curr}</strong>!`,
@@ -672,7 +668,7 @@ const translations = {
         chestLostZero: (curr, amt) => `☠️ ¡Veneno en el cofre! Perdiste ${amt} ${curr}`,
         chestLostGuaranteed: (curr, amt) => `☠️ ¡Veneno! Conservas tu base guardada: +${amt} ${curr}! 🛡️`,
         worldClearMsg: (w, win, curr) => `🏰 ¡${w} Listo! Retira <strong style="color:#fbbf24;">${win} ${curr}</strong> o avanza!`,
-        cashedOutMsg: (amt, mult, curr) => `Retirado: +${amt} ${curr} (${mult}) 💰`,
+        cashedOutMsg: (amt, mult, curr) => `Retirado: +${amt} ${curr} (${mult}x) 💰`,
         allClearedMsg: "👑 ¡Victoria Legendaria! 🏆",
         invalidBet: "¡Apuesta inválida!",
         warpBtn: (nextW, curr, win) => `Ir al Mundo ${nextW} 🚀`,
@@ -878,12 +874,12 @@ let currentBet = 0;
 let isPlaying = false;
 let currentStep = 0;
 
-let groundY = 190;
+let groundY = 175;
 const mario = {
     x: 40,
-    y: groundY - 54,
-    w: 38,
-    h: 54,
+    y: groundY - 50,
+    w: 36,
+    h: 50,
     targetX: 40,
     vy: 0,
     gravity: 0.95,
@@ -891,13 +887,13 @@ const mario = {
 };
 
 let blocks = [];
-let flagPole = { x: 0, y: 35, w: 8, h: 155, flagY: 45, isHit: false };
+let flagPole = { x: 0, y: 35, w: 8, h: 140, flagY: 45, isHit: false };
 
 function resizeCanvas() {
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
-    groundY = canvas.height - 40;
+    groundY = canvas.height - 45;
     mario.y = groundY - mario.h;
     flagPole.h = groundY - 35;
 }
@@ -957,7 +953,7 @@ function spawnSparkles(x, y, color = '#fbbf24', count = 20) {
             x: x, y: y,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed - 2,
-            size: Math.random() * 4.5 + 2,
+            size: Math.random() * 4 + 2,
             color: color, alpha: 1,
             decay: Math.random() * 0.03 + 0.02
         });
@@ -972,7 +968,7 @@ function spawnConfetti() {
             y: -10,
             vx: (Math.random() - 0.5) * 4,
             vy: Math.random() * 4 + 2,
-            size: Math.random() * 6 + 3,
+            size: Math.random() * 5 + 3,
             color: colors[Math.floor(Math.random() * colors.length)],
             alpha: 1, decay: 0.007
         });
@@ -994,17 +990,17 @@ function initWorld(worldIndex) {
     worldBadge.textContent = worldThemes[currentWorld].name;
     
     const diffKey = parseInt(minesSelect.value || 2);
-    const startX = 140;
-    const spacing = 100;
+    const startX = 130;
+    const spacing = 88;
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
 
     for (let i = 0; i < BLOCKS_PER_WORLD; i++) {
         const mult = curve[i];
         blocks.push({
             x: startX + i * spacing,
-            y: 65,
-            w: 52,
-            h: 52,
+            y: 70,
+            w: 48,
+            h: 48,
             mult: mult,
             hit: false,
             isPoison: false,
@@ -1012,7 +1008,7 @@ function initWorld(worldIndex) {
         });
     }
 
-    flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 60;
+    flagPole.x = startX + BLOCKS_PER_WORLD * spacing + 50;
     flagPole.flagY = 45;
     flagPole.isHit = false;
 }
@@ -1071,7 +1067,7 @@ function hitBlock() {
     const t = translations[currentLang];
     const block = blocks[currentStep];
     block.hit = true;
-    block.bounce = 15;
+    block.bounce = 14;
 
     const diffKey = parseInt(minesSelect.value || 2);
     const curve = casinoMultiplierCurves[diffKey][currentWorld];
@@ -1415,7 +1411,7 @@ function update() {
         }
     }
 
-    // მობილურისთვის ცენტრალური ფოკუსირება
+    // მობილურისთვის ცენტრალური კამერა
     const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
     cameraX += (targetCameraX - cameraX) * 0.12;
 
@@ -1453,7 +1449,7 @@ function draw() {
     ctx.save();
     ctx.translate(-cameraX, 0);
 
-    // Environmental Hills & Clouds
+    // Parallax Environmental Details
     if (currentWorld === 1) {
         ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
         ctx.beginPath();
@@ -1461,78 +1457,64 @@ function draw() {
         ctx.fill();
 
         ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-        for (let x = 60; x < 1800; x += 260) {
+        for (let x = 60; x < 1500; x += 260) {
             ctx.beginPath();
-            ctx.arc(x, 28, 14, 0, Math.PI * 2);
-            ctx.arc(x + 16, 22, 20, 0, Math.PI * 2);
-            ctx.arc(x + 34, 28, 14, 0, Math.PI * 2);
+            ctx.arc(x, 32, 14, 0, Math.PI * 2);
+            ctx.arc(x + 16, 26, 20, 0, Math.PI * 2);
+            ctx.arc(x + 34, 32, 14, 0, Math.PI * 2);
             ctx.fill();
         }
 
         ctx.fillStyle = "#16a34a";
-        for (let h = 40; h < 1800; h += 300) {
+        for (let h = 40; h < 1500; h += 300) {
             ctx.beginPath();
-            ctx.arc(h, groundY, 70, Math.PI, 0);
-            ctx.fill();
-        }
-    } else if (currentWorld === 2) {
-        ctx.fillStyle = "rgba(139, 92, 246, 0.2)";
-        for (let cx = 120; cx < 1800; cx += 220) {
-            ctx.beginPath();
-            ctx.arc(cx, 40, 50, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    } else if (currentWorld === 3) {
-        ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
-        for (let mx = 90; mx < 1800; mx += 180) {
-            ctx.beginPath();
-            ctx.arc(mx, 80, 55, 0, Math.PI * 2);
+            ctx.arc(h, groundY, 65, Math.PI, 0);
             ctx.fill();
         }
     }
 
     // Ground Rendering
     ctx.fillStyle = theme.ground;
-    ctx.fillRect(0, groundY, 2000, 8);
+    ctx.fillRect(0, groundY, 1600, 8);
     ctx.fillStyle = "rgba(0,0,0,0.2)";
-    ctx.fillRect(0, groundY + 6, 2000, 2);
+    ctx.fillRect(0, groundY + 6, 1600, 2);
 
     ctx.fillStyle = theme.subGround;
-    ctx.fillRect(0, groundY + 8, 2000, canvas.height - groundY - 8);
+    ctx.fillRect(0, groundY + 8, 1600, canvas.height - groundY - 8);
 
-    // 3D Blocks Rendering with Clear Visibility
+    // 3D Blocks Rendering
     blocks.forEach((b) => {
         const renderY = b.y - b.bounce;
 
         if (!b.hit) {
             ctx.fillStyle = theme.blockBorder;
             ctx.beginPath();
-            ctx.roundRect(b.x, renderY, b.w, b.h, 10);
+            ctx.roundRect(b.x, renderY, b.w, b.h, 8);
             ctx.fill();
 
             ctx.fillStyle = theme.blockColor;
             ctx.beginPath();
-            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 8);
+            ctx.roundRect(b.x + 2, renderY + 2, b.w - 4, b.h - 4, 6);
             ctx.fill();
 
             ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-            ctx.fillRect(b.x + 5, renderY + 5, b.w - 10, 3);
+            ctx.fillRect(b.x + 4, renderY + 4, b.w - 8, 3);
 
             ctx.fillStyle = "#fff";
-            ctx.font = '900 22px "Fredoka", sans-serif';
+            ctx.font = '900 20px "Fredoka", sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('?', b.x + b.w / 2, renderY + 34);
+            ctx.fillText('?', b.x + b.w / 2, renderY + 31);
 
             if (b.mult > 0) {
                 const multText = formatMultiplierText(b.mult);
-                ctx.font = '800 12px "Outfit", sans-serif';
+                ctx.font = '800 11px "Outfit", sans-serif';
                 const textWidth = ctx.measureText(multText).width;
-                const badgeW = Math.max(textWidth + 14, 46);
-                const badgeH = 20;
+                const badgeW = textWidth + 12;
+                const badgeH = 18;
                 const badgeX = b.x + (b.w - badgeW) / 2;
-                const badgeY = renderY - 26;
+                const badgeY = renderY - 24;
 
-                ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+                ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -1542,28 +1524,28 @@ function draw() {
 
                 ctx.fillStyle = b.mult >= 50 ? '#fbbf24' : '#38bdf8';
                 ctx.textAlign = 'center';
-                ctx.fillText(multText, b.x + b.w / 2, badgeY + 14.5);
+                ctx.fillText(multText, b.x + b.w / 2, badgeY + 13);
             }
         } else {
             ctx.fillStyle = '#334155';
             ctx.beginPath();
-            ctx.roundRect(b.x, renderY, b.w, b.h, 10);
+            ctx.roundRect(b.x, renderY, b.w, b.h, 8);
             ctx.fill();
 
             ctx.fillStyle = '#475569';
             ctx.beginPath();
-            ctx.roundRect(b.x + 3, renderY + 3, b.w - 6, b.h - 6, 8);
+            ctx.roundRect(b.x + 2, renderY + 2, b.w - 4, b.h - 4, 6);
             ctx.fill();
 
             if (b.isPoison) {
-                ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 42) / 2, renderY - 44, 42, 42);
+                ctx.drawImage(sprites.poisonMushroom, b.x + (b.w - 38) / 2, renderY - 40, 38, 38);
             } else {
-                ctx.drawImage(sprites.coin, b.x + (b.w - 34) / 2, renderY - 40, 34, 34);
+                ctx.drawImage(sprites.coin, b.x + (b.w - 30) / 2, renderY - 36, 30, 30);
                 
                 ctx.fillStyle = '#22c55e';
-                ctx.font = '900 13px "Outfit", sans-serif';
+                ctx.font = '900 12px "Outfit", sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 46);
+                ctx.fillText(formatMultiplierText(b.mult), b.x + b.w / 2, renderY - 42);
             }
         }
     });
