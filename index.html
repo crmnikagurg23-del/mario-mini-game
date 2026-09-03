@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Super Mario Road - Mobile Arcade Deluxe</title>
+    <title>Super Mario Road - 100% RTP Edition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Outfit:wght@600;700;800;900&display=swap');
 
@@ -370,8 +370,8 @@
         .modal-header h3 { font-size: 15px; color: #fbbf24; font-weight: 800; }
         .btn-close { background: transparent; border: none; color: #64748b; font-size: 22px; cursor: pointer; }
         .modal-body { font-size: 12px; line-height: 1.5; color: #94a3b8; display: flex; flex-direction: column; gap: 8px; }
-        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
-        .rtp-box strong { color: #38bdf8; }
+        .rtp-box { background: rgba(10, 15, 29, 0.8); border-left: 3px solid #22c55e; padding: 6px 10px; border-radius: 6px; color: #f8fafc; }
+        .rtp-box strong { color: #4ade80; }
         .rule-list { padding-left: 16px; }
 
         @media (min-width: 768px) {
@@ -547,9 +547,10 @@ const translations = {
         allClearedMsg: "👑 Legendary Victory! Completed all worlds! 🏆",
         invalidBet: "Invalid bet or balance!",
         warpBtn: (nextW, curr, win) => `Enter World ${nextW} 🚀`,
-        modalTitle: "Rules & Multipliers",
-        modalRtp: "Theoretical RTP: 97.00% | House Edge: 3.00%",
+        modalTitle: "Rules & Multipliers (100% RTP)",
+        modalRtp: "Theoretical RTP: 100.00% | House Edge: 0.00%",
         modalRules: [
+            "<strong>100.00% Fair RTP:</strong> Exact mathematical probability without any house edge.",
             "<strong>Real Risk from Block 1:</strong> Mushrooms can appear starting from step 1.",
             "<strong>Chests Risk:</strong> Picking a Poison Mushroom in the bonus chest loses all winnings. Only 1X or Bonus X saves and locks your win.",
             "<strong>Difficulty Modes:</strong> Easy (up to 2,800x), Medium (up to 75,000x), Hard (up to 12,000,000x)."
@@ -589,9 +590,10 @@ const translations = {
         allClearedMsg: "👑 ლეგენდარული გამარჯვება! მთელი თამაში დაიხურა! 🏆",
         invalidBet: "არასწორი ფსონი!",
         warpBtn: (nextW, curr, win) => `World ${nextW}-ში გადასვლა 🚀`,
-        modalTitle: "წესები & მამრავლები",
-        modalRtp: "თეორიული RTP: 97.00% | House Edge: 3.00%",
+        modalTitle: "წესები & მამრავლები (100% RTP)",
+        modalRtp: "თეორიული RTP: 100.00% | House Edge: 0.00%",
         modalRules: [
+            "<strong>100.00% სამართლიანი RTP:</strong> კაზინოს წილი (House Edge) სრულად ამოღებულია.",
             "<strong>რეალური რისკი 1-ლი ბლოკიდან:</strong> სოკო შეიძლება იყოს პირველსავე ნაბიჯზე.",
             "<strong>ყუთის რისკი:</strong> ბონუს ყუთში საწამლავი სოკოს ამოსვლისას კარგავთ მთელ მოგებას! მხოლოდ 1X ან ბონუს X გინარჩუნებთ და გიკეტავთ თანხას.",
             "<strong>სირთულის რეჟიმები:</strong> მარტივი (2,800x-მდე), საშუალო (75,000x-მდე), რთული (12,000,000x-მდე)."
@@ -631,9 +633,10 @@ const translations = {
         allClearedMsg: "👑 Победа! Все миры пройдены! 🏆",
         invalidBet: "Неверная ставка!",
         warpBtn: (nextW, curr, win) => `Перейти в Мир ${nextW} 🚀`,
-        modalTitle: "Правила & Множители",
-        modalRtp: "Теоретический RTP: 97.00% | Преимущество: 3.00%",
+        modalTitle: "Правила & Множители (100% RTP)",
+        modalRtp: "Теоретический RTP: 100.00% | Преимущество: 0.00%",
         modalRules: [
+            "<strong>100.00% Честный RTP:</strong> Преимущество казино равно 0.00%.",
             "<strong>Реальный риск с 1-го блока:</strong> Шанс проигрыша активен сразу на первом шаге.",
             "<strong>Риск сундуков:</strong> Ядовитый гриб в сундуке сжигает весь куш! Только 1X или бонусный X сохраняет ваш выигрыш.",
             "<strong>Режимы сложности:</strong> Легкий (до 2,800x), Средний (до 75,000x), Сложный (до 12,000,000x)."
@@ -673,9 +676,10 @@ const translations = {
         allClearedMsg: "👑 ¡Victoria Legendaria! 🏆",
         invalidBet: "¡Apuesta inválida!",
         warpBtn: (nextW, curr, win) => `Ir al Mundo ${nextW} 🚀`,
-        modalTitle: "Reglas",
-        modalRtp: "RTP Teórico: 97.00% | Ventaja: 3.00%",
+        modalTitle: "Reglas (100% RTP)",
+        modalRtp: "RTP Teórico: 100.00% | Ventaja: 0.00%",
         modalRules: [
+            "<strong>100.00% RTP Justo:</strong> Cálculo matemático puro sin ventaja de la casa.",
             "<strong>Riesgo real en el bloque 1:</strong> El veneno puede salir desde el primer paso.",
             "<strong>Riesgo en cofres:</strong> El veneno en el cofre quema todas las ganancias acumuladas. Solo 1X o Bonus X asegura tu base."
         ]
@@ -1076,7 +1080,8 @@ function hitBlock() {
     const curM = curve[currentStep];
     const prevM = (currentStep === 0) ? (currentWorld === 1 ? 1.0 : casinoMultiplierCurves[diffKey][currentWorld - 1][BLOCKS_PER_WORLD - 1]) : curve[currentStep - 1];
 
-    const survivalProb = Math.min(0.98, Math.max(0.01, (prevM / curM) * 0.97));
+    // ზუსტი 100.00% RTP ფორმულა (House Edge: 0.00%)
+    const survivalProb = Math.min(1.0, Math.max(0.01, (prevM / curM)));
     const isPoison = (Math.random() > survivalProb);
     block.isPoison = isPoison;
 
@@ -1088,7 +1093,6 @@ function hitBlock() {
 
         spawnSparkles(block.x + block.w / 2, block.y, '#9333ea', 25);
 
-        // თუ გადარჩენილი ჰქონდა ყუთი, შენახული მოგება უნარჩუნდება
         if (baseGuaranteedMult > 0) {
             const savedWin = currentBet * baseGuaranteedMult;
             balance += savedWin;
@@ -1218,7 +1222,6 @@ function openMysteryChest(index) {
         }
     });
 
-    // სოკოს ამოსვლისას მოგება აღარ უნარჩუნდება — კარგავს ყველაფერს!
     if (result === 0) {
         isPlaying = false;
         audio.lose();
@@ -1227,7 +1230,7 @@ function openMysteryChest(index) {
 
         const totalLostAmt = (currentBet * accumulatedMult).toFixed(2);
         accumulatedMult = 0;
-        baseGuaranteedMult = 0; // ძველი გარანტიაც იწვება
+        baseGuaranteedMult = 0;
         addHistory(0, false);
 
         setTimeout(() => {
@@ -1246,11 +1249,7 @@ function openMysteryChest(index) {
         return;
     }
 
-    // 1X ან ბონუს X-ის ამოსვლისას:
-    // 1) უნარჩუნდება და ებლოკება ის მოგება, რაც წინა ტურებში დააგროვა (სანამ X-ს აიღებდა)
     baseGuaranteedMult = currentWorldBaseMult;
-
-    // 2) მიმდინარე მოგება მრავლდება ყუთის მამრავლზე
     accumulatedMult = parseFloat((accumulatedMult * result).toFixed(2));
 
     const currentWinAmount = currentBet * accumulatedMult;
@@ -1413,7 +1412,6 @@ function update() {
         }
     }
 
-    // მობილურისთვის ცენტრალური კამერა
     const targetCameraX = Math.max(0, mario.x - (canvas.width * 0.35));
     cameraX += (targetCameraX - cameraX) * 0.12;
 
@@ -1439,7 +1437,6 @@ function draw() {
 
     const theme = worldThemes[currentWorld];
 
-    // Background Gradient
     const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
     bgGrad.addColorStop(0, theme.bg[0]);
     bgGrad.addColorStop(0.5, theme.bg[1]);
@@ -1451,7 +1448,6 @@ function draw() {
     ctx.save();
     ctx.translate(-cameraX, 0);
 
-    // Parallax Environmental Details
     if (currentWorld === 1) {
         ctx.fillStyle = "rgba(251, 191, 36, 0.18)";
         ctx.beginPath();
@@ -1475,7 +1471,6 @@ function draw() {
         }
     }
 
-    // Ground Rendering
     ctx.fillStyle = theme.ground;
     ctx.fillRect(0, groundY, 1600, 8);
     ctx.fillStyle = "rgba(0,0,0,0.2)";
@@ -1484,7 +1479,6 @@ function draw() {
     ctx.fillStyle = theme.subGround;
     ctx.fillRect(0, groundY + 8, 1600, canvas.height - groundY - 8);
 
-    // 3D Blocks Rendering
     blocks.forEach((b) => {
         const renderY = b.y - b.bounce;
 
@@ -1572,7 +1566,6 @@ function draw() {
         }
     });
 
-    // Flagpole
     ctx.fillStyle = '#cbd5e1';
     ctx.fillRect(flagPole.x, flagPole.y, flagPole.w, flagPole.h);
     ctx.fillStyle = '#fbbf24';
@@ -1580,7 +1573,6 @@ function draw() {
     ctx.arc(flagPole.x + 4, flagPole.y, 8, 0, Math.PI * 2);
     ctx.fill();
 
-    // Flag
     ctx.fillStyle = '#22c55e';
     ctx.beginPath();
     ctx.moveTo(flagPole.x + 8, flagPole.flagY);
@@ -1588,13 +1580,11 @@ function draw() {
     ctx.lineTo(flagPole.x + 8, flagPole.flagY + 28);
     ctx.fill();
 
-    // Castle
     ctx.fillStyle = '#334155';
     ctx.fillRect(flagPole.x + 65, groundY - 80, 80, 80);
     ctx.fillStyle = '#0f172a';
     ctx.fillRect(flagPole.x + 92, groundY - 40, 28, 40);
 
-    // Particles
     particles.forEach(p => {
         ctx.save();
         ctx.globalAlpha = p.alpha;
@@ -1605,13 +1595,11 @@ function draw() {
         ctx.restore();
     });
 
-    // Mario Shadow
     ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
     ctx.beginPath();
     ctx.ellipse(mario.x + mario.w / 2, groundY, mario.w / 2, 5, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // Mario Character
     const currentMario = (mario.state === 'jumping') ? sprites.marioJump : sprites.mario;
     ctx.drawImage(currentMario, mario.x, mario.y, mario.w, mario.h);
 
